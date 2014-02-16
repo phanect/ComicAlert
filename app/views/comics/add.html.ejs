@@ -1,0 +1,26 @@
+<div class="hero-unit">
+	<form id="comic-form" class="form-horizontal" action="/comics" method="POST">
+		<fieldset>
+			<legend>
+				Create a new Comic
+			</legend>
+			<% if(params.errors) { %>
+			<div class="control-group">
+				<ul>
+					<% for(var err in params.errors) { %>
+					<li>
+						<%= params.errors[err]; %>
+					</li>
+					<% } %>
+				</ul>
+			</div>
+			<% } %>
+
+			<%- partial('form', {comic: params}) %>
+
+			<div class="form-actions">
+				<%- contentTag('input', 'Add', {type: 'submit', class: 'btn btn-primary'}) %>
+			</div>
+		</fieldset>
+	</form>
+</div>
