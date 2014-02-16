@@ -4,18 +4,41 @@
 		<div class="navbar-inner">
 			<div class="container">
 				<a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse"> <span class="i-bar"><i class="icon-chevron-down icon-white"></i></span> </a>
-				<%- linkTo('Geddy App', mainsPath, {class: 'brand'}) %>
+				<%- linkTo("MangAlert", mainsPath, {class: 'brand'}) %>
 				<div class="nav-collapse">
 					<ul class="nav">
 						<li class="active">
-							<%- linkTo('Home', mainsPath) %>
+							<%- linkTo("設定", "/settings") %>
 						</li>
 						<li>
-							<%- linkTo('Tutorial', 'http://geddyjs.org/tutorial') %>
+							<%- linkTo("ログアウト", "/logout") %>
 						</li>
 						<li>
-							<%- linkTo('Docs', 'http://geddyjs.org/documentation') %>
-						</li>
+							<div class="dropdown">
+								<button class="btn dropdown-toggle sr-only" type="button" id="dropdownMenu1" data-toggle="dropdown">
+									Dropdown
+									<span class="caret"></span>
+								</button>
+								<ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
+									<li role="presentation">
+										<a role="menuitem" tabindex="-1" href="#">Action</a>
+									</li>
+									<li role="presentation">
+										<a role="menuitem" tabindex="-1" href="#">Another action</a>
+									</li>
+									<li role="presentation">
+										<a role="menuitem" tabindex="-1" href="#">Something else here</a>
+									</li>
+									<li role="presentation" class="divider"></li>
+									<li role="presentation">
+										<a role="menuitem" tabindex="-1" href="#">Separated link</a>
+									</li>
+								</ul>
+							</div>
+
+							<%# TODO Temporary Twitter Link %>
+							<%# <a href="https://twitter.com/phanect"><img src="https://g.twimg.com/Twitter_logo_blue.png" width="24" height="24"></a>
+						%></li>
 					</ul>
 				</div><!--/.nav-collapse -->
 			</div>
