@@ -11,11 +11,14 @@ var Episode = function() {
 		subTitle : {
 			type : 'string'
 		},
-		updatedAt : {
+		publishedAt : {
 			type : 'datetime'
+			// TODO Add validation to check if given date is before today
 		},
-		expireAt : {
+		availableUntil : {
 			type : 'datetime'
+			// TODO Add validation to check if given date is after today
+
 		},
 		hasRead : {
 			type : 'boolean'
