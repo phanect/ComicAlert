@@ -25,6 +25,8 @@ var Episode = function() {
 		}
 	});
 
+	this.belongsTo("Comic");
+
 	/*
 	 this.property('login', 'string', {required: true});
 	 this.property('password', 'string', {required: true});

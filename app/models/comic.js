@@ -10,6 +10,8 @@ var Comic = function() {
 		}
 	});
 
+		this.hasMany("Episodes");
+
 	/*
 	 this.property('login', 'string', {required: true});
 	 this.property('password', 'string', {required: true});
