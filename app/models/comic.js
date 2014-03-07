@@ -8,6 +8,9 @@ var Comic = function() {
 		url : {
 			type : "string",
 			required: true
+		},
+		thumbnailUrl : {
+			type : "string"
 		}
 	});
 
