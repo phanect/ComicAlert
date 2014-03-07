@@ -12,6 +12,9 @@ var Episode = function() {
 		subTitle : {
 			type : 'string'
 		},
+		url : {
+			type : "string"
+		},
 		publishedAt : {
 			type : "datetime",
 			required : true
