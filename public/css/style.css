@@ -6,49 +6,6 @@ body {
 	background-color: #FFFFFF;
 }
 
-body.application {
-	padding-top: 60px;
-	padding-bottom: 40px;
-}
 code {
 	white-space: pre;
 }
-
-li {
-	margin-left:0px;
-	list-style-type: none;
-}
-
-.navbar-fixed-top {
-	box-shadow: 0px 0px 3px #000;
-	border-bottom: 1px solid #999;
-}
-
-.list-item {
-	margin-bottom: 20px;
-}
-
-.list-item div {
-	background: white;
-	border-bottom: 2px solid #ccc;
-}
-
-.list-item div > * {
-	padding: 20px;
-}
-
-.list-item div h3 i {
-	margin: 5px;
-}
-
-#flash-container {
-	margin-top: 70px;
-}
-
-@media (max-width: 480px) {
-	.hero-unit .pull-right {
-		float: none;
-		margin-top: 10px;
-	}
-}
-
