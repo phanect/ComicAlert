@@ -6,7 +6,8 @@ var Comic = function() {
 			required : true
 		},
 		url : {
-			type : 'string'
+			type : "string",
+			required: true
 		}
 	});
 

@@ -6,26 +6,31 @@ var Episode = function() {
 			required : true
 		},
 		number : {
-			type : 'number'
+			type : "number",
+			required : true
 		},
 		subTitle : {
 			type : 'string'
 		},
 		publishedAt : {
-			type : 'datetime'
+			type : "datetime",
+			required : true
 			// TODO Add validation to check if given date is before today
 		},
 		availableUntil : {
-			type : 'datetime'
+			type : "datetime",
+			required : true
 			// TODO Add validation to check if given date is after today
 
 		},
 		hasRead : {
-			type : 'boolean'
+			type : "boolean",
+			required : true
 		}
 	});
 
 	this.belongsTo("Comic");
+	this.hasOne("Comic");
 
 	/*
 	 this.property('login', 'string', {required: true});
