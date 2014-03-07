@@ -1,10 +1,21 @@
-<!-- Lets talk about geddy -->
-<div class="hero-unit geddy-welcome-box">
-	<h1>Hello, World!</h1>
-	<p>
-		You've created a Geddy app and your server is running. If you already know what you're doing, feel free to jump into your app logic, if not...
-	</p>
-	<p>
-		<%- linkTo('Lets get you started »', 'http://geddyjs.org/tutorial.html', {class: 'btn btn-primary btn-large'}) %>
-	</p>
+
+<h2>新着</h2>
+<div id="episodes-list" class="container-fluid">
+	<% if (episodes) { %>
+	<% for (var i = 0, ii = episodes.length; i < ii; i++) { %>
+	<div class="row-fluid list-item" id="episode-<%= episodes[i].id; %>">
+		<div class="col-md-2 episode">
+			<p><%- linkTo(comics[i].title, comicPath(comics[i].id)); %></p>
+			<p>
+			<% if (comics[i].thumbnailUrl != undefined) { %>
+				<%- imageLink(comics[i].thumbnailUrl, comics[i].url, {alt: "", size: "118x118"}, {});  %>
+			<% } else { %>
+				<%- imageLink("/img/noimage.png", comics[i].url, {alt: "", size: "118x118"}, {});  %>
+			<% } %>
+			</p>
+			<p><%- linkTo(episodes[i].name + " " + episodes[i].subTitle, episodePath(episodes[i].id)); %></p>
+		</div>
+	</div>
+	<% } %>
+	<% } %>
 </div>
