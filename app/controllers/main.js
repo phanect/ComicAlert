@@ -18,11 +18,42 @@
 
 var Main = function() {
 	this.index = function(req, resp, params) {
-		this.respond({
-			params : params
-		}, {
-			format : 'html',
-			template : 'app/views/main/index'
+		var self = this;
+		var comics = new Array();
+
+		geddy.model.Episode.all({hasRead: false}, {sort: {publishedAt: "desc"}}, function(err, episodes) {
+			if (err) {
+				throw err;
+			}
+
+			var respondWithEachComics = function(episodes, count) {
+				geddy.model.Comic.first({
+					id : episodes[count].comicId
+				}, function(err, comic) {
+					if (err) {
+						throw err;
+					}
+
+					comics[count] = comic;
+
+					if (count + 1 < episodes.length) {
+						respondWithEachComics(episodes, count + 1);
+					} else {
+						self.respond({episodes: episodes, comics: comics},
+							{
+								format: "html",
+								template: "app/views/main/index"
+							}
+						);
+					}
+				});
+			};
+
+			if (episodes.length > 0) {
+				respondWithEachComics(episodes, 0);
+			} else {
+				console.log("No Episodes"); // TODO
+			}
 		});
 	};
 };
