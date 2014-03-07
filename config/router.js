@@ -39,4 +39,5 @@ router.get('/').to('Main.index');
 // });
 
 router.resource('comics');
+router.resource('episodes');
 exports.router = router;
