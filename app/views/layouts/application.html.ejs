@@ -1,6 +1,6 @@
 <%= partial('layout_header'); %>
 <body>
-	<nav class="navbar navbar-fixed-top" role="navigation">
+	<nav class="navbar navbar-default" role="navigation">
 		<div class="container-fluid">
 			<%- linkTo("MangAlert", mainsPath, {class: "navbar-brand"}) %>
 			<div class="collapse navbar-collapse">
@@ -26,12 +26,14 @@
 					</li>
 
 				</ul>
-			</div><!--/.nav-collapse -->
+			</div><!--/.navbar-collapse -->
 		</div>
 	</nav>
-	<div class="container">
-		<%- displayFlash(flash); %>
-		<%- render(); %>
+	<div class="container-fluid">
+		<div class="row-fluid">
+			<%- displayFlash(flash); %>
+			<%- render(); %>
+		</div>
 	</div>
 </body>
 <%= partial('layout_footer'); %>
