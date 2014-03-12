@@ -33,6 +33,15 @@ var config = {
 			host : 'localhost',
 			port : 27017
 		}
+	},
+	mailer : {
+		fromAddressUsername : "info",
+		transport : {
+			type : "direct",
+			options : {
+				debug : false
+			}
+		}
 	}
 
 	/* // Using Postgres as the default, with only a Postgres DB
