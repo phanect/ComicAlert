@@ -96,6 +96,51 @@ var Main = function() {
 		this.redirect("/#logout");
 	};
 
+	this.addcomics = function(req, resp, params) {
+		var self = this;
+
+		geddy.model.User.first({id : this.session.get("userId")}, function(err, user) {
+			if (err) {
+				throw err;
+			}
+
+			if (user) {
+				geddy.model.Comic.all({}, function(err, comics) {
+					if (err) {
+						throw err;
+					}
+
+					for (var i = 0, ii = comics.length; i < ii; i++) {
+						geddy.model.Subscription.all({userId: user.id}, function(err, subscriptions) {
+							if (err) {
+								throw err;
+							}
+
+							for (var i = 0, ii = comics.length; i < ii; i++) {
+								console.log(comics[i].subscriptionId);
+								for (var j = 0, jj = subscriptions.length; j < jj; j++) {
+									console.log("★");
+									console.log(comics[i].subscriptionId +" / "+ subscriptions[j].id);
+									if (comics[i].subscriptionId == subscriptions[j].id) {
+										comics = comics.splice(i, 1);
+									}
+								}
+							}
+							self.respond({
+								comics : comics,
+								user : user
+							}, {
+								format : "html",
+								template : "app/views/main/addcomics"
+							});
+						});
+					}
+				});
+			} else {
+				self.redirect("/");
+			}
+		});
+	};
 };
 
 exports.Main = Main;
