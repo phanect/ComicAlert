@@ -10,11 +10,7 @@ var User = function() {
 			required : true,
 			on : ["create", "update"]
 		},
-		familyName : {
-			type : "string",
-			required : true
-		},
-		givenName : {
+		name : {
 			type : "string",
 			required : true
 		},
