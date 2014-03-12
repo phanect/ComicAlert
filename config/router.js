@@ -40,6 +40,9 @@ router.get("/").to("Main.index");
 
 router.resource("comics");
 router.resource("episodes");
+router.resource("subscriptions");
+
+router.get("/addcomics").to("Main.addcomics");
 
 router.get("/login").to("Main.login");
 router.get("/logout").to("Main.logout");
