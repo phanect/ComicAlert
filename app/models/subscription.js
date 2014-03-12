@@ -1,9 +1,6 @@
 var Subscription = function() {
-
-	this.defineProperties({
-
-	});
-
+	this.belongsTo("User");
+	this.belongsTo("Comic");
 };
 
 Subscription = geddy.model.register('Subscription', Subscription);

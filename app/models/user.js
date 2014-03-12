@@ -36,6 +36,7 @@ var User = function() {
 	this.validatesConfirmed("password", "confirmPassword");
 
 	this.hasMany("Passports");
+	this.hasMany("Subscriptions");
 };
 
 User.prototype.isActive = function() {

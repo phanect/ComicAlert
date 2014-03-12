@@ -15,6 +15,7 @@ var Comic = function() {
 	});
 
 		this.hasMany("Episodes");
+	this.hasMany("Subscriptions");
 
 	/*
 	 this.property('login', 'string', {required: true});
