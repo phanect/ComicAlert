@@ -15,47 +15,90 @@
  * limitations under the License.
  *
  */
+var strategies = require('../helpers/passport/strategies'), authTypes = geddy.mixin(strategies, {
+	local : {
+		name : 'local account'
+	}
+});
+;
 
 var Main = function() {
+
 	this.index = function(req, resp, params) {
 		var self = this;
 		var comics = new Array();
 
-		geddy.model.Episode.all({hasRead: false}, {sort: {publishedAt: "desc"}}, function(err, episodes) {
+		geddy.model.User.first({
+			id : this.session.get("userId")
+		}, function(err, user) {
 			if (err) {
 				throw err;
 			}
 
-			var respondWithEachComics = function(episodes, count) {
-				geddy.model.Comic.first({
-					id : episodes[count].comicId
-				}, function(err, comic) {
+			if (user) {
+
+				geddy.model.Episode.all({
+					hasRead : false
+				}, {
+					sort : {
+						publishedAt : "desc"
+					}
+				}, function(err, episodes) {
 					if (err) {
 						throw err;
 					}
 
-					comics[count] = comic;
-
-					if (count + 1 < episodes.length) {
-						respondWithEachComics(episodes, count + 1);
-					} else {
-						self.respond({episodes: episodes, comics: comics},
-							{
-								format: "html",
-								template: "app/views/main/index"
+					var respondWithEachComics = function(episodes, count) {
+						geddy.model.Comic.first({
+							id : episodes[count].comicId
+						}, function(err, comic) {
+							if (err) {
+								throw err;
 							}
-						);
+
+							comics[count] = comic;
+
+							if (count + 1 < episodes.length) {
+								respondWithEachComics(episodes, count + 1);
+							} else {
+								self.respond({
+									episodes : episodes,
+									comics : comics,
+									user : user
+								}, {
+									format : "html",
+									template : "app/views/main/index"
+								});
+							}
+						});
+					};
+
+					if (episodes.length > 0) {
+						respondWithEachComics(episodes, 0);
+					} else {
+						console.log("No Episodes");
+						// TODO
 					}
 				});
-			};
 
-			if (episodes.length > 0) {
-				respondWithEachComics(episodes, 0);
 			} else {
-				console.log("No Episodes"); // TODO
+				self.respond(params, {
+					format : "html",
+					template : "app/views/main/login"
+				});
 			}
 		});
 	};
+
+	this.logout = function(req, resp, params) {
+		this.session.unset('userId');
+		this.session.unset('authType');
+		this.respond(params, {
+			format : 'html',
+			template : 'app/views/main/logout'
+		});
+	};
+
 };
 
 exports.Main = Main;
