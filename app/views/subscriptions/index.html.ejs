@@ -1,0 +1,19 @@
+<div class="hero-unit">
+  <h2>All Subscriptions</h2>
+  <%- linkTo('Create a new Subscription', addSubscriptionPath, {class: 'btn pull-right'}); %>
+</div>
+
+<div id="subscriptions-list">
+<% if (subscriptions) { %>
+<% for (var i = 0, ii = subscriptions.length; i < ii; i++) { %>
+  <div class="row list-item" id="subscription-<%= subscriptions[i].id; %>">
+    <div class="span8">
+      <h3><%- linkTo(subscriptions[i].id, subscriptionPath(subscriptions[i].id)); %></h3>
+    </div>
+    <div class="span4">
+      <h3><i class="icon-list-alt"></i><%= subscriptions[i].id; %></h3>
+    </div>
+  </div>
+<% } %>
+<% } %>
+</div>
