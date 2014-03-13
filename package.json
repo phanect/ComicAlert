@@ -1,10 +1,23 @@
 {
 	"name": "MangAlert",
+	"description": "Comic update notifier",
 	"version": "0.0.1",
 	"author": "phanect",
-	"dependencies": {},
+	"dependencies": {
+		"passport": "0.1.x",
+		"passport-twitter": "0.1.x",
+		"passport-facebook": "0.1.x",
+		"jake": "0.5.x",
+		"passport-yammer": "0.1.x",
+		"bcrypt": "0.7.x",
+		"nodemailer": "0.6.1"
+	},
 	"devDependencies": {},
 	"engines": {
 		"node": "0.11.x"
+	},
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/phanect/MangAlertWeb.git"
 	}
 }
