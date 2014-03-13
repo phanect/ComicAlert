@@ -12,7 +12,11 @@ var init = function(cb) {
 			geddy.log.error(msg);
 		});
 	}
+
+	var crawler = require("../crawler/crawler.js");
+	crawler.start();
+
 	cb();
 };
 
-exports.init = init; 
+exports.init = init;
