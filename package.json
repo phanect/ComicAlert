@@ -2,9 +2,14 @@
 	"name": "MangAlert",
 	"version": "0.0.1",
 	"author": "phanect",
-	"dependencies": {},
+	"dependencies": {
+		"cron": "1.0.4",
+		"time": "0.10.0",
+		"cheerio": "0.13.1",
+		"moment": "2.5.1"
+	},
 	"devDependencies": {},
 	"engines": {
-		"node": "0.11.x"
+		"node": "0.10.x"
 	}
 }
