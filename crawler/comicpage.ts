@@ -93,7 +93,8 @@ class ComicPage {
 									number : episodeNum,
 									url : episodeUrl,
 									publishedAt : publishedAt,
-									hasRead : false
+									hasRead : false,
+									comicId: self.comic.id
 								});
 
 								if (episode.isValid()) {
@@ -110,7 +111,8 @@ class ComicPage {
 									name : episodeName,
 									number : episodeNum,
 									url : episodeUrl,
-									publishedAt : publishedAt
+									publishedAt : publishedAt,
+									comicId: self.comic.id
 								});
 								if (episode.isValid()) {
 									episode.save(function (err, data) {
