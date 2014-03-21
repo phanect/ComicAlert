@@ -8,7 +8,7 @@ class MagGardenComicPage extends ComicPage {
 		var title: string = $("div#comicTitleArea > h2").text();
 		return title.toHalfWidth().split("/")[0];
 	}
-	
+
 	scrapeThumbnailUrl($): string {
 		// e.g. assets/images/comic/BLADE/ROBOTICS/story.jpg
 		var thumbnailUrl: string = $("img.cutImage").attr("src");
@@ -19,9 +19,13 @@ class MagGardenComicPage extends ComicPage {
 		var readBoxInner;
 		var text: string;
 		var tmp: any;
-		var episodeName: string, episodeNum: number, episodeUrl: string, publishedAt;
-		
+
 		$("div.read-box-inner").each(function(i, elem) {
+			var episodeName: string = null;
+			var episodeNum: number = null;
+			var episodeUrl: string = null;
+			var publishedAt = null;
+		
 			readBoxInner = $(this);
 			
 			// Return value example: 2月28日公開／最新直前3月号掲載25話
@@ -39,17 +43,17 @@ class MagGardenComicPage extends ComicPage {
 			}
 			
 			// Extract Episode number
-			tmp = text.match(/\d{1,4}話/)[0];
+			tmp = text.match(/\d{1,4}話/); // e.g. "3話"
 			if (tmp != null) {
-				episodeNum = tmp[0];
-			} else {
-				episodeNum = null;
-				return;
+				tmp = tmp[0].match(/\d/); // e.g. "2"
+				
+				if (tmp != null) {
+					episodeNum = tmp[0];
+					episodeName = "第" + episodeNum + "話";
+					callback(episodeName, episodeNum, episodeUrl, publishedAt);
+				}
 			}
-			
-			var episodeName = "第" + episodeNum + "話";
-			
-			callback(episodeName, episodeNum, episodeUrl, publishedAt);
+			// episodeNum is essential value to acquire, so if failed to get, do not register to DB.
 		});
 	}
 }
