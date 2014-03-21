@@ -3,12 +3,12 @@ interface String {
 	contains(): boolean;
 }
 
-String.prototype.toHalfWidth = function() {
+String.prototype.toHalfWidth = function(): string {
 	return this.replace(/[！-～]/g, function(_str) {
 		return String.fromCharCode(_str.charCodeAt(0) - 65248);
 	});
-}
+};
 
-String.prototype.contains = function(substr: string) {
+String.prototype.contains = function(substr: string): boolean {
 	return (this.indexOf(substr) != -1);
-}
+};
