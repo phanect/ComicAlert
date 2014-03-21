@@ -9,8 +9,7 @@ require("../lib/commons");
 class ComicPage {
 	comic: any;
 	episodes: Array<any> = new Array();
-	url: string;
-	
+
 	constructor(private url: string) {
 		
 	}
