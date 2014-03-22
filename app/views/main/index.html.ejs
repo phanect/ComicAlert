@@ -12,7 +12,13 @@
 					<%- imageLink("/img/noimage.png", comics[i].url, {alt: "", size: "118x118"}, {});  %>
 				<% } %>
 			</p>
-			<p><%- linkTo(episodes[i].name + " " + episodes[i].subTitle, episodePath(episodes[i].id)); %></p>
+			<p>
+				<% if (episodes[i].subTitle) {
+					<%- linkTo(episodes[i].name + " " + episodes[i].subTitle, episodePath(episodes[i].id)); %>
+				<% } else { %>
+					<%- linkTo(episodes[i].name, episodePath(episodes[i].id)); %>
+				<% } %>
+			</p>
 		</div>
 	</div>
 	<% } %>
