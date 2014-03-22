@@ -6,7 +6,7 @@ class MagGardenComicPage extends ComicPage {
 	scrapeTitle($): string {
 		// e.g. ROBOTICS;NOTES／原作：5pb. 漫画：浅川圭司
 		var title: string = $("div#comicTitleArea > h2").text();
-		return title.toHalfWidth().split("/")[0];
+		return title.toHalfWidth().split("/")[0].trim();
 	}
 
 	scrapeThumbnailUrl($): string {
