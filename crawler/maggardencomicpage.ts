@@ -23,6 +23,7 @@ class MagGardenComicPage extends ComicPage {
 		$("div.read-box-inner").each(function(i, elem) {
 			var episodeName: string = null;
 			var episodeNum: number = null;
+			var episodeSubTitle: string = null;
 			var episodeUrl: string = null;
 			var publishedAt = null;
 		
@@ -50,7 +51,7 @@ class MagGardenComicPage extends ComicPage {
 				if (tmp != null) {
 					episodeNum = tmp[0];
 					episodeName = "第" + episodeNum + "話";
-					callback(episodeName, episodeNum, episodeUrl, publishedAt);
+					callback(episodeName, episodeNum, episodeSubTitle, episodeUrl, publishedAt);
 				}
 			}
 			// episodeNum is essential value to acquire, so if failed to get, do not register to DB.

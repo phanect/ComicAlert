@@ -83,7 +83,7 @@ class ComicPage {
 					//
 					// Analysis of Episodes
 					//
-					self.scrapeEpisodes($, function(episodeName, episodeNum, episodeUrl, publishedAt) {
+					self.scrapeEpisodes($, function(episodeName, episodeNum, episodeSubTitle, episodeUrl, publishedAt) {
 						geddy.model.Episode.first({comicId: self.comic.id, number: episodeNum},
 								function(err, episode) {
 										
@@ -91,11 +91,14 @@ class ComicPage {
 								episode = geddy.model.Episode.create({
 									name : episodeName,
 									number : episodeNum,
+									subTitle : episodeSubTitle,
 									url : episodeUrl,
 									publishedAt : publishedAt,
 									hasRead : false,
 									comicId: self.comic.id
 								});
+								
+								console.log(episode);
 
 								if (episode.isValid()) {
 									episode.save(function (err, data) {
@@ -110,6 +113,7 @@ class ComicPage {
 								episode.updateProperties({
 									name : episodeName,
 									number : episodeNum,
+									subTitle : episodeSubTitle,
 									url : episodeUrl,
 									publishedAt : publishedAt,
 									comicId: self.comic.id
