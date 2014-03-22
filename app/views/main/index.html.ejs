@@ -13,10 +13,14 @@
 				<% } %>
 			</p>
 			<p>
-				<% if (episodes[i].subTitle) {
-					<%- linkTo(episodes[i].name + " " + episodes[i].subTitle, episodePath(episodes[i].id)); %>
+				<% if (episodes[i].subTitle) { %>
+					<a href="<%- episodes[i].url %>" target="_blank">
+						<%- episodes[i].name + " " + episodes[i].subTitle %>
+					</a>
 				<% } else { %>
-					<%- linkTo(episodes[i].name, episodePath(episodes[i].id)); %>
+					<a href="<%- episodes[i].url %>" target="_blank">
+						<%- episodes[i].name %>
+					</a>
 				<% } %>
 			</p>
 		</div>
