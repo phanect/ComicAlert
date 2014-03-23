@@ -38,9 +38,19 @@ class MagGardenComicPage extends ComicPage {
 			// Extract updateDate
 			tmp = text.match(/\d{1,2}月\d{1,2}日/);
 			if (tmp !== null) {
-				publishedAt = moment(tmp[0], "MM月DD日");
+				// If today is 2014/03/23 and written "12月14日",
+				// the result will be 2014/12/14 although it is
+				// actually published at 2013/12/14
+				tmp = moment(tmp[0], "MM月DD日");
+
+				if (tmp > moment()) { // if date stored in tmp is the future
+					publishedAt = tmp.subtract({years : 1});
+				} else {
+					publishedAt = tmp;
+				}
+				console.log(text + " / " + publishedAt);
 			} else {
-				publishedAt = null;
+				publishedAt = null; // Now
 			}
 			
 			// Extract Episode number
