@@ -13,15 +13,12 @@
 				<% } %>
 			</p>
 			<p>
-				<% if (episodes[i].subTitle) { %>
-					<a href="<%- episodes[i].url %>" target="_blank">
-						<%- episodes[i].name + " " + episodes[i].subTitle %>
-					</a>
-				<% } else { %>
-					<a href="<%- episodes[i].url %>" target="_blank">
-						<%- episodes[i].name %>
-					</a>
-				<% } %>
+				<a href="<%- episodes[i].url %>" target="_blank">
+					<%- episodes[i].name +
+						((episodes[i].subTitle) ? " " + episodes[i].subTitle : "") +
+						" " + episodes[i].formattedPublishedAt() + "~" +
+						((episodes[i].availableUntil) ? episodes[i].formattedAvailableUntil() : "") %>
+				</a>
 			</p>
 		</div>
 	</div>
