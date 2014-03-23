@@ -7,9 +7,9 @@
 			<p><a href="<%- comics[i].url %>" target="_blank"><%-comics[i].title %></a></p>
 			<p>
 				<% if (comics[i].thumbnailUrl != undefined) { %>
-					<%- imageLink(comics[i].thumbnailUrl, comics[i].url, {alt: "", size: "118x118"}, {});  %>
+					<a href="<%- comics[i].url -%>" target="_blank"><img alt="" src="<%- comics[i].thumbnailUrl %>" width="118" height="118" ></a>
 				<% } else { %>
-					<%- imageLink("/img/noimage.png", comics[i].url, {alt: "", size: "118x118"}, {});  %>
+					<a href="<%- comics[i].url -%>" target="_blank"><img alt="" src="/img/noimage.png" width="118" height="118" ></a>
 				<% } %>
 			</p>
 			<p>
