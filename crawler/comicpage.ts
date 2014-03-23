@@ -3,6 +3,7 @@
 
 var cheerio = require("cheerio");
 var http = require("http");
+var moment = require("moment");
 
 require("../lib/commons");
 
@@ -79,26 +80,24 @@ class ComicPage {
 							});
 						}
 					}
-					
+
 					//
 					// Analysis of Episodes
 					//
 					self.scrapeEpisodes($, function(episodeName, episodeNum, episodeSubTitle, episodeUrl, publishedAt) {
 						geddy.model.Episode.first({comicId: self.comic.id, number: episodeNum},
 								function(err, episode) {
-										
+
 							if (episode === undefined) { // New Episode
 								episode = geddy.model.Episode.create({
 									name : episodeName,
 									number : episodeNum,
 									subTitle : episodeSubTitle,
 									url : episodeUrl,
-									publishedAt : publishedAt,
+									publishedAt : (publishedAt) ? publishedAt : moment().toDate(),
 									hasRead : false,
 									comicId: self.comic.id
 								});
-								
-								console.log(episode);
 
 								if (episode.isValid()) {
 									episode.save(function (err, data) {
@@ -115,7 +114,7 @@ class ComicPage {
 									number : episodeNum,
 									subTitle : episodeSubTitle,
 									url : episodeUrl,
-									publishedAt : publishedAt,
+									publishedAt : (publishedAt) ? publishedAt : episode.publishedAt,
 									comicId: self.comic.id
 								});
 								if (episode.isValid()) {
