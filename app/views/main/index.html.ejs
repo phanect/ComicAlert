@@ -6,7 +6,10 @@
 		<div class="col-md-2 episode">
 			<p><a href="<%- comics[i].url %>" target="_blank"><%-comics[i].title %></a></p>
 			<p>
-				<a href="<%- comics[i].url -%>" target="_blank"><img alt="" src="<%- (comics[i].thumbnailUrl) ? comics[i].thumbnailUrl : "/img/noimage.png" %>" width="118" height="118" ></a>
+				<a href="<%- comics[i].url -%>" target="_blank">
+					<img src="<%- (comics[i].thumbnailUrl) ? comics[i].thumbnailUrl : "/img/noimage.png" %>"
+						alt="<%- comics[i].title %>" width="118" height="118" >
+				</a>
 			</p>
 			<p>
 				<a href="<%- episodes[i].url %>" target="_blank">
