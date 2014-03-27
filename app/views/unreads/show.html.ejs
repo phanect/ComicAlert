@@ -1,0 +1,18 @@
+<div class="hero-unit">
+	<h2 class="id"><%= unread.id %></h2>
+	<%- linkTo('Edit this unread', editUnreadPath(params.id), {class: 'btn pull-right'}); %>
+	<%- linkTo('Back to list', unreadPath(''), {class: 'btn pull-right'}); %>
+</div>
+
+<h2>Unread Properties</h2>
+<% for(var i in unread) { -%>
+<% if(i !== 'saved') { -%>
+<div class="row list-item">
+	<div class="span4">
+		<h3><%= i %></h3>
+	</div>
+	<div class="span8">
+		<h3><i class="icon-list-alt"></i><span class="<%= i %>"><%= unread[i] %></span></h3>
+	</div>
+</div>
+<% } -%><% } -%>

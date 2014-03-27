@@ -1,3 +1,5 @@
+var moment = require("moment");
+
 var Episode = function() {
 
 	this.defineProperties({
@@ -16,13 +18,12 @@ var Episode = function() {
 			type : "string"
 		},
 		publishedAt : {
-			type : "datetime",
+			type : "date",
 			required : true
 			// TODO Add validation to check if given date is before today
 		},
 		availableUntil : {
-			type : "datetime",
-			required : true
+			type : "date",
 			// TODO Add validation to check if given date is after today
 
 		},
@@ -56,7 +57,27 @@ var Episode = function() {
 	 // Do some stuff
 	 };
 	 */
+	Episode.formattedPublishedAt = function() {
+		var oneYearAgo = new moment().subtract({years:1});
+		var _publishedAt = new moment(this.publishedAt);
 
+		if (_publishedAt > oneYearAgo) { // if this episode is published in one year
+			return _publishedAt.local().format("MM/DD");
+		} else {
+			return _publishedAt.local().format("YYYY/MM/DD");
+		}
+	};
+
+	Episode.formattedAvailableUntil = function() {
+		var oneYearLater = new moment().add({years:1});
+		var _availableUntil = new moment(this.availableUntil);
+
+		if (_availableUntil < oneYearLater) { // if this episode expires in one year
+			return _availableUntil.local().format("MM/DD");
+		} else {
+			return _availableUntil.local().format("YYYY/MM/DD");
+		}
+	};
 };
 
 /*

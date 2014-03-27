@@ -1,21 +1,8 @@
-var Comic = function() {
+var Unread = function() {
 
 	this.defineProperties({
-		title : {
-			type : 'string',
-			required : true
-		},
-		url : {
-			type : "string",
-			required: true
-		},
-		thumbnailUrl : {
-			type : "string"
-		}
-	});
 
-	this.hasMany("Episodes");
-	this.hasMany("Subscriptions");
+	});
 
 	/*
 	 this.property('login', 'string', {required: true});
@@ -43,14 +30,14 @@ var Comic = function() {
 
 /*
  // Can also define them on the prototype
- Comic.prototype.someOtherMethod = function () {
+ Unread.prototype.someOtherMethod = function () {
  // Do some other stuff
  };
  // Can also define static methods and properties
- Comic.someStaticMethod = function () {
+ Unread.someStaticMethod = function () {
  // Do some other stuff
  };
- Comic.someStaticProperty = 'YYZ';
+ Unread.someStaticProperty = 'YYZ';
  */
 
-Comic = geddy.model.register('Comic', Comic);
+Unread = geddy.model.register('Unread', Unread);

@@ -4,18 +4,26 @@
 	<% for (var i = 0, ii = episodes.length; i < ii; i++) { %>
 	<div class="row-fluid list-item" id="episode-<%= episodes[i].id; %>">
 		<div class="col-md-2 episode">
-			<p><%- linkTo(comics[i].title, comicPath(comics[i].id)); %></p>
+			<p><a href="<%- comics[i].url %>" target="_blank"><%-comics[i].title %></a></p>
 			<p>
-				<% if (comics[i].thumbnailUrl != undefined) { %>
-					<%- imageLink(comics[i].thumbnailUrl, comics[i].url, {alt: "", size: "118x118"}, {});  %>
-				<% } else { %>
-					<%- imageLink("/img/noimage.png", comics[i].url, {alt: "", size: "118x118"}, {});  %>
-				<% } %>
+				<a href="<%- comics[i].url -%>" target="_blank">
+					<img src="<%- (comics[i].thumbnailUrl) ? comics[i].thumbnailUrl : "/img/noimage.png" %>"
+						alt="<%- comics[i].title %>" width="118" height="118" >
+				</a>
 			</p>
-			<p><%- linkTo(episodes[i].name + " " + episodes[i].subTitle, episodePath(episodes[i].id)); %></p>
+			<p>
+				<a href="<%- episodes[i].url %>" target="_blank">
+					<%- episodes[i].name +
+						((episodes[i].subTitle) ? " " + episodes[i].subTitle : "") +
+						" " + episodes[i].formattedPublishedAt() + "~" +
+						((episodes[i].availableUntil) ? episodes[i].formattedAvailableUntil() : "") %>
+				</a>
+			</p>
 		</div>
 	</div>
 	<% } %>
+	<% } else {%>
+		<p>未読のコミックはありません。</p>
 	<% } %>
 </div>
 

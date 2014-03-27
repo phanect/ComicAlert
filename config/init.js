@@ -12,7 +12,13 @@ var init = function(cb) {
 			geddy.log.error(msg);
 		});
 	}
+
+	var crawler = require("../build/crawler/crawler.js");
+	crawler.start();
+	// Debug
+	crawler.analyzeComics();
+
 	cb();
 };
 
-exports.init = init; 
+exports.init = init;

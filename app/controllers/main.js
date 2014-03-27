@@ -76,8 +76,14 @@ var Main = function() {
 					if (episodes.length > 0) {
 						respondWithEachComics(episodes, 0);
 					} else {
-						console.log("No Episodes");
-						// TODO
+						self.respond({
+							episodes : null,
+							comics : null,
+							user : user
+						}, {
+							format : "html",
+							template : "app/views/main/index"
+						});
 					}
 				});
 

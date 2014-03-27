@@ -41,9 +41,10 @@ router.get("/").to("Main.index");
 router.resource("comics");
 router.resource("episodes");
 router.resource("subscriptions");
+router.resource("unreads");
+router.resource("users");
 
 router.get("/addcomics").to("Main.addcomics");
-
 router.get("/login").to("Main.login");
 router.get("/logout").to("Main.logout");
 router.post("/auth/local").to("Auth.local");
@@ -53,5 +54,5 @@ router.get("/auth/facebook").to("Auth.facebook");
 router.get("/auth/facebook/callback").to("Auth.facebookCallback");
 router.get("/auth/yammer").to("Auth.yammer");
 router.get("/auth/yammer/callback").to("Auth.yammerCallback");
-router.resource("users");
+
 exports.router = router;
