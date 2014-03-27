@@ -87,6 +87,9 @@ class ComicPage {
 					self.scrapeEpisodes($, function(episodeName, episodeNum, episodeSubTitle, episodeUrl, publishedAt) {
 						geddy.model.Episode.first({comicId: self.comic.id, number: episodeNum},
 								function(err, episode) {
+							if (err) {
+								throw err;
+							}
 
 							if (episode === undefined) { // New Episode
 								episode = geddy.model.Episode.create({
@@ -104,6 +107,36 @@ class ComicPage {
 											throw err;
 										}
 									});
+								}
+								
+								//
+								// Register Unreads
+								//
+								
+								geddy.model.Subscription.all({comicId: self.comic.id}, function(err, subscriptions) {
+									if (err) {
+											throw err;
+									}
+									
+									if (!subscriptions) {
+										return;
+									}
+
+									for (var i = 0 in subscriptions) {
+										var unread = geddy.model.Unread.create({
+											episodeId: episode.id,
+											userId: subscriptions[i].userId
+										});
+										
+										if (unread.isValid()) {
+											unread.save(function (err, data) {
+												if (err) {
+													throw err;
+												}
+											});
+										}
+									}
+									
 								}
 								
 								// TODO Alert it to the users
