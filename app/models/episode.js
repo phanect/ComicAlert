@@ -26,10 +26,6 @@ var Episode = function() {
 			type : "date",
 			// TODO Add validation to check if given date is after today
 
-		},
-		hasRead : {
-			type : "boolean",
-			required : true
 		}
 	});
 

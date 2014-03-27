@@ -37,7 +37,6 @@ var User = function() {
 
 	this.hasMany("Passports");
 	this.hasMany("Subscriptions");
-	this.hasMany("Unreads");
 };
 
 User.prototype.isActive = function() {

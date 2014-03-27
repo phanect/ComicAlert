@@ -95,7 +95,6 @@ class ComicPage {
 									subTitle : episodeSubTitle,
 									url : episodeUrl,
 									publishedAt : (publishedAt) ? publishedAt : moment().toDate(),
-									hasRead : false,
 									comicId: self.comic.id
 								});
 
