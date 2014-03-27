@@ -14,7 +14,7 @@ var Comic = function() {
 		}
 	});
 
-		this.hasMany("Episodes");
+	this.hasMany("Episodes");
 
 	/*
 	 this.property('login', 'string', {required: true});
