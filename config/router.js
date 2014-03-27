@@ -40,6 +40,8 @@ router.get("/").to("Main.index");
 
 router.resource("comics");
 router.resource("episodes");
+router.resource("unreads");
+router.resource("users");
 
 router.get("/login").to("Main.login");
 router.get("/logout").to("Main.logout");
@@ -50,6 +52,5 @@ router.get("/auth/facebook").to("Auth.facebook");
 router.get("/auth/facebook/callback").to("Auth.facebookCallback");
 router.get("/auth/yammer").to("Auth.yammer");
 router.get("/auth/yammer/callback").to("Auth.yammerCallback");
-router.resource("users");
-router.resource("unreads");
+
 exports.router = router;
