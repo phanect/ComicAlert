@@ -13,7 +13,7 @@ var init = function(cb) {
 		});
 	}
 
-	var crawler = require("../crawler/crawler.js");
+	var crawler = require("../build/crawler/crawler.js");
 	crawler.start();
 
 	cb();
