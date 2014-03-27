@@ -35,6 +35,7 @@ var Episode = function() {
 
 	this.belongsTo("Comic");
 	this.hasOne("Comic");
+	this.hasMany("Unreads");
 
 	/*
 	 this.property('login', 'string', {required: true});
