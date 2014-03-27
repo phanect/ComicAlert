@@ -1,0 +1,24 @@
+<div class="hero-unit">
+	<form id="unread-form" class="form-horizontal" action="/unreads" method="POST">
+		<fieldset>
+			<legend>Create a new Unread</legend>
+			<% if(params.errors) { %>
+			<div class="control-group">
+				<ul>
+					<% for(var err in params.errors) { %>
+					<li>
+						<%= params.errors[err]; %>
+					</li>
+					<% } %>
+				</ul>
+			</div>
+			<% } %>
+
+			<%- partial('form', {unread: params}) %>
+
+			<div class="form-actions">
+				<%- contentTag('input', 'Add', {type: 'submit', class: 'btn btn-primary'}) %>
+			</div>
+		</fieldset>
+	</form>
+</div>
