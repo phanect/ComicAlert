@@ -17,10 +17,10 @@
  */
 
 var config = {
-	appName : 'Geddy App (development)',
+	appName : "MangAlert (development)",
 	detailedErrors : true,
 	debug : true,
-	hostname : null,
+	hostname : "localhost",
 	port : 4000,
 	model : {
 		defaultAdapter : 'filesystem'
