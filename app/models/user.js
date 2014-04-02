@@ -16,7 +16,6 @@ var User = function() {
 		},
 		email : {
 			type : "string",
-			required : true,
 			on : ["create", "update"]
 		},
 		activationToken : {
