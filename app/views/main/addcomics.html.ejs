@@ -1,8 +1,13 @@
 <script type="text/javascript">
 	function subscribeComic(comicId) {
-		$.post("/subscriptions", {userId: "<%= user.id; %>", comicId: comicId}, function(result){
-			$("button#addcomic-" + comicId).attr("disabled", true);
-			$("p#added-" + comicId).html("Added");
+		$.ajax({
+			url: "/users/<%- user.id %>",
+			type: "PUT",
+			data: { addComic: comicId, _method: "PUT" },
+			success: function(result) {
+				$("button#addcomic-" + comicId).attr("disabled", true);
+				$("p#added-" + comicId).html("Added");
+			}
 		});
 	}
 </script>

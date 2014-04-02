@@ -166,20 +166,26 @@ var Users = function() {
 		var self = this;
 
 		geddy.model.User.first(params.id, function(err, user) {
-			// Only update password if it's changed
-			var skip = params.password ? [] : ['password'];
+			if (params.addComic) {
+				geddy.model.Comic.first({ id : params.addComic }, function(err, comic) {
+					console.log(comic);
+					if (comic) {
+						console.log("comic");
+						user.addComic(comic);
+						user.save(function (err, data) {
+							if (err) {
+								throw err;
+							}
+						});
+					}
+				});
+			}
 
-			user.updateAttributes(params, {
-				skip : skip
-			});
+			user.updateAttributes(params);
 
 			if (!user.isValid()) {
 				self.respondWith(user);
 			} else {
-				if (params.password) {
-					user.password = generateHash(user.password);
-				}
-
 				user.save(function(err, data) {
 					if (err) {
 						throw err;
