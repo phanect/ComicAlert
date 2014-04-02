@@ -5,7 +5,7 @@ var passport = require('passport'),
 	failureRedirect = config.failureRedirect,
 	bcrypt = require('bcrypt');
 
-var SUPPORTED_SERVICES = ['twitter', 'facebook', 'yammer'];
+var SUPPORTED_SERVICES = ['twitter', 'facebook'];
 
 SUPPORTED_SERVICES.forEach(function(item) {
 	var hostname = geddy.config.fullHostname || '',
