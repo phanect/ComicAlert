@@ -4,7 +4,8 @@ module.exports = {
 		keyField : 'id',
 		parseProfile : function(profile) {
 			var userData = {
-				name : profile.displayName || profile.username
+				name : profile.displayName || profile.username,
+				username : profile.username,
 			};
 			return userData;
 		}
@@ -15,7 +16,8 @@ module.exports = {
 		parseProfile : function(profile) {
 			var userData = {
 				name : (profile.name.givenName && profile.name.familyName)
-					? profile.name.givenName + profile.name.familyName : profile.username
+					? profile.name.givenName + profile.name.familyName : profile.username,
+				username : profile.username,
 			};
 			return userData;
 		}
