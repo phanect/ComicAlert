@@ -36,22 +36,18 @@ var Main = function() {
 			}
 
 			if (user) {
-
-				geddy.model.Episode.all({
-					hasRead : false
-				}, {
-					sort : {
-						publishedAt : "desc"
-					}
-				}, function(err, episodes) {
+				geddy.model.Episode.all({userId : user.id},
+					{ sort : { publishedAt : "desc" } },
+					function(err, episodes)
+				{
 					if (err) {
 						throw err;
 					}
 
 					var respondWithEachComics = function(episodes, count) {
-						geddy.model.Comic.first({
-							id : episodes[count].comicId
-						}, function(err, comic) {
+						geddy.model.Comic.first({ id : episodes[count].comicId },
+							function(err, comic)
+						{
 							if (err) {
 								throw err;
 							}
@@ -86,7 +82,6 @@ var Main = function() {
 						});
 					}
 				});
-
 			} else {
 				self.respond(params, {
 					format : "html",
