@@ -36,7 +36,9 @@ var User = function() {
 
 	this.hasMany("Passports");
 	this.hasMany("Comics");
+	this.belongsTo("Comics");
 	this.hasMany("Episodes");
+	this.belongsTo("Episodes");
 };
 
 User.prototype.isActive = function() {

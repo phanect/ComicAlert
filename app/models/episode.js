@@ -30,6 +30,7 @@ var Episode = function() {
 	});
 
 	this.belongsTo("Comic");
+	this.hasMany("Users");
 	this.belongsTo("User");
 	this.hasOne("Comic");
 
