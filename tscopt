@@ -1,3 +1,3 @@
---outDir build
+--outDir _build
 --target ES5
 --module commonjs

@@ -6,6 +6,7 @@
 dist
 node_modules
 *.DS_Store
+_build/
 log/
 npm-debug.log
 config/secrets.json
