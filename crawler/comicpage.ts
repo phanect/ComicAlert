@@ -85,13 +85,15 @@ class ComicPage {
 					// Analysis of Episodes
 					//
 					self.scrapeEpisodes($, function(episodeName, episodeNum, episodeSubTitle, episodeUrl, publishedAt) {
+
+						// Acquired episodes processing
 						geddy.model.Episode.first({comicId: self.comic.id, number: episodeNum},
 								function(err, episode) {
 							if (err) {
 								throw err;
 							}
 
-							if (episode === undefined) { // New Episode
+							if (episode === undefined) { // New Episode: Add to DB
 								episode = geddy.model.Episode.create({
 									name : episodeName,
 									number : episodeNum,
@@ -107,40 +109,30 @@ class ComicPage {
 											throw err;
 										}
 									});
-								}
+								} // TODO: else
 								
-								//
-								// Register Unreads
-								//
-								
-								geddy.model.Subscription.all({comicId: self.comic.id}, function(err, subscriptions) {
-									if (err) {
-											throw err;
-									}
-									
-									if (!subscriptions) {
-										return;
-									}
+								// Register relation between user and episode
+								self.comic.getUsers(function(err, users) {
+									for (var i = 0 in users) {
+										episode.addUser(users[i]);
+										users[i].addEpisode(episode);
 
-									for (var i = 0 in subscriptions) {
-										var unread = geddy.model.Unread.create({
-											episodeId: episode.id,
-											userId: subscriptions[i].userId
-										});
-										
-										if (unread.isValid()) {
-											unread.save(function (err, data) {
+										if (episode.isValid() && users[i].isValid()) {
+											episode.save(function (err, data) {
 												if (err) {
 													throw err;
 												}
 											});
-										}
+											users[i].save(function (err, data) {
+												if (err) {
+													throw err;
+												}
+											});
+										} // TODO: else
 									}
-									
-								}
-								
+								});
 								// TODO Alert it to the users
-							} else { // Existing Episode
+							} else { // Existing Episode: Update if something updated
 								episode.updateProperties({
 									name : episodeName,
 									number : episodeNum,
