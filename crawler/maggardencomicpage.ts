@@ -65,6 +65,7 @@ class MagGardenComicPage extends ComicPage {
 				}
 			}
 			// episodeNum is essential value to acquire, so if failed to get, do not register to DB.
+			// TODO but log error and report admin
 		});
 	}
 }
