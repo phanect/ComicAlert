@@ -40,8 +40,6 @@ router.get("/").to("Main.index");
 
 router.resource("comics");
 router.resource("episodes");
-router.resource("subscriptions");
-router.resource("unreads");
 router.resource("users");
 
 router.get("/addcomics").to("Main.addcomics");
