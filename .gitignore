@@ -1,16 +1,16 @@
-.settings
-.jshintrc
-.project
-*.swp
-*.swo
+# Node.js & Geddy
+log/
+node_modules/
 _datastore.json
 _session_store.json
-dist
-node_modules
-*.DS_Store
-_build/
-log/
 npm-debug.log
 config/secrets.json
 public/js/core/models.js
 public/js/core/helpers.js
+
+# Build files (TypeScript etc.)
+_build/
+
+# Eclipse config files
+.settings/
+.project
