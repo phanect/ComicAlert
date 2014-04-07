@@ -1,23 +1,22 @@
 var should = require("should");
 
 var testdata = require("../testdata");
-var Comic = geddy.model.Comic;
+var User = geddy.model.User;
 
 var tests = {
-
 	"after" : function(next) {
 		// cleanup DB
-		Comic.remove({}, function(err, data) {
+/*		User.remove(function(err, data) {
 			if (err) {
 				throw err;
 			}
 			next();
-		});
+		});*/
 	},
-	"Comic creation test" : function(next) {
-		var comic = testdata.unSavedComic();
-		comic.save(function(err, data) {
-			should.not.exist(null);
+	"User creation test" : function(next) {
+		var user = testdata.unSavedUser();
+		user.save(function(err, data) {
+			should.not.exist(err);
 			next();
 		});
 	}
