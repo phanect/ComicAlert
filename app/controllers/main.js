@@ -106,36 +106,35 @@ var Main = function() {
 			}
 
 			if (user) {
-				geddy.model.Comic.all({}, function(err, comics) {
+				geddy.model.Comic.all(function(err, comics) {
 					if (err) {
 						throw err;
 					}
 
-					for (var i = 0, ii = comics.length; i < ii; i++) {
-						geddy.model.Subscription.all({userId: user.id}, function(err, subscriptions) {
-							if (err) {
-								throw err;
-							}
+					user.getComics(function(err, registeredComics) {
+						if (err) {
+							throw err;
+						}
 
-							for (var i = 0, ii = comics.length; i < ii; i++) {
-								console.log(comics[i].subscriptionId);
-								for (var j = 0, jj = subscriptions.length; j < jj; j++) {
-									console.log("★");
-									console.log(comics[i].subscriptionId +" / "+ subscriptions[j].id);
-									if (comics[i].subscriptionId == subscriptions[j].id) {
-										comics = comics.splice(i, 1);
+						if (comics && registeredComics) {
+							// Remove registered comics
+							for (var i = 0; i < comics.length; i++) { // Check comics.length every time
+								for (var j = 0, jj = registeredComics.length; j < jj; j++) {
+									if (comics[i].id == registeredComics[j].id) {
+										comics.splice(i, 1); // Remove comic[i]
 									}
 								}
 							}
-							self.respond({
-								comics : comics,
-								user : user
-							}, {
-								format : "html",
-								template : "app/views/main/addcomics"
-							});
+						}
+						self.respond({
+							comics : comics,
+							user : user
+						}, {
+							format : "html",
+							template : "app/views/main/addcomics"
 						});
-					}
+					});
+				
 				});
 			} else {
 				self.redirect("/");
