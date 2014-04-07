@@ -39,6 +39,66 @@ var User = function() {
 	this.belongsTo("Comics");
 	this.hasMany("Episodes");
 	this.belongsTo("Episodes");
+	
+	User.connectComics = function(comics) {
+		var _comics = new Array();
+
+		if (Array.isArray(comics)) {
+			_comics = comics;
+		} else if (comics) {
+			_comics[0] = comics;
+		} else {
+			console.error("No comics given");
+			return;
+		}
+
+		for (var i in _comics) {
+			this.addComic(_comics[i]);
+			_comics[i].addUser(this);
+			
+			_comics[i].save(function (err, data) {
+				if (err) {
+					throw err;
+				}
+			});
+		}
+
+		this.save(function (err, data) {
+			if (err) {
+				throw err;
+			}
+		});
+	};
+
+	User.connectEpisodes = function(episodes) {
+		var _episodes = new Array();
+
+		if (Array.isArray(episodes)) {
+			_episodes = episodes;
+		} else if (episodes) {
+			_episodes[0] = episodes;
+		} else {
+			console.error("No episodes given");
+			return;
+		}
+
+		for (var i in _episodes) {
+			this.addEpisode(_episodes[i]);
+			_episodes[i].addUser(this);
+
+			_episodes[i].save(function (err, data) {
+				if (err) {
+					throw err;
+				}
+			});
+		}
+
+		this.save(function (err, data) {
+			if (err) {
+				throw err;
+			}
+		});
+	};
 };
 
 User.prototype.isActive = function() {
