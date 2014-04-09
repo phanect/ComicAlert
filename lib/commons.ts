@@ -1,6 +1,6 @@
 interface String {
 	toHalfWidth(): string;
-	contains(): boolean;
+	contains(substr: string): boolean;
 }
 
 String.prototype.toHalfWidth = function(): string {
