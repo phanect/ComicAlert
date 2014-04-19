@@ -18,7 +18,7 @@
 	<% for (var i = 0, ii = comics.length; i < ii; i++) { %>
 	<div class="row-fluid list-item" id="comic-<%= comics[i].id; %>">
 		<div class="col-md-2 comic">
-			<p><%- linkTo(comics[i].title, comicPath(comics[i].id)); %></p>
+			<p><%- linkTo(comics[i].title, comics[i].url); %></p>
 			<p>
 				<% if (comics[i].thumbnailUrl != undefined) { %>
 					<%- imageLink(comics[i].thumbnailUrl, comics[i].url, {alt: "", size: "118x118"}, {});  %>
