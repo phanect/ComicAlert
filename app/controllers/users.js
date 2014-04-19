@@ -168,17 +168,20 @@ var Users = function() {
 		geddy.model.User.first(params.id, function(err, user) {
 			if (params.addComic) {
 				geddy.model.Comic.first({ id : params.addComic }, function(err, comic) {
-					console.log(comic);
 					if (comic) {
-						console.log("comic");
-						user.addComic(comic);
-						user.save(function (err, data) {
-							if (err) {
-								throw err;
+						user.connectComics(comic);
+
+						comic.getEpisodes(function(err, episodes) {
+							if (episodes && !err) {
+								user.connectEpisodes(episodes);
+							} else {
+								throw err; // TODO
 							}
 						});
 					}
 				});
+				
+				delete params.addComic;
 			}
 
 			user.updateAttributes(params);
