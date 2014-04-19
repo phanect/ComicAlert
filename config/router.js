@@ -38,8 +38,6 @@ router.get("/").to("Main.index");
 //   this.get("/print(.:format)").to("Hemispheres.print");
 // });
 
-router.resource("comics");
-router.resource("episodes");
 router.resource("users");
 
 router.get("/addcomics").to("Main.addcomics");
