@@ -9,7 +9,9 @@ public/js/core/models.js
 public/js/core/helpers.js
 
 # Build files (TypeScript etc.)
+.sass-cache/
 _build/
+public/css/style.css
 
 # Eclipse config files
 .settings/
