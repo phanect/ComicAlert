@@ -10,14 +10,15 @@
 		"cheerio": "0.13.1",
 		"geddy-passport" : "0.1.6",
 		"moment": "2.5.1",
-		"passport" : "0.2.0",
-		"passport-twitter" : "1.0.2",
-		"passport-facebook" : "1.0.3",
+		"passport" : "0.1.18",
+		"passport-twitter" : "0.1.5",
+		"passport-facebook" : "0.1.6",
 		"time" : "0.10.0",
 		"wait.for" : "0.6.3"
 	},
 	"devDependencies": {
 		"typescript": "latest",
+		"selenium-webdriver" : "latest",
 		"should" : "latest"
 	},
 	"engines": {
