@@ -1,0 +1,32 @@
+<div class="comiccard col-md-3" id="episode-<%= episodes[i].id; %>">
+	<div class="comiccard-title">
+		<a href="<%- comics[i].url %>" target="_blank">
+			<%-comics[i].title %>
+		</a>
+	</div>
+
+	<div class="comiccard-container">
+		<div class="comiccard-cell">
+			<a href="<%- comics[i].url -%>" target="_blank">
+				<img src="<%- (comics[i].thumbnailUrl) ? comics[i].thumbnailUrl : "/img/noimage.png" %>"
+					alt="<%- comics[i].title %>" width="118" height="118" >
+			</a>
+		</div>
+		<div class="comiccard-cell">
+			<span class="episode-title">
+				<%-
+					episodes[i].name +
+					((episodes[i].subTitle) ? " " + episodes[i].subTitle : "")
+				%>
+			</span>
+			&nbsp;
+			<span class="available-term">
+				(<%- episodes[i].formattedPublishedAt() + "~" +
+					((episodes[i].availableUntil) ? episodes[i].formattedAvailableUntil() : "不明")
+				%>)
+			</span>
+
+			<a class="read-button" href="<%- episodes[i].url %>" target="_blank">読む</a>
+		</div>
+	</div>
+</div>
