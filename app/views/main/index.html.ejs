@@ -19,19 +19,21 @@
 							</a>
 						</div>
 						<div class="comiccard-cell">	
-							<a class="episode-title" href="<%- episodes[i].url %>" target="_blank">
+							<span class="episode-title">
 								<%-
 									episodes[i].name +
 									((episodes[i].subTitle) ? " " + episodes[i].subTitle : "") %>
 							</a>
 		
 							<span class="available-term">
-								<%-
+								(<%-
 									episodes[i].formattedPublishedAt() + "~" +
 									((episodes[i].availableUntil)
 										? episodes[i].formattedAvailableUntil() : "不明")
-								%>
+								%>)
 							</span>
+							
+							<a class="read-button" href="<%- episodes[i].url %>" target="_blank">読む</span>
 						</div>
 					</div>
 				</div>
