@@ -1,29 +1,44 @@
 <h2>新着</h2>
 <div id="episodes-list" class="container-fluid">
-	<% if (episodes) { %>
-	<% for (var i = 0, ii = episodes.length; i < ii; i++) { %>
-	<div class="row-fluid list-item" id="episode-<%= episodes[i].id; %>">
-		<div class="col-md-2 episode">
-			<p><a href="<%- comics[i].url %>" target="_blank"><%-comics[i].title %></a></p>
-			<p>
-				<a href="<%- comics[i].url -%>" target="_blank">
-					<img src="<%- (comics[i].thumbnailUrl) ? comics[i].thumbnailUrl : "/img/noimage.png" %>"
-						alt="<%- comics[i].title %>" width="118" height="118" >
-				</a>
-			</p>
-			<p>
-				<a href="<%- episodes[i].url %>" target="_blank">
-					<%- episodes[i].name +
-						((episodes[i].subTitle) ? " " + episodes[i].subTitle : "") +
-						" " + episodes[i].formattedPublishedAt() + "~" +
-						((episodes[i].availableUntil) ? episodes[i].formattedAvailableUntil() : "") %>
-				</a>
-			</p>
-		</div>
+	<div class="row-fluid">
+
+		<% if (episodes) { %>
+			<% for (var i = 0, ii = episodes.length; i < ii; i++) { %>
+				<div class="comiccard col-md-3" id="episode-<%= episodes[i].id; %>">
+					<div class="comiccard-title">
+						<a href="<%- comics[i].url %>" target="_blank">
+							<%-comics[i].title %>
+						</a>
+					</div>
+
+					<div class="comiccard-container">
+						<div class="comiccard-cell">	
+							<a href="<%- comics[i].url -%>" target="_blank">
+								<img src="<%- (comics[i].thumbnailUrl) ? comics[i].thumbnailUrl : "/img/noimage.png" %>"
+									alt="<%- comics[i].title %>" width="118" height="118" >
+							</a>
+						</div>
+						<div class="comiccard-cell">	
+							<a class="episode-title" href="<%- episodes[i].url %>" target="_blank">
+								<%-
+									episodes[i].name +
+									((episodes[i].subTitle) ? " " + episodes[i].subTitle : "") %>
+							</a>
+		
+							<span class="available-term">
+								<%-
+									episodes[i].formattedPublishedAt() + "~" +
+									((episodes[i].availableUntil)
+										? episodes[i].formattedAvailableUntil() : "不明")
+								%>
+							</span>
+						</div>
+					</div>
+				</div>
+			<% } %>
+		<% } else {%>
+			<p>未読のコミックはありません。</p>
+		<% } %>
 	</div>
-	<% } %>
-	<% } else {%>
-		<p>未読のコミックはありません。</p>
-	<% } %>
 </div>
 

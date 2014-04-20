@@ -5,10 +5,37 @@
 
 body {
 	background: url('../img/whitey.png');
+
+	word-break: normal;
+	word-wrap: break-word;
 }
 
-.episode {
+.comiccard {
 	background-color: #FFFFFF;
+	margin: 10px;
+	padding: 0;
+
+	$border-radius: 25px;
+	border-radius: $border-radius;
+	
+	&-title {
+		text-align: center;
+		margin: {
+			top: ($border-radius / 3);
+			right: ($border-radius / 3);
+			left: ($border-radius / 3);
+		}
+		padding:0;
+	}
+
+	&-container {
+		border-spacing: 15px;
+
+		.comiccard-cell {
+			display: table-cell;
+			vertical-align: top;
+		}
+	}
 }
 
 code {
