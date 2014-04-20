@@ -1,5 +1,8 @@
 @import "bootstrap/_variables.scss";
 
+$font-family-sans-serif:  "Helvetica Neue", Helvetica, Arial, sans-serif; // TODO
+$font-family-serif:       Georgia, "Times New Roman", Times, serif; // TODO
+
 @import "bootstrap.scss";
 @import "auth-buttons.scss";
 
@@ -34,6 +37,14 @@ body {
 		.comiccard-cell {
 			display: table-cell;
 			vertical-align: top;
+			
+			.available-term {
+				color: $gray;
+				font: {
+					size: $font-size-small;
+					
+				}
+			}
 		}
 	}
 }
