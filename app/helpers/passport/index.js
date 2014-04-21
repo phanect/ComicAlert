@@ -17,7 +17,7 @@ exports.requireAuth = function() {
 		// try to return them there after login
 		this.session.set('successRedirect', this.request.url);
 		this.flash.keep('success');
-		this.redirect('/login');
+		this.redirect("/");
 	}
 };
 
