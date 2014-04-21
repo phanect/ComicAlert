@@ -22,7 +22,13 @@ var strategies = require('../helpers/passport/strategies'), authTypes = geddy.mi
 });
 ;
 
+var passport = require("../helpers/passport");
+
 var Main = function() {
+
+	this.before(passport.requireAuth, {
+		except : ["index", "logout"]
+	});
 
 	this.index = function(req, resp, params) {
 		var self = this;
