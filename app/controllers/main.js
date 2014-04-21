@@ -97,6 +97,10 @@ var Main = function() {
 		});
 	};
 
+	this.login = function(req, resp, param) {
+		this.redirect("/");
+	};
+
 	this.logout = function(req, resp, params) {
 		this.session.unset('userId');
 		this.session.unset('authType');
