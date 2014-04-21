@@ -84,51 +84,6 @@ var actions = new (function () {
 		};
 	};
 
-	this.local = function (req, resp, params) {
-		var self = this,
-			username = params.username,
-			password = params.password,
-			query = {username: {eql: username}, activatedAt: {ne: null}};
-
-		geddy.model.User.first(query, {nocase: ['username']}, function (err, user) {
-			var crypted,
-				redirect;
-			if (err) {
-				self.redirect(failureRedirect);
-			}
-			if (user) {
-				if (bcrypt.compareSync(password + geddy.config.secret, user.password)) {
-					redirect = self.session.get('successRedirect');
-
-					// If there was a session var for an previous attempt
-					// to hit an auth-protected page, redirect there, and
-					// remove the session var so they don't keep going to
-					// that page for infinity
-					if (redirect) {
-						self.session.unset('successRedirect');
-					}
-					// Otherwise use the default redirect
-					else {
-						redirect = successRedirect;
-					}
-
-					self.session.set('userId', user.id);
-					self.session.set('authType', 'local');
-					// No third-party auth tokens
-					self.session.set('authData', {});
-					
-					self.redirect(redirect);
-				} else {
-					self.flash.error('Could not verify your login information.');
-					self.redirect(failureRedirect);
-				}
-			} else {
-				self.flash.error('Could not verify your login information.');
-				self.redirect(failureRedirect);
-			}
-		});
-	};
-
 	SUPPORTED_SERVICES.forEach(function (item) {
 		self[item] = _createInit(item);
 		self[item + 'Callback'] = _createCallback(item);
