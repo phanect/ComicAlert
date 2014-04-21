@@ -2,11 +2,17 @@ var crypto = require('crypto'), bcrypt = require('bcrypt');
 
 exports.actions = require('./actions');
 
+
+
+exports.isAuthenticated = function(control) {
+	return (control.session.get("userId") || control.name == "Main" || control.name == "Auth");
+};
+
 // Redirect to the login page unless the user has an authenticated session.
 // Leaves open the index, login, logout (on Main), and (of course) the actual
 // authentication endpoints
 exports.requireAuth = function() {
-	if (!(this.session.get('userId') || this.name == 'Main' || this.name == 'Auth')) {
+	if (!exports.isAuthenticated(this)) {
 		// Record the page the user was trying to get to, will
 		// try to return them there after login
 		this.session.set('successRedirect', this.request.url);
