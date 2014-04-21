@@ -37,7 +37,8 @@ var actions = new (function () {
 			req.session = this.session.data;
 			passport.authenticate(authType)(req, resp);
 		};
-	}
+	};
+
 	var _createCallback = function (authType) {
 		return function (req, resp, params) {
 			var self = this,
