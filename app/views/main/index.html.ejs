@@ -3,7 +3,7 @@
 	<div class="row-fluid">
 		<% if (episodes) { %>
 			<% for (var i = 0, ii = episodes.length; i < ii; i++) { %>
-				<%- partial("templates/comiccard", {comics : comics, episodes : episodes, i : i}) %>
+				<%- partial("templates/comiccard", {comic : comics[i], episode : episodes[i]}) %>
 			<% } %>
 		<% } else {%>
 			<p>未読のコミックはありません。</p>
