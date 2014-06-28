@@ -6,8 +6,12 @@ task("build", function (params) {
 		cmd = "tsc @tscopt ./crawler/crawler.ts";
 		console.log(cmd);
 		jake.exec([cmd], {printStdOut : true, printStderr : true, breakOnError : false}, function() {
-			console.log("Build complete");
-			complete();
+			cmd = "cd ./_build/pre/; ts-yield -o ../../_build/ ./crawler/* ./lib/*";
+			console.log(cmd);
+			jake.exec([cmd], {printStdOut : true, printStderr : true, breakOnError : false}, function() {
+				console.log("Build complete");
+				complete();
+			});
 		});
 	});
 });
