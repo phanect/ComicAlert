@@ -4,20 +4,22 @@
 	"version": "0.0.1",
 	"author": "phanect",
 	"dependencies": {
-		"nodemailer": "0.6.1",
-		"bcrypt" : "0.7.7",
-		"cron": "1.0.4",
-		"cheerio": "0.13.1",
-		"geddy-passport" : "0.1.6",
-		"moment": "2.5.1",
-		"passport" : "0.1.18",
-		"passport-twitter" : "0.1.5",
-		"passport-facebook" : "0.1.6",
-		"time" : "0.10.0",
-		"wait.for" : "0.6.3"
+		"nodemailer": "latest",
+		"bcrypt-nodejs": "latest",
+		"cron": "latest",
+		"cheerio": "latest",
+		"geddy-passport" : "latest",
+		"moment": "latest",
+		"passport" : "0.1.x",
+		"passport-twitter" : "0.1.x",
+		"passport-facebook" : "0.1.x",
+		"request" : "latest",
+		"genny" : "latest",
+		"time" : "latest"
 	},
 	"devDependencies": {
 		"typescript": "latest",
+		"typescript-yield" : "latest",
 		"selenium-webdriver" : "latest",
 		"should" : "latest"
 	},
