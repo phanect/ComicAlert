@@ -15,8 +15,6 @@ var init = function(cb) {
 
 	var crawler = require("../_build/crawler/crawler.js");
 	crawler.start();
-	// Debug
-	crawler.analyzeComics();
 
 	cb();
 };

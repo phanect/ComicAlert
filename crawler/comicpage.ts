@@ -2,163 +2,157 @@
 /// <reference path="../lib/commons.ts" />
 
 var cheerio = require("cheerio");
-var http = require("http");
 var moment = require("moment");
+var request = require("request");
 
 require("../lib/commons");
 
-class ComicPage {
-	comic: any;
-	episodes: Array<any> = new Array();
+export class ComicPage {
+	comic : any;
+	title : string;
+	thumbnailUrl : string;
+	episodes : Array<any> = new Array();
+	concluded : boolean = false;
 
-	constructor(private url: string) {
-		
+	constructor(public url : string) {
+
 	}
-	
-	scrapeTitle($): string {
-		throw new Error("This method must be overrided. Aren't you using ComicPage class directly?");
-	}
-	
-	scrapeThumbnailUrl($): string {
-		throw new Error("This method must be overrided. Aren't you using ComicPage class directly?");
-	}
-	
-	scrapeEpisodes($, callback): void {
+
+	scrapeTitle($: any): void {
 		throw new Error("This method must be overrided. Aren't you using ComicPage class directly?");
 	}
 
-	analyzeAndSave(): void {
-		var html = "";
+	scrapeThumbnailUrl($: any): void {
+		throw new Error("This method must be overrided. Aren't you using ComicPage class directly?");
+	}
+
+	scrapeEpisodes($: any): void {
+		throw new Error("This method must be overrided. Aren't you using ComicPage class directly?");
+	}
+
+	analyze(cb : any) : void {
 		var self = this;
 
-		http.get(self.url, function(response) {
-			response.on("data", function(chunk) {
-				html = html + chunk;
-			});
+		request({ url: self.url, jar: true }, function(err, response, html) {
+			if (response.statusCode !== 200) {
+				throw new Error("Return status code " + response.statusCode);
+			} else if (err) {
+				throw err;
+			}
 
-			response.on("end", function() {
-				var $ = cheerio.load(html);
+			var $ = cheerio.load(html);
 
-				var title: string = self.scrapeTitle($);
-				var thumbnailUrl: string = self.scrapeThumbnailUrl($);
+			self.scrapeTitle($);
+			self.scrapeThumbnailUrl($);
+			self.scrapeEpisodes($);
 
-				geddy.model.Comic.first({url : self.url}, function(err, data) {
-					if (err) {
-						throw err;
-					}
+			cb();
+		});
+	}
+	
+	save() : void {
+		var self = this;
 
-					if (data === undefined) { // New Comic
-						self.comic = geddy.model.Comic.create({
-							title: title,
-							url: self.url,
-							thumbnailUrl: thumbnailUrl
+		if (this.concluded) {
+			self.remove();
+			return;
+		}
+
+		geddy.model.Comic.first({ url: self.url }, function(err, comic) {
+			if (err) { throw err; }
+
+			if (!comic) { // New Comic
+				self.comic = geddy.model.Comic.create({
+					title: self.title,
+					url: self.url,
+					thumbnailUrl: self.thumbnailUrl
+				});
+				self.comic.save(function(err, comic) {
+					if (err) { throw err; }
+					
+					console.log("Saved new comic:", self.comic.title, "<", self.comic.url, ">");
+				});
+			} else { // Existing Comic
+				self.comic = comic;
+				if (self.title !== self.comic.title) {
+					self.comic.updateProperties({ title: self.title });
+				}
+				if (self.thumbnailUrl !== self.comic.thumbnailUrl) {
+					self.comic.updateProperties({ thumbnailUrl: self.thumbnailUrl });
+				}
+				self.comic.save(function(err) {
+					if (err) { throw err; }
+					console.log("Updated new comic:", self.comic.title, "<", self.comic.url, ">");
+				});
+			}
+
+			self.episodes.forEach(function(episode) {
+				geddy.model.Episode.first({ comicId: self.comic.id, number: episode.num }, function(err, epobj) {
+					if (err) { throw err; }
+
+					if (!epobj) { // New Episode: Add to DB
+						epobj = geddy.model.Episode.create({
+							name: episode.name,
+							number: episode.num,
+							subTitle: episode.subTitle,
+							url: episode.url,
+							publishedAt: (episode.publishedAt) ? episode.publishedAt : moment().toDate(),
+							comicId: self.comic.id
 						});
-						
-						if (self.comic.isValid()) {
-							self.comic.save(function (err, data) {
-								if (err) {
-									throw err;
-								}
-							});
-						}
-					} else { // Existing Comic
-						self.comic = data;
-						if (title !== self.comic.title) {
-							self.comic.updateProperties({ title: title });
-							self.comic.save(function (err, data) {
-								if (err) {
-									throw err;
-								}
-							});
-						}
-						if (thumbnailUrl !== self.comic.thumbnailUrl) {
-							self.comic.updateProperties({ thumbnailUrl: thumbnailUrl });
-							self.comic.save(function (err, data) {
-								if (err) {
-									throw err;
-								}
-							});
-						}
-					}
 
-					//
-					// Analysis of Episodes
-					//
-					self.scrapeEpisodes($, function(episodeName, episodeNum, episodeSubTitle, episodeUrl, publishedAt) {
-
-						// Acquired episodes processing
-						geddy.model.Episode.first({comicId: self.comic.id, number: episodeNum},
-								function(err, episode) {
+						epobj.save(function(err) {
 							if (err) {
 								throw err;
 							}
-
-							if (episode === undefined) { // New Episode: Add to DB
-								episode = geddy.model.Episode.create({
-									name : episodeName,
-									number : episodeNum,
-									subTitle : episodeSubTitle,
-									url : episodeUrl,
-									publishedAt : (publishedAt) ? publishedAt : moment().toDate(),
-									comicId: self.comic.id
-								});
-
-								if (episode.isValid()) {
-									episode.save(function (err, data) {
-										if (err) {
-											throw err;
-										}
-									});
-								} // TODO: else
-								
-								// Register relation between user and episode
-								self.comic.getUsers(function(err, users) {
-									for (var i = 0 in users) {
-										episode.addUser(users[i]);
-										users[i].addEpisode(episode);
-
-										if (episode.isValid() && users[i].isValid()) {
-											episode.save(function (err, data) {
-												if (err) {
-													throw err;
-												}
-											});
-											users[i].save(function (err, data) {
-												if (err) {
-													throw err;
-												}
-											});
-										} // TODO: else
-									}
-								});
-								// TODO Alert it to the users
-							} else { // Existing Episode: Update if something updated
-								episode.updateProperties({
-									name : episodeName,
-									number : episodeNum,
-									subTitle : episodeSubTitle,
-									url : episodeUrl,
-									publishedAt : (publishedAt) ? publishedAt : episode.publishedAt,
-									comicId: self.comic.id
-								});
-								if (episode.isValid()) {
-									episode.save(function (err, data) {
-										if (err) {
-											throw err;
-										}
-									});
-									
-									
-								}
-							}
-							self.episodes.push(episode);
 						});
-					});
+
+						// Register relation between user and episode
+						self.comic.getUsers(function(err, users) {
+							for (var i = 0 in users) {
+								users[i].connectEpisodes(epobj);
+							}
+						});
+						// TODO Alert it to the users
+					} else { // Existing Episode: Update if something updated
+						var properties : any = {
+							name: episode.name,
+							number: episode.num,
+							subTitle: episode.subTitle,
+							url: episode.url,
+							comicId: self.comic.id
+						}
+
+						if (episode.publishedAt) {
+							properties.publishedAt = episode.publishedAt;
+						}
+
+						epobj.updateProperties(properties);
+						epobj.save(function(err) {
+							if (err) { throw err; }
+						});
+					}
 				});
 			});
 		});
 	}
 
-}
+	analyzeAndSave(): void {
+		var self = this;
+		self.analyze(function() {
+			self.save();
+		});
+	}
 
-export = ComicPage;
+	remove() : void {
+		var self = this;
+		geddy.model.Comic.first({ url : self.url }, function(err, comic) {
+			if (comic) {
+				geddy.model.Episode.remove({ comicId : comic.id }, function(err, success) {
+					geddy.model.Comic.remove(comic.id, function(err, data) {
+						console.log("Removed concluded comic and its episodes:", self.title, "<", self.url, ">");
+					});
+				});
+			}
+		});
+	}
+}

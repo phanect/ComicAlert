@@ -1,39 +1,49 @@
 /// <reference path="./comicpage.ts" />
-var moment = require("moment");
-var ComicPage = require("./comicpage");
 
-class MagGardenComicPage extends ComicPage {
-	scrapeTitle($): string {
+var moment = require("moment");
+import cp = require("./comicpage");
+export class MagGardenComicPage extends cp.ComicPage {
+	scrapeTitle($ : any): void {
 		// e.g. ROBOTICS;NOTES／原作：5pb. 漫画：浅川圭司
 		var title: string = $("div#comicTitleArea > h2").text();
-		return title.toHalfWidth().split("/")[0].trim();
+
+		if (!title) {
+			return;
+		}
+
+		this.title = title.toHalfWidth().split("/")[0].trim();
+		this.title = this.title.replace("【新連載】", "")
+
+		if (this.title.contains("連載終了")) {
+			this.concluded = true;
+		}
 	}
 
-	scrapeThumbnailUrl($): string {
+	scrapeThumbnailUrl($ : any): void {
 		// e.g. assets/images/comic/BLADE/ROBOTICS/story.jpg
 		var thumbnailUrl: string = $("img.cutImage").attr("src");
-		return "http://comic.mag-garden.co.jp/" + thumbnailUrl;
-	}
-	
-	scrapeEpisodes($, callback): void {
-		var readBoxInner;
-		var text: string;
-		var tmp: any;
-
-		$("div.read-box-inner").each(function(i, elem) {
-			var episodeName: string = null;
-			var episodeNum: number = null;
-			var episodeSubTitle: string = null;
-			var episodeUrl: string = null;
-			var publishedAt = null;
 		
-			readBoxInner = $(this);
-			
+		if (!thumbnailUrl) {
+			return;
+		}
+		this.thumbnailUrl = "http://comic.mag-garden.co.jp/" + thumbnailUrl;
+	}
+
+	scrapeEpisodes($ : any): void {
+		var self = this;
+		$("div.read-box-inner").each(function(i, elem) {
+			var episode : any = {}
+				, readBoxInner : any = $(this)
+				, text : string
+				, tmp : any;
+
 			// Return value example: 2月28日公開／最新直前3月号掲載25話
 			text = readBoxInner.find("div.txt").find("h3").text().toHalfWidth();
 
-			episodeUrl = readBoxInner.find("div.txt").find("ul")
+			episode.url = readBoxInner.find("div.txt").find("ul")
 							.find("li.readComic").find("a").attr("href");
+			
+			episode.subTitle = "";
 
 			// Extract updateDate
 			tmp = text.match(/\d{1,2}月\d{1,2}日/);
@@ -44,29 +54,27 @@ class MagGardenComicPage extends ComicPage {
 				tmp = moment(tmp[0], "MM月DD日");
 
 				if (tmp > moment()) { // if date stored in tmp is the future
-					publishedAt = tmp.subtract({years : 1});
+					episode.publishedAt = tmp.subtract({years : 1});
 				} else {
-					publishedAt = tmp;
+					episode.publishedAt = tmp;
 				}
-				console.log(text + " / " + publishedAt);
 			} else {
-				publishedAt = null; // Now
+				episode.publishedAt = null; // Now
 			}
-			
+
 			// Extract Episode number
 			tmp = text.match(/\d{1,4}話/); // e.g. "3話"
 			if (tmp != null) {
 				tmp = tmp[0].match(/\d/); // e.g. "2"
 				
 				if (tmp != null) {
-					episodeNum = tmp[0];
-					episodeName = "第" + episodeNum + "話";
-					callback(episodeName, episodeNum, episodeSubTitle, episodeUrl, publishedAt);
+					episode.num = tmp[0];
+					episode.name = "第" + episode.num + "話";
+					self.episodes.push(episode);
 				}
 			}
-			// episodeNum is essential value to acquire, so if failed to get, do not register to DB.
+			// episode.num is essential value to acquire, so if failed to get, do not register to DB.
 			// TODO but log error and report admin
 		});
 	}
 }
-export = MagGardenComicPage;

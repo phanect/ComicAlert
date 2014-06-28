@@ -1,26 +1,29 @@
 /// <reference path="../lib/external/DefinitelyTyped/node/node.d.ts" />
 /// <reference path="./maggardencomicpage.ts" />
+/// <reference path="./MagazineIndex.ts" />
 
-var cronJob = require("cron").CronJob;
-var MagGardenComicPage = require("./maggardencomicpage.js");
+var cronJob : any = require("cron").CronJob;
+var genny : any = require("genny");
+import mgcp = require("./maggardencomicpage");
+var MagGardenComicPage = mgcp.MagGardenComicPage;
 
-exports.analyzeComics = function() {
-	var urls = [
-				"http://comic.mag-garden.co.jp/blade/784.html",
-				"http://comic.mag-garden.co.jp/blade/2764.html",
-				"http://comic.mag-garden.co.jp/blade/2781.html",
-				"http://comic.mag-garden.co.jp/avarus/3499.html",
-				"http://comic.mag-garden.co.jp/beats/3342.html",
-				"http://comic.mag-garden.co.jp/beats/3460.html",
-				"http://comic.mag-garden.co.jp/beats/196.html",
-				"http://comic.mag-garden.co.jp/beats/433.html",
-				"http://comic.mag-garden.co.jp/beats/2737.html"
-			];
+import mi = require("./MagazineIndex");
+var MagazineIndex : any = mi.MagazineIndex;
 
-	for(var i in urls) {
-		new MagGardenComicPage(urls[i]).analyzeAndSave();
+function analyze() : void {
+	var magazines = [
+		{url : "http://comic.mag-garden.co.jp/blade/", name : "ブレイドオンライン"},
+		{url : "http://comic.mag-garden.co.jp/eden/", name : "WEBコミック EDEN"},
+		{url : "http://comic.mag-garden.co.jp/beats/", name : "WEBコミック Beat's"}
+	];
+
+	for(var i in magazines) {
+		genny.run(function (resume) {
+			var magazineIndex = new MagazineIndex(magazines[i].url, magazines[i].name);
+			var result = yield(magazineIndex.analyzeAndSave());
+		});
 	}
-}
+};
 
 exports.start = function() {
 	var job = new cronJob({
@@ -28,8 +31,7 @@ exports.start = function() {
 		cronTime : "0 14 5 * * *", // Execute on 5:14:0 everyday
 
 		onTick : function() {
-
-			
+			analyze();
 		},
 		onComplete : function() {
 		},
@@ -37,6 +39,9 @@ exports.start = function() {
 		timeZone : "Asia/Tokyo"
 	});
 
-	// Runs your job.
+	
 	job.start();
+
+	// TODO remove all comic data before analysis so that apply code changes
+	analyze();
 };
