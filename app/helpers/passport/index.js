@@ -1,4 +1,4 @@
-var crypto = require('crypto'), bcrypt = require('bcrypt');
+var crypto = require('crypto'), bcrypt = require('bcrypt-nodejs');
 
 exports.actions = require('./actions');
 
