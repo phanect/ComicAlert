@@ -1,8 +1,8 @@
 {
-	"name": "MangAlert",
+	"name": "Comic Alert",
 	"description": "Comic update notifier",
 	"version": "0.0.1",
-	"author": "phanect",
+	"author": "Jumpei Ogawa @phanect",
 	"dependencies": {
 		"nodemailer": "latest",
 		"bcrypt-nodejs": "latest",
@@ -28,6 +28,6 @@
 	},
 	"repository": {
 		"type": "git",
-		"url": "https://github.com/phanect/MangAlertWeb.git"
+		"url": "https://github.com/phanect/ComicAlert.git"
 	}
 }
