@@ -24,7 +24,7 @@
 		"should" : "latest"
 	},
 	"engines": {
-		"node": "0.10.x"
+		"node": "0.11.x"
 	},
 	"repository": {
 		"type": "git",
