@@ -16,6 +16,15 @@ task("build", function (params) {
 	});
 });
 
+desc("Start server and application");
+task("start", function (params) {
+	var cmd = " node --harmony-generators ~/.nvm/v0.11.13/bin/geddy";
+	console.log(cmd);
+	jake.exec([cmd], {printStdOut : true, printStderr : true, breakOnError : true}, function() {
+		complete();
+	});
+});
+
 var t = new jake.TestTask('web', function () {
 	this.testFiles.include('test/*.js');
 	this.testFiles.include('test/**/*.js');
