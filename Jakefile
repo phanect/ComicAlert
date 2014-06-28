@@ -1,9 +1,9 @@
 desc("Build files such as TypeScript and Sass");
 task("build", function (params) {
 	var cmd = "sass --style expanded --update ./public/css/style.scss:./public/css/style.css";
-	console.log(cmd)
+	console.log(cmd);
 	jake.exec([cmd], {printStdOut : true, printStderr : true, breakOnError : true}, function() {
-		cmd = "tsc @tscopt ./crawler/crawler.ts";
+		var cmd = "tsc @tscopt ./crawler/crawler.ts";
 		console.log(cmd);
 		jake.exec([cmd], {printStdOut : true, printStderr : true, breakOnError : false}, function() {
 			cmd = "cd ./_build/pre/; ts-yield -o ../../_build/ ./crawler/* ./lib/*";
