@@ -34,7 +34,7 @@ export class ComicPage {
 		var self = this;
 
 		request({ url: self.url, jar: true }, function(err, response, html) {
-			if (response.statusCode !== 200) {
+			if (response && response.statusCode !== 200) {
 				throw new Error("Return status code " + response.statusCode);
 			} else if (err) {
 				throw err;
