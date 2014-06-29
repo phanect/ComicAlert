@@ -12,7 +12,7 @@ var Utils = require("../lib/commons");
 
 export class MagazineIndex {
 	constructor(private url: string, private name: string) {
-		console.log("Analyzing Magazine:", self.name, "<", self.url, ">");
+		console.log("Analyzing Magazine:", this.name, "<", this.url, ">");
 	}
 	
 	analyzeAndSave() : void {
