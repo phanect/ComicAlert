@@ -11,15 +11,21 @@ var MagGardenComicPage = mgcp.MagGardenComicPage;
 var Utils = require("../lib/commons");
 
 export class MagazineIndex {
-	constructor(private url: string, private name: string) {
+	comicUrls : Array<string> = new Array();
+
+	constructor(public url: string, private name: string) {
 		console.log("Analyzing Magazine:", this.name, "<", this.url, ">");
+	}
+	
+	analyzeComics($ : any, cb : any) : void {
+		throw new Error("This method must be overrided. Aren't you using MagazineIndex class directly?");
 	}
 	
 	analyzeAndSave() : void {
 		var self = this;
 
 		self.analyze(function(comicUrls) {
-			self.save(comicUrls);
+			self.save();
 		});
 	}
 
@@ -33,26 +39,15 @@ export class MagazineIndex {
 				throw err;
 			}
 
-			var $ = cheerio.load(html)
-				, comicUrls = new Array();
-
-			$("div#comicList02 > ul > li").each(function(i, elem) {
-				var comicUrl = $(this).find("a").attr("href");
-
-				if (comicUrl != self.url && comicUrl.contains(self.url)) {
-					comicUrls.push(comicUrl);
-				}
-				
-				// the last element
-				if (i + 1 === $("div#comicList02 > ul > li").length) {
-					cb(comicUrls);
-				}
-			});
+			var $ = cheerio.load(html);
+			self.analyzeComics($, cb);
 		});
 	}
 
-	private save(comicUrls : string[]) {
-		comicUrls.forEach(function(comicUrl) {
+	private save() {
+		if (!this.comicUrls || this.comicUrls.length <= 0) { throw new Error("comicUrls is empty."); }
+
+		this.comicUrls.forEach(function(comicUrl) {
 			geddy.model.Comic.first({url : comicUrl}, function(comic) {
 				if (!comic) {
 					new MagGardenComicPage(comicUrl).analyzeAndSave();

@@ -1,11 +1,14 @@
 /// <reference path="../lib/external/DefinitelyTyped/node/node.d.ts" />
 /// <reference path="./maggardencomicpage.ts" />
 /// <reference path="./MagazineIndex.ts" />
+/// <reference path="./MagGardenMagazineIndex.ts" />
 
 var cronJob : any = require("cron").CronJob;
 var genny : any = require("genny");
 import mgcp = require("./maggardencomicpage");
 var MagGardenComicPage = mgcp.MagGardenComicPage;
+import mgmi = require("./MagGardenMagazineIndex");
+var MagGardenMagazineIndex = mgmi.MagGardenMagazineIndex;
 
 import mi = require("./MagazineIndex");
 var MagazineIndex : any = mi.MagazineIndex;
@@ -19,7 +22,7 @@ function analyze() : void {
 
 	for(var i in magazines) {
 		genny.run(function (resume) {
-			var magazineIndex = new MagazineIndex(magazines[i].url, magazines[i].name);
+			var magazineIndex = new MagGardenMagazineIndex(magazines[i].url, magazines[i].name);
 			var result = yield(magazineIndex.analyzeAndSave());
 		});
 	}
