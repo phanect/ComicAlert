@@ -1,12 +1,12 @@
 /// <reference path="../lib/external/DefinitelyTyped/node/node.d.ts" />
 /// <reference path="../lib/commons.ts" />
-/// <reference path="./maggardencomicpage.ts" />
+/// <reference path="./MagGardenComicPage.ts" />
 
 var cheerio = require("cheerio");
 var request = require("request");
 var wait = require("wait.for-es6");
 
-import mgcp = require("./maggardencomicpage");
+import mgcp = require("./MagGardenComicPage");
 var MagGardenComicPage = mgcp.MagGardenComicPage;
 var Utils = require("../lib/commons");
 

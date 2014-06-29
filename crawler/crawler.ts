@@ -1,11 +1,11 @@
 /// <reference path="../lib/external/DefinitelyTyped/node/node.d.ts" />
-/// <reference path="./maggardencomicpage.ts" />
+/// <reference path="./MagGardenComicPage.ts" />
 /// <reference path="./MagazineIndex.ts" />
 /// <reference path="./MagGardenMagazineIndex.ts" />
 
 var cronJob : any = require("cron").CronJob;
 var genny : any = require("genny");
-import mgcp = require("./maggardencomicpage");
+import mgcp = require("./MagGardenComicPage");
 var MagGardenComicPage = mgcp.MagGardenComicPage;
 import mgmi = require("./MagGardenMagazineIndex");
 var MagGardenMagazineIndex = mgmi.MagGardenMagazineIndex;
