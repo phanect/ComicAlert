@@ -1,7 +1,7 @@
-/// <reference path="./comicpage.ts" />
+/// <reference path="./ComicPage.ts" />
 
 var moment = require("moment");
-import cp = require("./comicpage");
+import cp = require("./ComicPage");
 export class MagGardenComicPage extends cp.ComicPage {
 	scrapeTitle($ : any): void {
 		// e.g. ROBOTICS;NOTES／原作：5pb. 漫画：浅川圭司
