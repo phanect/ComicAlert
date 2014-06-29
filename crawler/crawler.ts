@@ -14,16 +14,15 @@ import mi = require("./MagazineIndex");
 var MagazineIndex : any = mi.MagazineIndex;
 
 function analyze() : void {
-	var magazines = [
-		{url : "http://comic.mag-garden.co.jp/blade/", name : "ブレイドオンライン"},
-		{url : "http://comic.mag-garden.co.jp/eden/", name : "WEBコミック EDEN"},
-		{url : "http://comic.mag-garden.co.jp/beats/", name : "WEBコミック Beat's"}
-	];
+	var magazines = [];
+	magazines.push(new UraSundayMagazineIndex("http://urasunday.com/", "裏サンデー"));
+	magazines.push(new MagGardenMagazineIndex("http://comic.mag-garden.co.jp/blade/", "ブレイドオンライン"));
+	magazines.push(new MagGardenMagazineIndex("http://comic.mag-garden.co.jp/eden/", "WEB コミック EDEN"));
+	magazines.push(new MagGardenMagazineIndex("http://comic.mag-garden.co.jp/beats/", "WEBコミック Beat's"));
 
 	for(var i in magazines) {
 		genny.run(function (resume) {
-			var magazineIndex = new MagGardenMagazineIndex(magazines[i].url, magazines[i].name);
-			var result = yield(magazineIndex.analyzeAndSave());
+			var result = yield(magazines[i].analyzeAndSave());
 		});
 	}
 };
