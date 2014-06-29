@@ -38,9 +38,8 @@ router.get("/").to("Main.index");
 //   this.get("/print(.:format)").to("Hemispheres.print");
 // });
 
-router.resource("users");
-
 router.get("/addcomics").to("Main.addcomics");
+router.get("/addcomics/api").to("Main.addcomics_api");
 router.get("/login").to("Main.login");
 router.get("/logout").to("Main.logout");
 router.get("/auth/twitter").to("Auth.twitter");

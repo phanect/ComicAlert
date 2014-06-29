@@ -151,6 +151,45 @@ var Main = function() {
 			}
 		});
 	};
+
+	this.addcomics_api = function(req, resp, params) {
+		var self = this;
+
+		geddy.model.User.first(params.id, function(err, user) {
+			if (params.addComic) {
+				geddy.model.Comic.first({ id : params.addComic }, function(err, comic) {
+					if (comic) {
+						user.connectComics(comic);
+
+						comic.getEpisodes(function(err, episodes) {
+							if (episodes && !err) {
+								user.connectEpisodes(episodes);
+							} else {
+								throw err; // TODO
+							}
+						});
+					}
+				});
+
+				delete params.addComic;
+			}
+
+			user.updateAttributes(params);
+
+			if (!user.isValid()) {
+				self.respondWith(user);
+			} else {
+				user.save(function(err, data) {
+					if (err) {
+						throw err;
+					}
+					self.respondWith(user, {
+						status : err
+					});
+				});
+			}
+		});
+	};
 };
 
 exports.Main = Main;

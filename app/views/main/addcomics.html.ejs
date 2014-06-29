@@ -1,9 +1,9 @@
 <script type="text/javascript">
 	function subscribeComic(comicId) {
 		$.ajax({
-			url: "/users/<%- user.id %>",
-			type: "PUT",
-			data: { addComic: comicId, _method: "PUT" },
+			url: "/addcomics/api",
+			type: "GET",
+			data: { addComic: comicId },
 			success: function(result) {
 				$("button#addcomic-" + comicId).attr("disabled", true);
 				$("p#added-" + comicId).html("Added");
