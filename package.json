@@ -29,5 +29,6 @@
 	"repository": {
 		"type": "git",
 		"url": "https://github.com/phanect/ComicAlert.git"
-	}
+	},
+	"main" : "server.js"
 }
