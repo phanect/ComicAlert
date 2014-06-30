@@ -9,6 +9,8 @@ import mgcp = require("./MagGardenComicPage");
 var MagGardenComicPage = mgcp.MagGardenComicPage;
 import mgmi = require("./MagGardenMagazineIndex");
 var MagGardenMagazineIndex = mgmi.MagGardenMagazineIndex;
+import us = require("./UraSundayMagazineIndex");
+var UraSundayMagazineIndex = us.UraSundayMagazineIndex;
 
 import mi = require("./MagazineIndex");
 var MagazineIndex : any = mi.MagazineIndex;

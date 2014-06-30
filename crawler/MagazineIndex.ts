@@ -8,6 +8,8 @@ var wait = require("wait.for-es6");
 
 import mgcp = require("./MagGardenComicPage");
 var MagGardenComicPage = mgcp.MagGardenComicPage;
+import uscp = require("./UraSundayComicPage");
+var UraSundayComicPage = uscp.UraSundayComicPage;
 var Utils = require("../lib/commons");
 
 export class MagazineIndex {
@@ -50,7 +52,11 @@ export class MagazineIndex {
 		this.comicUrls.forEach(function(comicUrl) {
 			geddy.model.Comic.first({url : comicUrl}, function(comic) {
 				if (!comic) {
-					new MagGardenComicPage(comicUrl).analyzeAndSave();
+					if (comicUrl.contains("comic.mag-garden.co.jp")) {
+						new MagGardenComicPage(comicUrl).analyzeAndSave();
+					} else if (comicUrl.contains("urasunday.com")) {
+						new UraSundayComicPage(comicUrl).analyzeAndSave();
+					}
 				}
 			});
 		});
