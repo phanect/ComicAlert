@@ -17,7 +17,7 @@
  */
 
 var config = {
-	appName : 'Geddy App',
+	appName : "Comic Alert",
 	detailedErrors : false,
 	hostname : null,
 	port : 4000,

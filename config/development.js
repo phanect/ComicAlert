@@ -17,7 +17,7 @@
  */
 
 var config = {
-	appName : "MangAlert (development)",
+	appName : "Comic Alert (development)",
 	detailedErrors : true,
 	debug : true,
 	hostname : "localhost",
