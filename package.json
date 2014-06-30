@@ -31,5 +31,8 @@
 		"type": "git",
 		"url": "https://github.com/phanect/ComicAlert.git"
 	},
-	"main" : "server.js"
+	"scripts": {
+		"start": "node --harmony-generators server.js"
+	},
+	"main" : "--harmony-generators server.js"
 }
