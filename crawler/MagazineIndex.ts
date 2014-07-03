@@ -4,7 +4,6 @@
 
 var cheerio = require("cheerio");
 var request = require("request");
-var wait = require("wait.for-es6");
 
 import mgcp = require("./MagGardenComicPage");
 var MagGardenComicPage = mgcp.MagGardenComicPage;
