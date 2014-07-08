@@ -19,20 +19,32 @@
 var config = {
 	appName : "Comic Alert",
 	detailedErrors : false,
-	hostname : null,
-	port : 4000,
+	hostname : "comicalert-comicalert.rhcloud.com" || process.env.OPENSHIFT_NODEJS_IP,
+	port : process.env.OPENSHIFT_NODEJS_PORT || process.env.PORT,
 	model : {
 		defaultAdapter : 'mongo'
 	},
 	db : {
 		mongo : {
-			username : null,
-			dbname : 'production',
-			prefix : null,
-			password : null,
-			host : 'localhost',
-			port : 27017
+			username : process.env.OPENSHIFT_MONGODB_DB_USERNAME,
+			password : process.env.OPENSHIFT_MONGODB_DB_PASSWORD,
+			host : process.env.OPENSHIFT_MONGODB_DB_HOST,
+			port : process.env.OPENSHIFT_MONGODB_DB_PORT,
+			dbname : process.env.OPENSHIFT_APP_NAME,
+			prefix : null
 		}
+	},
+	sessions: {
+		store: "mongodb",
+		server: {
+			user: process.env.OPENSHIFT_MONGODB_DB_USERNAME,
+			password: process.env.OPENSHIFT_MONGODB_DB_PASSWORD,
+			host: process.env.OPENSHIFT_MONGODB_DB_HOST,
+			port: process.env.OPENSHIFT_MONGODB_DB_PORT,
+			db: process.env.OPENSHIFT_APP_NAME
+		},
+		key: "did",
+		expiry: 14 * 24 * 60 * 60
 	},
 	mailer : {
 		fromAddressUsername : "info",
@@ -42,56 +54,8 @@ var config = {
 				debug : false
 			}
 		}
-	}
-
-	/* // Using Postgres as the default, with only a Postgres DB
-	 , model: {
-	 defaultAdapter: 'postgres'
-	 }
-	 , db: {
-	 postgres: {
-	 user: process.env.USER
-	 , database: process.env.USER
-	 , password: null
-	 , host: null
-	 , port: 5432
-	 }
-	 }
-	 */
-
-	/* // Using MySQL as the default, with only a MySQL DB
-	 , model: {
-	 defaultAdapter: 'mysql'
-	 }
-	 , db: {
-	 mysql: {
-	 host: 'localhost'
-	 , user: process.env.USER
-	 , database: process.env.USER
-	 , password: null
-	 }
-	 }
-	 */
-
-	/* // Using Postgres as the default, with both Postgres and Riak
-	 , model: {
-	 defaultAdapter: 'postgres'
-	 }
-	 , db: {
-	 postgres: {
-	 user: process.env.USER
-	 , database: process.env.USER
-	 , password: null
-	 , host: null
-	 , port: 5432
-	 }
-	 , riak: {
-	 protocol: 'http'
-	 , host: 'localhost'
-	 , port: 8098
-	 }
-	 }
-	 */
+	},
+	disableBuild: true
 };
 
 module.exports = config;
