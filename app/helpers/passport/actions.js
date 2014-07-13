@@ -8,7 +8,7 @@ var passport = require('passport'),
 var SUPPORTED_SERVICES = ['twitter', 'facebook'];
 
 SUPPORTED_SERVICES.forEach(function(item) {
-	var hostname = geddy.config.fullHostname || '',
+	var hostname = "https://" + process.env.OPENSHIFT_GEAR_DNS || geddy.config.fullHostname || '',
 		config = { callbackURL : hostname + '/auth/' + item + '/callback' },
 		Strategy = require('passport-' + item).Strategy,
 		handler = function(token, tokenSecret, profile, done) {
