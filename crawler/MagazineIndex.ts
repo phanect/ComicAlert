@@ -1,7 +1,3 @@
-/// <reference path="../lib/external/DefinitelyTyped/node/node.d.ts" />
-/// <reference path="../lib/commons.ts" />
-/// <reference path="./MagGardenComicPage.ts" />
-
 var cheerio = require("cheerio");
 var request = require("request");
 
@@ -17,11 +13,11 @@ export class MagazineIndex {
   constructor(public url: string, private name: string) {
     console.log("Analyzing Magazine:", this.name, "<", this.url, ">");
   }
-  
+
   analyzeComics($ : any, cb : any) : void {
     throw new Error("This method must be overrided. Aren't you using MagazineIndex class directly?");
   }
-  
+
   analyzeAndSave() : void {
     var self = this;
 

@@ -1,6 +1,3 @@
-/// <reference path="../lib/external/DefinitelyTyped/node/node.d.ts" />
-/// <reference path="./MagazineIndex.ts" />
-
 import mi = require("./MagazineIndex");
 
 export class MagGardenMagazineIndex extends mi.MagazineIndex {

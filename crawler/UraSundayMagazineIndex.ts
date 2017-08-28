@@ -1,7 +1,3 @@
-/// <reference path="../lib/external/DefinitelyTyped/node/node.d.ts" />
-/// <reference path="./MagazineIndex.ts" />
-/// <reference path="./UraSundayComicPage.ts" />
-
 import mi = require("./MagazineIndex");
 import uscp = require("./UraSundayComicPage");
 import URI = require("URIjs")

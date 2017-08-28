@@ -1,5 +1,3 @@
-/// <reference path="./ComicPage.ts" />
-
 var moment = require("moment");
 import cp = require("./ComicPage");
 
@@ -18,7 +16,7 @@ export class UraSundayComicPage extends cp.ComicPage {
   scrapeThumbnailUrl($ : any): void {
     // e.g. assets/images/comic/BLADE/ROBOTICS/story.jpg
     var thumbnailUrl: string = $("detailComicDetailNLT01 > img").attr("src");
-    
+
     if (!thumbnailUrl) {
       return;
     }
@@ -39,7 +37,7 @@ export class UraSundayComicPage extends cp.ComicPage {
       episode.subTitle = "";
 
       episode.number = episode.name.match(/\d/)[0];
-      
+
       // TODO publishedAt
 
       console.log(episode.name, episode.url, episode.number);

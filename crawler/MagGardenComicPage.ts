@@ -1,5 +1,3 @@
-/// <reference path="./ComicPage.ts" />
-
 var moment = require("moment");
 import cp = require("./ComicPage");
 export class MagGardenComicPage extends cp.ComicPage {
@@ -22,7 +20,7 @@ export class MagGardenComicPage extends cp.ComicPage {
   scrapeThumbnailUrl($ : any): void {
     // e.g. assets/images/comic/BLADE/ROBOTICS/story.jpg
     var thumbnailUrl: string = $("img.cutImage").attr("src");
-    
+
     if (!thumbnailUrl) {
       return;
     }
@@ -42,7 +40,7 @@ export class MagGardenComicPage extends cp.ComicPage {
 
       episode.url = readBoxInner.find("div.txt").find("ul")
               .find("li.readComic").find("a").attr("href");
-      
+
       episode.subTitle = "";
 
       // Extract updateDate
@@ -66,7 +64,7 @@ export class MagGardenComicPage extends cp.ComicPage {
       tmp = text.match(/\d{1,4}話/); // e.g. "3話"
       if (tmp != null) {
         tmp = tmp[0].match(/\d/); // e.g. "2"
-        
+
         if (tmp != null) {
           episode.num = tmp[0];
           episode.name = "第" + episode.num + "話";

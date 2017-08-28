@@ -1,8 +1,3 @@
-/// <reference path="../lib/external/DefinitelyTyped/node/node.d.ts" />
-/// <reference path="./MagGardenComicPage.ts" />
-/// <reference path="./MagazineIndex.ts" />
-/// <reference path="./MagGardenMagazineIndex.ts" />
-
 var cronJob : any = require("cron").CronJob;
 var genny : any = require("genny");
 import mgcp = require("./MagGardenComicPage");
@@ -43,7 +38,7 @@ exports.start = function() {
     timeZone : "Asia/Tokyo"
   });
 
-  
+
   job.start();
 
   // TODO remove all comic data before analysis so that apply code changes

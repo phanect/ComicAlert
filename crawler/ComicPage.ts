@@ -1,6 +1,3 @@
-/// <reference path="../lib/external/DefinitelyTyped/node/node.d.ts" />
-/// <reference path="../lib/commons.ts" />
-
 var cheerio = require("cheerio");
 var moment = require("moment");
 var request = require("request");
@@ -49,7 +46,7 @@ export class ComicPage {
       cb();
     });
   }
-  
+
   save() : void {
     var self = this;
 
@@ -69,7 +66,7 @@ export class ComicPage {
         });
         self.comic.save(function(err, comic) {
           if (err) { throw err; }
-          
+
           console.log("Saved new comic:", self.comic.title, "<", self.comic.url, ">");
         });
       } else { // Existing Comic
