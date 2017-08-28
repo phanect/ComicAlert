@@ -12,35 +12,35 @@
     "start": "node --harmony server.js"
   },
   "dependencies": {
-    "URIjs": "latest",
-    "bcrypt-nodejs": "latest",
-    "cheerio": "latest",
-    "cron": "latest",
-    "geddy": "latest",
-    "geddy-passport": "git+https://github.com/phanect/geddy-passport.git#master",
-    "genny": "latest",
-    "moment": "latest",
-    "mongodb": "latest",
-    "mongodb-wrapper": "latest",
-    "nodemailer": "latest",
-    "passport": "0.1.x",
-    "passport-facebook": "0.1.x",
-    "passport-twitter": "0.1.x",
-    "request": "latest",
-    "time": "latest"
+    "URIjs": "^1.16.1",
+    "bcrypt-nodejs": "^0.0.3",
+    "cheerio": "^1.0.0-rc.2",
+    "cron": "^1.2.1",
+    "geddy": "^13.0.8",
+    "geddy-passport": "^0.1.8",
+    "genny": "^0.5.6",
+    "moment": "^2.18.1",
+    "mongodb": "^2.2.31",
+    "mongodb-wrapper": "^1.0.3",
+    "nodemailer": "^4.1.0",
+    "passport": "0.1.0",
+    "passport-facebook": "0.1.0",
+    "passport-twitter": "0.1.0",
+    "request": "^2.81.0",
+    "time": "^0.12.0"
   },
   "devDependencies": {
     "@phanect/eslint-config-phanective": "latest",
     "eslint": "latest",
     "eslint-plugin-typescript": "latest",
-    "selenium-webdriver": "latest",
-    "should": "latest",
-    "typescript": "latest",
+    "selenium-webdriver": "^3.5.0",
+    "should": "^12.0.0",
+    "typescript": "^2.7.2",
     "typescript-eslint-parser": "latest",
-    "typescript-yield": "latest"
+    "typescript-yield": "^0.1.2"
   },
   "engines": {
-    "node": ">= 0.11.13",
-    "npm": ">= 1.0.0"
+    "node": "^8.0.0",
+    "npm": "^5.0.0"
   }
 }
