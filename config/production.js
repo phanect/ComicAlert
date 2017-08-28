@@ -17,45 +17,45 @@
  */
 
 var config = {
-	appName : "Comic Alert",
-	detailedErrors : false,
-	hostname : "comicalert-comicalert.rhcloud.com" || process.env.OPENSHIFT_NODEJS_IP,
-	port : process.env.OPENSHIFT_NODEJS_PORT || process.env.PORT,
-	model : {
-		defaultAdapter : 'mongo'
-	},
-	db : {
-		mongo : {
-			username : process.env.OPENSHIFT_MONGODB_DB_USERNAME,
-			password : process.env.OPENSHIFT_MONGODB_DB_PASSWORD,
-			host : process.env.OPENSHIFT_MONGODB_DB_HOST,
-			port : process.env.OPENSHIFT_MONGODB_DB_PORT,
-			dbname : process.env.OPENSHIFT_APP_NAME,
-			prefix : null
-		}
-	},
-	sessions: {
-		store: "mongodb",
-		server: {
-			user: process.env.OPENSHIFT_MONGODB_DB_USERNAME,
-			password: process.env.OPENSHIFT_MONGODB_DB_PASSWORD,
-			host: process.env.OPENSHIFT_MONGODB_DB_HOST,
-			port: process.env.OPENSHIFT_MONGODB_DB_PORT,
-			db: process.env.OPENSHIFT_APP_NAME
-		},
-		key: "did",
-		expiry: 14 * 24 * 60 * 60
-	},
-	mailer : {
-		fromAddressUsername : "info",
-		transport : {
-			type : "direct",
-			options : {
-				debug : false
-			}
-		}
-	},
-	disableBuild: true
+  appName : "Comic Alert",
+  detailedErrors : false,
+  hostname : "comicalert-comicalert.rhcloud.com" || process.env.OPENSHIFT_NODEJS_IP,
+  port : process.env.OPENSHIFT_NODEJS_PORT || process.env.PORT,
+  model : {
+    defaultAdapter : 'mongo'
+  },
+  db : {
+    mongo : {
+      username : process.env.OPENSHIFT_MONGODB_DB_USERNAME,
+      password : process.env.OPENSHIFT_MONGODB_DB_PASSWORD,
+      host : process.env.OPENSHIFT_MONGODB_DB_HOST,
+      port : process.env.OPENSHIFT_MONGODB_DB_PORT,
+      dbname : process.env.OPENSHIFT_APP_NAME,
+      prefix : null
+    }
+  },
+  sessions: {
+    store: "mongodb",
+    server: {
+      user: process.env.OPENSHIFT_MONGODB_DB_USERNAME,
+      password: process.env.OPENSHIFT_MONGODB_DB_PASSWORD,
+      host: process.env.OPENSHIFT_MONGODB_DB_HOST,
+      port: process.env.OPENSHIFT_MONGODB_DB_PORT,
+      db: process.env.OPENSHIFT_APP_NAME
+    },
+    key: "did",
+    expiry: 14 * 24 * 60 * 60
+  },
+  mailer : {
+    fromAddressUsername : "info",
+    transport : {
+      type : "direct",
+      options : {
+        debug : false
+      }
+    }
+  },
+  disableBuild: true
 };
 
 module.exports = config;

@@ -8,13 +8,13 @@ git clone https://github.com/phanect/ComicAlert.git $tmpdir
 git clone https://github.com/phanect/nodejs-custom-version-openshift.git $node011dir
 
 if [ "$1" = "--secrets" ]; then
-	secret="$2"
-	cp $secret "$tmpdir/config/secrets.json"
+  secret="$2"
+  cp $secret "$tmpdir/config/secrets.json"
 elif [ -f "config/secrets.json" ]; then
-	cp "config/secrets.json" "$tmpdir/config/secrets.json"
+  cp "config/secrets.json" "$tmpdir/config/secrets.json"
 else
-	echo "Specify config/secrets.json by --secrets option.\n"
-	exit
+  echo "Specify config/secrets.json by --secrets option.\n"
+  exit
 fi
 
 cd $tmpdir

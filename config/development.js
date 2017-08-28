@@ -17,29 +17,29 @@
  */
 
 var config = {
-	appName : "Comic Alert (development)",
-	detailedErrors : true,
-	debug : true,
-	hostname : "localhost",
-	port : 4000,
-	model : {
-		defaultAdapter : 'filesystem'
-	},
-	sessions : {
-		store : 'filesystem',
-		filename : '_session_store.json',
-		key : 'sid',
-		expiry : 14 * 24 * 60 * 60
-	},
-	mailer : {
-		fromAddressUsername : "info",
-		transport : {
-			type : "direct",
-			options : {
-				debug : true
-			}
-		}
-	}
+  appName : "Comic Alert (development)",
+  detailedErrors : true,
+  debug : true,
+  hostname : "localhost",
+  port : 4000,
+  model : {
+    defaultAdapter : 'filesystem'
+  },
+  sessions : {
+    store : 'filesystem',
+    filename : '_session_store.json',
+    key : 'sid',
+    expiry : 14 * 24 * 60 * 60
+  },
+  mailer : {
+    fromAddressUsername : "info",
+    transport : {
+      type : "direct",
+      options : {
+        debug : true
+      }
+    }
+  }
 
 };
 

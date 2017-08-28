@@ -1,46 +1,46 @@
 {
-	"name": "ComicAlert",
-	"description": "Comic update notifier",
-	"version": "0.0.1",
-	"author": "Jumpei Ogawa @phanect",
-	"dependencies": {
-		"nodemailer": "latest",
-		"bcrypt-nodejs": "latest",
-		"cron": "latest",
-		"cheerio": "latest",
-		"geddy-passport" : "git+https://github.com/phanect/geddy-passport.git#master",
-		"moment": "latest",
-		"mongodb" : "latest",
-		"mongodb-wrapper" : "latest",
-		"passport" : "0.1.x",
-		"passport-twitter" : "0.1.x",
-		"passport-facebook" : "0.1.x",
-		"request" : "latest",
-		"URIjs" : "latest",
-		"genny" : "latest",
-		"geddy" : "latest",
-		"time" : "latest"
-	},
-	"devDependencies": {
-		"@phanect/eslint-config-phanective": "latest",
-		"eslint": "latest",
-		"eslint-plugin-typescript": "latest",
-		"typescript": "latest",
-		"typescript-eslint-parser": "latest",
-		"typescript-yield" : "latest",
-		"selenium-webdriver" : "latest",
-		"should" : "latest"
-	},
-	"engines": {
-		"node": ">= 0.11.13",
-		"npm": ">= 1.0.0"
-	},
-	"repository": {
-		"type": "git",
-		"url": "https://github.com/phanect/ComicAlert.git"
-	},
-	"scripts": {
-		"start": "node --harmony server.js"
-	},
-	"main" : "--harmony server.js"
+  "name": "ComicAlert",
+  "description": "Comic update notifier",
+  "version": "0.0.1",
+  "author": "Jumpei Ogawa @phanect",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/phanect/ComicAlert.git"
+  },
+  "main": "--harmony server.js",
+  "scripts": {
+    "start": "node --harmony server.js"
+  },
+  "dependencies": {
+    "URIjs": "latest",
+    "bcrypt-nodejs": "latest",
+    "cheerio": "latest",
+    "cron": "latest",
+    "geddy": "latest",
+    "geddy-passport": "git+https://github.com/phanect/geddy-passport.git#master",
+    "genny": "latest",
+    "moment": "latest",
+    "mongodb": "latest",
+    "mongodb-wrapper": "latest",
+    "nodemailer": "latest",
+    "passport": "0.1.x",
+    "passport-facebook": "0.1.x",
+    "passport-twitter": "0.1.x",
+    "request": "latest",
+    "time": "latest"
+  },
+  "devDependencies": {
+    "@phanect/eslint-config-phanective": "latest",
+    "eslint": "latest",
+    "eslint-plugin-typescript": "latest",
+    "selenium-webdriver": "latest",
+    "should": "latest",
+    "typescript": "latest",
+    "typescript-eslint-parser": "latest",
+    "typescript-yield": "latest"
+  },
+  "engines": {
+    "node": ">= 0.11.13",
+    "npm": ">= 1.0.0"
+  }
 }

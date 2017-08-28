@@ -16,9 +16,9 @@
  *
  */
 var strategies = require('../helpers/passport/strategies'), authTypes = geddy.mixin(strategies, {
-	local : {
-		name : 'local account'
-	}
+  local : {
+    name : 'local account'
+  }
 });
 ;
 
@@ -26,170 +26,170 @@ var passport = require("../helpers/passport");
 
 var Main = function() {
 
-	this.before(passport.requireAuth, {
-		except : ["index", "logout"]
-	});
+  this.before(passport.requireAuth, {
+    except : ["index", "logout"]
+  });
 
-	this.index = function(req, resp, params) {
-		var self = this;
-		var comics = new Array();
+  this.index = function(req, resp, params) {
+    var self = this;
+    var comics = new Array();
 
-		geddy.model.User.first({
-			id : this.session.get("userId")
-		}, function(err, user) {
-			if (err) {
-				throw err;
-			}
+    geddy.model.User.first({
+      id : this.session.get("userId")
+    }, function(err, user) {
+      if (err) {
+        throw err;
+      }
 
-			if (user) {
-				geddy.model.Episode.all({userId : user.id},
-					{ sort : { publishedAt : "desc" } },
-					function(err, episodes)
-				{
-					if (err) {
-						throw err;
-					}
+      if (user) {
+        geddy.model.Episode.all({userId : user.id},
+          { sort : { publishedAt : "desc" } },
+          function(err, episodes)
+        {
+          if (err) {
+            throw err;
+          }
 
-					var respondWithEachComics = function(episodes, count) {
-						geddy.model.Comic.first({ id : episodes[count].comicId },
-							function(err, comic)
-						{
-							if (err) {
-								throw err;
-							}
+          var respondWithEachComics = function(episodes, count) {
+            geddy.model.Comic.first({ id : episodes[count].comicId },
+              function(err, comic)
+            {
+              if (err) {
+                throw err;
+              }
 
-							comics[count] = comic;
+              comics[count] = comic;
 
-							if (count + 1 < episodes.length) {
-								respondWithEachComics(episodes, count + 1);
-							} else {
-								self.respond({
-									episodes : episodes,
-									comics : comics,
-									user : user
-								}, {
-									format : "html",
-									template : "app/views/main/index"
-								});
-							}
-						});
-					};
+              if (count + 1 < episodes.length) {
+                respondWithEachComics(episodes, count + 1);
+              } else {
+                self.respond({
+                  episodes : episodes,
+                  comics : comics,
+                  user : user
+                }, {
+                  format : "html",
+                  template : "app/views/main/index"
+                });
+              }
+            });
+          };
 
-					if (episodes.length > 0) {
-						respondWithEachComics(episodes, 0);
-					} else {
-						self.respond({
-							episodes : null,
-							comics : null,
-							user : user
-						}, {
-							format : "html",
-							template : "app/views/main/index"
-						});
-					}
-				});
-			} else {
-				self.respond(params, {
-					format : "html",
-					template : "app/views/main/login"
-				});
-			}
-		});
-	};
+          if (episodes.length > 0) {
+            respondWithEachComics(episodes, 0);
+          } else {
+            self.respond({
+              episodes : null,
+              comics : null,
+              user : user
+            }, {
+              format : "html",
+              template : "app/views/main/index"
+            });
+          }
+        });
+      } else {
+        self.respond(params, {
+          format : "html",
+          template : "app/views/main/login"
+        });
+      }
+    });
+  };
 
-	this.login = function(req, resp, param) {
-		this.redirect("/");
-	};
+  this.login = function(req, resp, param) {
+    this.redirect("/");
+  };
 
-	this.logout = function(req, resp, params) {
-		this.session.unset('userId');
-		this.session.unset('authType');
-		this.redirect("/#logout");
-	};
+  this.logout = function(req, resp, params) {
+    this.session.unset('userId');
+    this.session.unset('authType');
+    this.redirect("/#logout");
+  };
 
-	this.addcomics = function(req, resp, params) {
-		var self = this;
+  this.addcomics = function(req, resp, params) {
+    var self = this;
 
-		geddy.model.User.first({id : this.session.get("userId")}, function(err, user) {
-			if (err) {
-				throw err;
-			}
+    geddy.model.User.first({id : this.session.get("userId")}, function(err, user) {
+      if (err) {
+        throw err;
+      }
 
-			if (user) {
-				geddy.model.Comic.all(function(err, comics) {
-					if (err) {
-						throw err;
-					}
+      if (user) {
+        geddy.model.Comic.all(function(err, comics) {
+          if (err) {
+            throw err;
+          }
 
-					user.getComics(function(err, registeredComics) {
-						if (err) {
-							throw err;
-						}
+          user.getComics(function(err, registeredComics) {
+            if (err) {
+              throw err;
+            }
 
-						if (comics && registeredComics) {
-							// Remove registered comics
-							for (var i = 0; i < comics.length; i++) { // Check comics.length every time
-								for (var j = 0, jj = registeredComics.length; j < jj; j++) {
-									if (comics[i].id == registeredComics[j].id) {
-										comics.splice(i, 1); // Remove comic[i]
-									}
-								}
-							}
-						}
-						self.respond({
-							comics : comics,
-							user : user
-						}, {
-							format : "html",
-							template : "app/views/main/addcomics"
-						});
-					});
-				
-				});
-			} else {
-				self.redirect("/");
-			}
-		});
-	};
+            if (comics && registeredComics) {
+              // Remove registered comics
+              for (var i = 0; i < comics.length; i++) { // Check comics.length every time
+                for (var j = 0, jj = registeredComics.length; j < jj; j++) {
+                  if (comics[i].id == registeredComics[j].id) {
+                    comics.splice(i, 1); // Remove comic[i]
+                  }
+                }
+              }
+            }
+            self.respond({
+              comics : comics,
+              user : user
+            }, {
+              format : "html",
+              template : "app/views/main/addcomics"
+            });
+          });
+        
+        });
+      } else {
+        self.redirect("/");
+      }
+    });
+  };
 
-	this.addcomics_api = function(req, resp, params) {
-		var self = this;
+  this.addcomics_api = function(req, resp, params) {
+    var self = this;
 
-		geddy.model.User.first(params.id, function(err, user) {
-			if (params.addComic) {
-				geddy.model.Comic.first({ id : params.addComic }, function(err, comic) {
-					if (comic) {
-						user.connectComics(comic);
+    geddy.model.User.first(params.id, function(err, user) {
+      if (params.addComic) {
+        geddy.model.Comic.first({ id : params.addComic }, function(err, comic) {
+          if (comic) {
+            user.connectComics(comic);
 
-						comic.getEpisodes(function(err, episodes) {
-							if (episodes && !err) {
-								user.connectEpisodes(episodes);
-							} else {
-								throw err; // TODO
-							}
-						});
-					}
-				});
+            comic.getEpisodes(function(err, episodes) {
+              if (episodes && !err) {
+                user.connectEpisodes(episodes);
+              } else {
+                throw err; // TODO
+              }
+            });
+          }
+        });
 
-				delete params.addComic;
-			}
+        delete params.addComic;
+      }
 
-			user.updateAttributes(params);
+      user.updateAttributes(params);
 
-			if (!user.isValid()) {
-				self.respondWith(user);
-			} else {
-				user.save(function(err, data) {
-					if (err) {
-						throw err;
-					}
-					self.respondWith(user, {
-						status : err
-					});
-				});
-			}
-		});
-	};
+      if (!user.isValid()) {
+        self.respondWith(user);
+      } else {
+        user.save(function(err, data) {
+          if (err) {
+            throw err;
+          }
+          self.respondWith(user, {
+            status : err
+          });
+        });
+      }
+    });
+  };
 };
 
 exports.Main = Main;
