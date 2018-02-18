@@ -16,6 +16,7 @@
     "bcrypt-nodejs": "^0.0.3",
     "cheerio": "^1.0.0-rc.2",
     "cron": "^1.2.1",
+    "fixchar": "^0.1.1",
     "geddy": "^13.0.8",
     "geddy-passport": "^0.1.8",
     "genny": "^0.5.6",

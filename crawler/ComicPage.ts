@@ -2,8 +2,6 @@ import * as cheerio from "cheerio";
 import * as moment from "moment";
 import request from "request";
 
-require("../lib/commons");
-
 export class ComicPage {
   comic : any;
   title : string;

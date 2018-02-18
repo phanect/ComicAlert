@@ -3,8 +3,6 @@ import request from "request";
 import { MagGardenComicPage } from "./MagGardenComicPage";
 import { UraSundayComicPage } from "./UraSundayComicPage";
 
-require("../lib/commons");
-
 export class MagazineIndex {
   comicUrls : Array<string> = new Array();
 
@@ -45,9 +43,9 @@ export class MagazineIndex {
     this.comicUrls.forEach(function(comicUrl) {
       geddy.model.Comic.first({url : comicUrl}, function(comic) {
         if (!comic) {
-          if (comicUrl.contains("comic.mag-garden.co.jp")) {
+          if (comicUrl.includes("comic.mag-garden.co.jp")) {
             new MagGardenComicPage(comicUrl).analyzeAndSave();
-          } else if (comicUrl.contains("urasunday.com")) {
+          } else if (comicUrl.includes("urasunday.com")) {
             new UraSundayComicPage(comicUrl).analyzeAndSave();
           }
         }

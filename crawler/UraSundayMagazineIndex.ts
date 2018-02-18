@@ -8,7 +8,7 @@ export class UraSundayMagazineIndex extends MagazineIndex {
       var className = $(this).attr("class")
         , comicUrl = $(this).attr("href");
 
-      if (!className.contains("menuRankingButton")) {
+      if (!className.includes("menuRankingButton")) {
         comicUrl = comicUrl.replace(/index.html$/, "");
         comicUrl = new URI(comicUrl).absoluteTo(self.url).toString();
         self.comicUrls.push(comicUrl);

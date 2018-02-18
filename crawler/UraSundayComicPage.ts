@@ -1,3 +1,4 @@
+import * as fixchar from "fixchar";
 import * as moment from "moment";
 import { ComicPage } from "./ComicPage";
 
@@ -10,7 +11,7 @@ export class UraSundayComicPage extends ComicPage {
       return;
     }
 
-    this.title = title.toHalfWidth().trim();
+    this.title = fixchar(title).trim();
   }
 
   scrapeThumbnailUrl($ : any): void {
@@ -32,7 +33,7 @@ export class UraSundayComicPage extends ComicPage {
         , tmp : any;
 
       // Return value example: 76話
-      episode.name = comicBox.find("p").toHalfWidth();
+      episode.name = fixchar(comicBox.find("p"));
       episode.url = new URI(comicBox.find("a").attr("href")).absoluteTo(self.url).toString();
       episode.subTitle = "";
 

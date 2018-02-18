@@ -6,7 +6,7 @@ export class MagGardenMagazineIndex extends MagazineIndex {
     $("div#comicList02 > ul > li").each(function(i, elem) {
       var comicUrl = $(this).find("a").attr("href");
 
-      if (comicUrl != self.url && comicUrl.contains(self.url)) {
+      if (comicUrl != self.url && comicUrl.includes(self.url)) {
         self.comicUrls.push(comicUrl);
       }
 

@@ -1,3 +1,4 @@
+import * as fixchar from "fixchar";
 import * as moment from "moment";
 import { ComicPage } from "./ComicPage";
 
@@ -10,10 +11,10 @@ export class MagGardenComicPage extends ComicPage {
       return;
     }
 
-    this.title = title.toHalfWidth().split("/")[0].trim();
+    this.title = fixchar(title).split("/")[0].trim();
     this.title = this.title.replace("【新連載】", "")
 
-    if (this.title.contains("連載終了")) {
+    if (this.title.includes("連載終了")) {
       this.concluded = true;
     }
   }
@@ -37,7 +38,7 @@ export class MagGardenComicPage extends ComicPage {
         , tmp : any;
 
       // Return value example: 2月28日公開／最新直前3月号掲載25話
-      text = readBoxInner.find("div.txt").find("h3").text().toHalfWidth();
+      text = fixchar(readBoxInner.find("div.txt").find("h3").text());
 
       episode.url = readBoxInner.find("div.txt").find("ul")
               .find("li.readComic").find("a").attr("href");
