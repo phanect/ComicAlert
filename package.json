@@ -22,7 +22,11 @@
 		"time" : "latest"
 	},
 	"devDependencies": {
+		"@phanect/eslint-config-phanective": "latest",
+		"eslint": "latest",
+		"eslint-plugin-typescript": "latest",
 		"typescript": "latest",
+		"typescript-eslint-parser": "latest",
 		"typescript-yield" : "latest",
 		"selenium-webdriver" : "latest",
 		"should" : "latest"
