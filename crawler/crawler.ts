@@ -1,4 +1,3 @@
-import { CronJob } from "cron";
 import * as genny from "genny";
 import { MagGardenComicPage } from "./MagGardenComicPage";
 import { MagGardenMagazineIndex } from "./MagGardenMagazineIndex";
@@ -19,23 +18,5 @@ function analyze() : void {
   }
 };
 
-exports.start = function() {
-  var job = new CronJob({
-    // minute, hour, day, month, weekday
-    cronTime : "0 14 5 * * *", // Execute on 5:14:0 everyday
-
-    onTick : function() {
-      analyze();
-    },
-    onComplete : function() {
-    },
-    start : true, // Specified whether to start the job after just before exiting the constructor.
-    timeZone : "Asia/Tokyo"
-  });
-
-
-  job.start();
-
-  // TODO remove all comic data before analysis so that apply code changes
-  analyze();
-};
+// TODO remove all comic data before analysis so that apply code changes
+analyze();
