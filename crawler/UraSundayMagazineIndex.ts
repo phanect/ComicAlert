@@ -1,8 +1,7 @@
-import mi = require("./MagazineIndex");
-import uscp = require("./UraSundayComicPage");
-import URI = require("URIjs")
+import { MagazineIndex } from "./MagazineIndex";
+import { URI } from "URIjs";
 
-export class UraSundayMagazineIndex extends mi.MagazineIndex {
+export class UraSundayMagazineIndex extends MagazineIndex {
   analyzeComics($: any, cb : any) {
     var self = this;
     $("div.menuRankingBox > a").each(function(i, elem) {

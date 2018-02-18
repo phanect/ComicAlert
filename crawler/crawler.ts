@@ -1,14 +1,9 @@
-var cronJob : any = require("cron").CronJob;
-var genny : any = require("genny");
-import mgcp = require("./MagGardenComicPage");
-var MagGardenComicPage = mgcp.MagGardenComicPage;
-import mgmi = require("./MagGardenMagazineIndex");
-var MagGardenMagazineIndex = mgmi.MagGardenMagazineIndex;
-import us = require("./UraSundayMagazineIndex");
-var UraSundayMagazineIndex = us.UraSundayMagazineIndex;
-
-import mi = require("./MagazineIndex");
-var MagazineIndex : any = mi.MagazineIndex;
+import { CronJob } from "cron";
+import * as genny from "genny";
+import { MagGardenComicPage } from "./MagGardenComicPage";
+import { MagGardenMagazineIndex } from "./MagGardenMagazineIndex";
+import { UraSundayMagazineIndex } from "./UraSundayMagazineIndex";
+import { MagazineIndex } from "./MagazineIndex";
 
 function analyze() : void {
   var magazines = [];
@@ -25,7 +20,7 @@ function analyze() : void {
 };
 
 exports.start = function() {
-  var job = new cronJob({
+  var job = new CronJob({
     // minute, hour, day, month, weekday
     cronTime : "0 14 5 * * *", // Execute on 5:14:0 everyday
 

@@ -1,7 +1,7 @@
-var moment = require("moment");
-import cp = require("./ComicPage");
+import * as moment from "moment";
+import { ComicPage } from "./ComicPage";
 
-export class UraSundayComicPage extends cp.ComicPage {
+export class UraSundayComicPage extends ComicPage {
   scrapeTitle($ : any): void {
     // e.g. ROBOTICS;NOTES／原作：5pb. 漫画：浅川圭司
     var title: string = $("div.detailComicDetailComicTitle > h2").text();

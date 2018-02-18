@@ -1,6 +1,7 @@
-var moment = require("moment");
-import cp = require("./ComicPage");
-export class MagGardenComicPage extends cp.ComicPage {
+import * as moment from "moment";
+import { ComicPage } from "./ComicPage";
+
+export class MagGardenComicPage extends ComicPage {
   scrapeTitle($ : any): void {
     // e.g. ROBOTICS;NOTES／原作：5pb. 漫画：浅川圭司
     var title: string = $("div#comicTitleArea > h2").text();

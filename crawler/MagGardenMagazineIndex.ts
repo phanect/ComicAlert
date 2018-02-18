@@ -1,6 +1,6 @@
-import mi = require("./MagazineIndex");
+import { MagazineIndex } from "./MagazineIndex";
 
-export class MagGardenMagazineIndex extends mi.MagazineIndex {
+export class MagGardenMagazineIndex extends MagazineIndex {
   analyzeComics($: any, cb : any) {
     var self = this;
     $("div#comicList02 > ul > li").each(function(i, elem) {

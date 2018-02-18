@@ -1,6 +1,6 @@
-var cheerio = require("cheerio");
-var moment = require("moment");
-var request = require("request");
+import * as cheerio from "cheerio";
+import * as moment from "moment";
+import request from "request";
 
 require("../lib/commons");
 

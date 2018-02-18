@@ -1,11 +1,9 @@
-var cheerio = require("cheerio");
-var request = require("request");
+import * as cheerio from "cheerio";
+import request from "request";
+import { MagGardenComicPage } from "./MagGardenComicPage";
+import { UraSundayComicPage } from "./UraSundayComicPage";
 
-import mgcp = require("./MagGardenComicPage");
-var MagGardenComicPage = mgcp.MagGardenComicPage;
-import uscp = require("./UraSundayComicPage");
-var UraSundayComicPage = uscp.UraSundayComicPage;
-var Utils = require("../lib/commons");
+require("../lib/commons");
 
 export class MagazineIndex {
   comicUrls : Array<string> = new Array();
