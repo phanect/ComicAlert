@@ -2,9 +2,10 @@ import { MagazineIndex } from "./MagazineIndex";
 
 export class MagGardenMagazineIndex extends MagazineIndex {
   analyzeComics($: any, cb : any) {
-    var self = this;
+    const self = this;
+
     $("div#comicList02 > ul > li").each(function(i, elem) {
-      var comicUrl = $(this).find("a").attr("href");
+      const comicUrl = $(this).find("a").attr("href");
 
       if (comicUrl != self.url && comicUrl.includes(self.url)) {
         self.comicUrls.push(comicUrl);

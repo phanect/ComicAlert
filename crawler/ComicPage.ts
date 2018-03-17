@@ -26,7 +26,7 @@ export class ComicPage {
   }
 
   analyze(cb : any) : void {
-    var self = this;
+    const self = this;
 
     request({ url: self.url, jar: true }, function(err, response, html) {
       if (response && response.statusCode !== 200) {
@@ -35,7 +35,7 @@ export class ComicPage {
         throw err;
       }
 
-      var $ = cheerio.load(html);
+      const $ = cheerio.load(html);
 
       self.scrapeTitle($);
       self.scrapeThumbnailUrl($);
@@ -46,7 +46,7 @@ export class ComicPage {
   }
 
   save() : void {
-    var self = this;
+    const self = this;
 
     if (this.concluded) {
       self.remove();
@@ -103,13 +103,13 @@ export class ComicPage {
 
             // Register relation between user and episode
             self.comic.getUsers(function(err, users) {
-              for (var i = 0 in users) {
+              for (const i = 0 in users) {
                 users[i].connectEpisodes(epobj);
               }
             });
             // TODO Alert it to the users
           } else { // Existing Episode: Update if something updated
-            var properties : any = {
+            let properties : any = {
               name: episode.name,
               number: episode.num,
               subTitle: episode.subTitle,
@@ -132,14 +132,16 @@ export class ComicPage {
   }
 
   analyzeAndSave(): void {
-    var self = this;
+    const self = this;
+
     self.analyze(function() {
       self.save();
     });
   }
 
   remove() : void {
-    var self = this;
+    const self = this;
+
     geddy.model.Comic.first({ url : self.url }, function(err, comic) {
       if (comic) {
         geddy.model.Episode.remove({ comicId : comic.id }, function(err, success) {

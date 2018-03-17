@@ -14,7 +14,7 @@ export class MagazineIndex {
   }
 
   analyzeAndSave() : void {
-    var self = this;
+    const self = this;
 
     self.analyze(function(comicUrls) {
       self.save();
@@ -22,7 +22,7 @@ export class MagazineIndex {
   }
 
   private analyze(cb) {
-    var self = this;
+    const self = this;
 
     request({url : self.url, jar: true}, function(err, response, html){
       if (response.statusCode !== 200) {
@@ -31,7 +31,7 @@ export class MagazineIndex {
         throw err;
       }
 
-      var $ = cheerio.load(html);
+      const $ = cheerio.load(html);
       self.analyzeComics($, cb);
     });
   }

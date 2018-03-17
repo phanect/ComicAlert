@@ -4,13 +4,13 @@ import { MagGardenMagazineIndex } from "./MagGardenMagazineIndex";
 import { MagazineIndex } from "./MagazineIndex";
 
 function analyze() : void {
-  var magazines = [];
+  let magazines = [];
 
   magazines.push(new MagGardenMagazineIndex("http://comic.mag-garden.co.jp/blade/", "ブレイドオンライン"));
   magazines.push(new MagGardenMagazineIndex("http://comic.mag-garden.co.jp/eden/", "WEB コミック EDEN"));
   magazines.push(new MagGardenMagazineIndex("http://comic.mag-garden.co.jp/beats/", "WEBコミック Beat's"));
 
-  for(var i in magazines) {
+  for(const i in magazines) {
     genny.run(function (resume) {
       var result = yield(magazines[i].analyzeAndSave());
     });

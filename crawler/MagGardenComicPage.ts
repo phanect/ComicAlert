@@ -5,7 +5,7 @@ import { ComicPage } from "./ComicPage";
 export class MagGardenComicPage extends ComicPage {
   scrapeTitle($ : any): void {
     // e.g. ROBOTICS;NOTES／原作：5pb. 漫画：浅川圭司
-    var title: string = $("div#comicTitleArea > h2").text();
+    const title: string = $("div#comicTitleArea > h2").text();
 
     if (!title) {
       return;
@@ -21,7 +21,7 @@ export class MagGardenComicPage extends ComicPage {
 
   scrapeThumbnailUrl($ : any): void {
     // e.g. assets/images/comic/BLADE/ROBOTICS/story.jpg
-    var thumbnailUrl: string = $("img.cutImage").attr("src");
+    const thumbnailUrl: string = $("img.cutImage").attr("src");
 
     if (!thumbnailUrl) {
       return;
@@ -30,9 +30,10 @@ export class MagGardenComicPage extends ComicPage {
   }
 
   scrapeEpisodes($ : any): void {
-    var self = this;
+    const self = this;
+
     $("div.read-box-inner").each(function(i, elem) {
-      var episode : any = {}
+      const episode : any = {}
         , readBoxInner : any = $(this)
         , text : string
         , tmp : any;
