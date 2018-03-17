@@ -1,7 +1,6 @@
 import * as cheerio from "cheerio";
 import request from "request";
 import { MagGardenComicPage } from "./MagGardenComicPage";
-import { UraSundayComicPage } from "./UraSundayComicPage";
 
 export class MagazineIndex {
   comicUrls : Array<string> = new Array();
@@ -45,8 +44,6 @@ export class MagazineIndex {
         if (!comic) {
           if (comicUrl.includes("comic.mag-garden.co.jp")) {
             new MagGardenComicPage(comicUrl).analyzeAndSave();
-          } else if (comicUrl.includes("urasunday.com")) {
-            new UraSundayComicPage(comicUrl).analyzeAndSave();
           }
         }
       });
