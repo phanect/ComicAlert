@@ -1,6 +1,6 @@
 import * as cheerio from "cheerio";
+import fetch from "node-fetch";
 import * as moment from "moment";
-import request from "request";
 
 export class ComicPage {
   comic : any;
@@ -28,21 +28,23 @@ export class ComicPage {
   analyze(cb : any) : void {
     const self = this;
 
-    request({ url: self.url, jar: true }, function(err, response, html) {
-      if (response && response.statusCode !== 200) {
-        throw new Error("Return status code " + response.statusCode);
-      } else if (err) {
-        throw err;
-      }
+    try {
+      const res = await fetch(self.url),
+            html = await res.text(),
+            $ = cheerio.load(html);
 
-      const $ = cheerio.load(html);
+      if (res.status !== 200) {
+        throw new Error("Return status code " + res.status);
+      }
 
       self.scrapeTitle($);
       self.scrapeThumbnailUrl($);
       self.scrapeEpisodes($);
 
       cb();
-    });
+    } catch (err) {
+      console.error(err);
+    }
   }
 
   save() : void {

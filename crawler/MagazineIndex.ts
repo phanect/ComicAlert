@@ -1,5 +1,5 @@
 import * as cheerio from "cheerio";
-import request from "request";
+import fetch from "node-fetch";
 import { MagGardenComicPage } from "./MagGardenComicPage";
 
 export class MagazineIndex {
@@ -24,16 +24,19 @@ export class MagazineIndex {
   private analyze(cb) {
     const self = this;
 
-    request({url : self.url, jar: true}, function(err, response, html){
-      if (response.statusCode !== 200) {
-        throw new Error("Return status code " + response.statusCode);
-      } else if (err) {
-        throw err;
+    try {
+      const res = await fetch(self.url),
+            html = await res.text(),
+            $ = cheerio.load(html);
+
+      if (res.status !== 200) {
+        throw new Error("Return status code " + res.status);
       }
 
-      const $ = cheerio.load(html);
       self.analyzeComics($, cb);
-    });
+    } catch (err) {
+      console.error(err);
+    }
   }
 
   private save() {
