@@ -53,7 +53,7 @@ export class ComicPage {
       return;
     }
 
-    geddy.model.Comic.first({ url: self.url }, function(err, comic) {
+    geddy.model.Comic.first({ url: self.url }, (err, comic) => {
       if (err) { throw err; }
 
       if (!comic) { // New Comic
@@ -62,7 +62,7 @@ export class ComicPage {
           url: self.url,
           thumbnailUrl: self.thumbnailUrl
         });
-        self.comic.save(function(err, comic) {
+        self.comic.save((err, comic) => {
           if (err) { throw err; }
 
           console.log("Saved new comic:", self.comic.title, "<", self.comic.url, ">");
@@ -75,14 +75,14 @@ export class ComicPage {
         if (self.thumbnailUrl !== self.comic.thumbnailUrl) {
           self.comic.updateProperties({ thumbnailUrl: self.thumbnailUrl });
         }
-        self.comic.save(function(err) {
+        self.comic.save((err) => {
           if (err) { throw err; }
           console.log("Updated new comic:", self.comic.title, "<", self.comic.url, ">");
         });
       }
 
-      self.episodes.forEach(function(episode) {
-        geddy.model.Episode.first({ comicId: self.comic.id, number: episode.num }, function(err, epobj) {
+      self.episodes.forEach((episode) => {
+        geddy.model.Episode.first({ comicId: self.comic.id, number: episode.num }, (err, epobj) => {
           if (err) { throw err; }
 
           if (!epobj) { // New Episode: Add to DB
@@ -95,14 +95,14 @@ export class ComicPage {
               comicId: self.comic.id
             });
 
-            epobj.save(function(err) {
+            epobj.save((err) => {
               if (err) {
                 throw err;
               }
             });
 
             // Register relation between user and episode
-            self.comic.getUsers(function(err, users) {
+            self.comic.getUsers((err, users) => {
               for (const i = 0 in users) {
                 users[i].connectEpisodes(epobj);
               }
@@ -122,7 +122,7 @@ export class ComicPage {
             }
 
             epobj.updateProperties(properties);
-            epobj.save(function(err) {
+            epobj.save((err) => {
               if (err) { throw err; }
             });
           }
@@ -134,7 +134,7 @@ export class ComicPage {
   analyzeAndSave(): void {
     const self = this;
 
-    self.analyze(function() {
+    self.analyze(() => {
       self.save();
     });
   }
@@ -142,10 +142,10 @@ export class ComicPage {
   remove() : void {
     const self = this;
 
-    geddy.model.Comic.first({ url : self.url }, function(err, comic) {
+    geddy.model.Comic.first({ url : self.url }, (err, comic) => {
       if (comic) {
-        geddy.model.Episode.remove({ comicId : comic.id }, function(err, success) {
-          geddy.model.Comic.remove(comic.id, function(err, data) {
+        geddy.model.Episode.remove({ comicId : comic.id }, (err, success) => {
+          geddy.model.Comic.remove(comic.id, (err, data) => {
             console.log("Removed concluded comic and its episodes:", self.title, "<", self.url, ">");
           });
         });

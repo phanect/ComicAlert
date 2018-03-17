@@ -32,9 +32,8 @@ export class MagGardenComicPage extends ComicPage {
   scrapeEpisodes($ : any): void {
     const self = this;
 
-    $("div.read-box-inner").each(function(i, elem) {
+    $("div.read-box-inner").each((i, readBoxInner: any) => {
       const episode : any = {}
-        , readBoxInner : any = $(this)
         , text : string
         , tmp : any;
 
