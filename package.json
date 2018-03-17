@@ -9,7 +9,8 @@
   },
   "main": "--harmony server.js",
   "scripts": {
-    "start": "node --harmony server.js"
+    "start": "node --harmony server.js",
+    "clean": "git clean -dX --force"
   },
   "dependencies": {
     "URIjs": "^1.16.1",
