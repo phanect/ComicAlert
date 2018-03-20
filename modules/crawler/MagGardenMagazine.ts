@@ -1,6 +1,6 @@
-import { MagazineIndex } from "./MagazineIndex";
+import { Magazine } from "./Magazine";
 
-export class MagGardenMagazineIndex extends MagazineIndex {
+export class MagGardenMagazine extends Magazine {
   analyzeComics($: any, cb : any) {
     const self = this;
 

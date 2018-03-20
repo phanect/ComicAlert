@@ -1,8 +1,8 @@
 import * as cheerio from "cheerio";
 import fetch from "node-fetch";
-import { MagGardenComicPage } from "./MagGardenComicPage";
+import { MagGardenComic } from "./MagGardenComic";
 
-export class MagazineIndex {
+export class Magazine {
   comicUrls : Array<string> = new Array();
 
   constructor(public url: string, private name: string) {
@@ -10,7 +10,7 @@ export class MagazineIndex {
   }
 
   analyzeComics($ : any, cb : any) : void {
-    throw new Error("This method must be overrided. Aren't you using MagazineIndex class directly?");
+    throw new Error("This method must be overrided. Aren't you using Magazine class directly?");
   }
 
   analyzeAndSave() : void {
@@ -46,7 +46,7 @@ export class MagazineIndex {
       geddy.model.Comic.first({url : comicUrl}, (comic) => {
         if (!comic) {
           if (comicUrl.includes("comic.mag-garden.co.jp")) {
-            new MagGardenComicPage(comicUrl).analyzeAndSave();
+            new MagGardenComic(comicUrl).analyzeAndSave();
           }
         }
       });
