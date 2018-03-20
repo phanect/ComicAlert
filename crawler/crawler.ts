@@ -1,14 +1,14 @@
 import * as genny from "genny";
-import { MagGardenComicPage } from "./MagGardenComicPage";
-import { MagGardenMagazineIndex } from "./MagGardenMagazineIndex";
-import { MagazineIndex } from "./MagazineIndex";
+import { MagGardenComic } from "./MagGardenComic";
+import { MagGardenMagazine } from "./MagGardenMagazine";
+import { Magazine } from "./Magazine";
 
 function analyze() : void {
   let magazines = [];
 
-  magazines.push(new MagGardenMagazineIndex("http://comic.mag-garden.co.jp/blade/", "ブレイドオンライン"));
-  magazines.push(new MagGardenMagazineIndex("http://comic.mag-garden.co.jp/eden/", "WEB コミック EDEN"));
-  magazines.push(new MagGardenMagazineIndex("http://comic.mag-garden.co.jp/beats/", "WEBコミック Beat's"));
+  magazines.push(new MagGardenMagazine("http://comic.mag-garden.co.jp/blade/", "ブレイドオンライン"));
+  magazines.push(new MagGardenMagazine("http://comic.mag-garden.co.jp/eden/", "WEB コミック EDEN"));
+  magazines.push(new MagGardenMagazine("http://comic.mag-garden.co.jp/beats/", "WEBコミック Beat's"));
 
   for(const i in magazines) {
     genny.run(function (resume) {

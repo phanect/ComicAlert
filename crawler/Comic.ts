@@ -2,7 +2,7 @@ import * as cheerio from "cheerio";
 import fetch from "node-fetch";
 import * as moment from "moment";
 
-export class ComicPage {
+export class Comic {
   comic : any;
   title : string;
   thumbnailUrl : string;
@@ -14,15 +14,15 @@ export class ComicPage {
   }
 
   scrapeTitle($: any): void {
-    throw new Error("This method must be overrided. Aren't you using ComicPage class directly?");
+    throw new Error("This method must be overrided. Aren't you using Comic class directly?");
   }
 
   scrapeThumbnailUrl($: any): void {
-    throw new Error("This method must be overrided. Aren't you using ComicPage class directly?");
+    throw new Error("This method must be overrided. Aren't you using Comic class directly?");
   }
 
   scrapeEpisodes($: any): void {
-    throw new Error("This method must be overrided. Aren't you using ComicPage class directly?");
+    throw new Error("This method must be overrided. Aren't you using Comic class directly?");
   }
 
   analyze(cb : any) : void {
