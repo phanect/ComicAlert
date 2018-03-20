@@ -1,32 +1,32 @@
 <div class="comiccard col-md-3" id="episode-<%= episode.id; %>">
-	<div class="comiccard-title">
-		<a href="<%- comic.url %>" target="_blank">
-			<%-comic.title %>
-		</a>
-	</div>
+  <div class="comiccard-title">
+    <a href="<%- comic.url %>" target="_blank">
+      <%-comic.title %>
+    </a>
+  </div>
 
-	<div class="comiccard-container">
-		<div class="comiccard-cell">
-			<a href="<%- comic.url -%>" target="_blank">
-				<img src="<%- (comic.thumbnailUrl) ? comic.thumbnailUrl : "/img/noimage.png" %>"
-					alt="<%- comic.title %>" width="118" height="118" >
-			</a>
-		</div>
-		<div class="comiccard-cell">
-			<span class="episode-title">
-				<%-
-					episode.name +
-					((episode.subTitle) ? " " + episode.subTitle : "")
-				%>
-			</span>
-			&nbsp;
-			<span class="available-term">
-				(<%- episode.formattedPublishedAt() + "~" +
-					((episode.availableUntil) ? episode.formattedAvailableUntil() : "不明")
-				%>)
-			</span>
+  <div class="comiccard-container">
+    <div class="comiccard-cell">
+      <a href="<%- comic.url -%>" target="_blank">
+        <img src="<%- (comic.thumbnailUrl) ? comic.thumbnailUrl : "/img/noimage.png" %>"
+          alt="<%- comic.title %>" width="118" height="118" >
+      </a>
+    </div>
+    <div class="comiccard-cell">
+      <span class="episode-title">
+        <%-
+          episode.name +
+          ((episode.subTitle) ? " " + episode.subTitle : "")
+        %>
+      </span>
+      &nbsp;
+      <span class="available-term">
+        (<%- episode.formattedPublishedAt() + "~" +
+          ((episode.availableUntil) ? episode.formattedAvailableUntil() : "不明")
+        %>)
+      </span>
 
-			<a class="read-button" href="<%- episode.url %>" target="_blank">読む</a>
-		</div>
-	</div>
+      <a class="read-button" href="<%- episode.url %>" target="_blank">読む</a>
+    </div>
+  </div>
 </div>

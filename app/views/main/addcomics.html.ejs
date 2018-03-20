@@ -1,35 +1,35 @@
 <script type="text/javascript">
-	function subscribeComic(comicId) {
-		$.ajax({
-			url: "/addcomics/api",
-			type: "GET",
-			data: { addComic: comicId },
-			success: function(result) {
-				$("button#addcomic-" + comicId).attr("disabled", true);
-				$("p#added-" + comicId).html("Added");
-			}
-		});
-	}
+  function subscribeComic(comicId) {
+    $.ajax({
+      url: "/addcomics/api",
+      type: "GET",
+      data: { addComic: comicId },
+      success: function(result) {
+        $("button#addcomic-" + comicId).attr("disabled", true);
+        $("p#added-" + comicId).html("Added");
+      }
+    });
+  }
 </script>
 
 <h2>コミックの追加</h2>
 <div id="comics-list" class="container-fluid">
-	<% if (comics) { %>
-	<% for (var i = 0, ii = comics.length; i < ii; i++) { %>
-	<div class="row-fluid list-item" id="comic-<%= comics[i].id; %>">
-		<div class="col-md-2 comic">
-			<p><%- linkTo(comics[i].title, comics[i].url); %></p>
-			<p>
-				<% if (comics[i].thumbnailUrl != undefined) { %>
-					<%- imageLink(comics[i].thumbnailUrl, comics[i].url, {alt: "", size: "118x118"}, {});  %>
-				<% } else { %>
-					<%- imageLink("/img/noimage.png", comics[i].url, {alt: "", size: "118x118"}, {});  %>
-				<% } %>
-			</p>
-			<p><button onclick="subscribeComic('<%= comics[i].id; %>')" id="addcomic-<%= comics[i].id; %>" class="btn">+</button></p>
-			<p id="added-<%= comics[i].id; %>"></p>
-		</div>
-	</div>
-	<% } %>
-	<% } %>
+  <% if (comics) { %>
+  <% for (var i = 0, ii = comics.length; i < ii; i++) { %>
+  <div class="row-fluid list-item" id="comic-<%= comics[i].id; %>">
+    <div class="col-md-2 comic">
+      <p><%- linkTo(comics[i].title, comics[i].url); %></p>
+      <p>
+        <% if (comics[i].thumbnailUrl != undefined) { %>
+          <%- imageLink(comics[i].thumbnailUrl, comics[i].url, {alt: "", size: "118x118"}, {});  %>
+        <% } else { %>
+          <%- imageLink("/img/noimage.png", comics[i].url, {alt: "", size: "118x118"}, {});  %>
+        <% } %>
+      </p>
+      <p><button onclick="subscribeComic('<%= comics[i].id; %>')" id="addcomic-<%= comics[i].id; %>" class="btn">+</button></p>
+      <p id="added-<%= comics[i].id; %>"></p>
+    </div>
+  </div>
+  <% } %>
+  <% } %>
 </div>

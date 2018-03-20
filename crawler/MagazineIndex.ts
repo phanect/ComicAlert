@@ -1,63 +1,55 @@
-/// <reference path="../lib/external/DefinitelyTyped/node/node.d.ts" />
-/// <reference path="../lib/commons.ts" />
-/// <reference path="./MagGardenComicPage.ts" />
-
-var cheerio = require("cheerio");
-var request = require("request");
-
-import mgcp = require("./MagGardenComicPage");
-var MagGardenComicPage = mgcp.MagGardenComicPage;
-import uscp = require("./UraSundayComicPage");
-var UraSundayComicPage = uscp.UraSundayComicPage;
-var Utils = require("../lib/commons");
+import * as cheerio from "cheerio";
+import fetch from "node-fetch";
+import { MagGardenComicPage } from "./MagGardenComicPage";
 
 export class MagazineIndex {
-	comicUrls : Array<string> = new Array();
+  comicUrls : Array<string> = new Array();
 
-	constructor(public url: string, private name: string) {
-		console.log("Analyzing Magazine:", this.name, "<", this.url, ">");
-	}
-	
-	analyzeComics($ : any, cb : any) : void {
-		throw new Error("This method must be overrided. Aren't you using MagazineIndex class directly?");
-	}
-	
-	analyzeAndSave() : void {
-		var self = this;
+  constructor(public url: string, private name: string) {
+    console.log("Analyzing Magazine:", this.name, "<", this.url, ">");
+  }
 
-		self.analyze(function(comicUrls) {
-			self.save();
-		});
-	}
+  analyzeComics($ : any, cb : any) : void {
+    throw new Error("This method must be overrided. Aren't you using MagazineIndex class directly?");
+  }
 
-	private analyze(cb) {
-		var self = this;
+  analyzeAndSave() : void {
+    const self = this;
 
-		request({url : self.url, jar: true}, function(err, response, html){
-			if (response.statusCode !== 200) {
-				throw new Error("Return status code " + response.statusCode);
-			} else if (err) {
-				throw err;
-			}
+    self.analyze((comicUrls) => {
+      self.save();
+    });
+  }
 
-			var $ = cheerio.load(html);
-			self.analyzeComics($, cb);
-		});
-	}
+  private analyze(cb) {
+    const self = this;
 
-	private save() {
-		if (!this.comicUrls || this.comicUrls.length <= 0) { throw new Error("comicUrls is empty."); }
+    try {
+      const res = await fetch(self.url),
+            html = await res.text(),
+            $ = cheerio.load(html);
 
-		this.comicUrls.forEach(function(comicUrl) {
-			geddy.model.Comic.first({url : comicUrl}, function(comic) {
-				if (!comic) {
-					if (comicUrl.contains("comic.mag-garden.co.jp")) {
-						new MagGardenComicPage(comicUrl).analyzeAndSave();
-					} else if (comicUrl.contains("urasunday.com")) {
-						new UraSundayComicPage(comicUrl).analyzeAndSave();
-					}
-				}
-			});
-		});
-	}
+      if (res.status !== 200) {
+        throw new Error("Return status code " + res.status);
+      }
+
+      self.analyzeComics($, cb);
+    } catch (err) {
+      console.error(err);
+    }
+  }
+
+  private save() {
+    if (!this.comicUrls || this.comicUrls.length <= 0) { throw new Error("comicUrls is empty."); }
+
+    this.comicUrls.forEach((comicUrl) => {
+      geddy.model.Comic.first({url : comicUrl}, (comic) => {
+        if (!comic) {
+          if (comicUrl.includes("comic.mag-garden.co.jp")) {
+            new MagGardenComicPage(comicUrl).analyzeAndSave();
+          }
+        }
+      });
+    });
+  }
 }
