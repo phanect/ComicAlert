@@ -1,7 +1,5 @@
 import * as moment from "moment";
 
-import { getDOMWindow } from "./utils";
-
 export class Comic {
   comic : any;
   title : string;
@@ -11,28 +9,6 @@ export class Comic {
 
   constructor(public url : string) {
 
-  }
-
-  scrapeTitle($: any): void {
-    throw new Error("This method must be overrided. Aren't you using Comic class directly?");
-  }
-
-  scrapeThumbnailUrl($: any): void {
-    throw new Error("This method must be overrided. Aren't you using Comic class directly?");
-  }
-
-  scrapeEpisodes($: any): void {
-    throw new Error("This method must be overrided. Aren't you using Comic class directly?");
-  }
-
-  async analyze(cb : any) {
-    const window = await getDOMWindow(this.url);
-
-    this.scrapeTitle(window);
-    this.scrapeThumbnailUrl(window);
-    this.scrapeEpisodes(window);
-
-    cb();
   }
 
   save() : void {
