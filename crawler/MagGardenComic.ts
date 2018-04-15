@@ -1,9 +1,21 @@
 import * as fixchar from "fixchar";
 import * as moment from "moment";
+
 import { Comic } from "./interfaces/Comic";
+import { getDOMWindow } from "./utils";
 
 export class MagGardenComic implements Comic {
-  scrapeTitle($ : any): void {
+  title: string;
+
+  constructor(private url: string) {
+  }
+
+  async analyze() {
+    const window = await getDOMWindow(this.url);
+
+    //
+    // Scraping title
+    //
     // e.g. ROBOTICS;NOTES／原作：5pb. 漫画：浅川圭司
     const title: string = $("div#comicTitleArea > h2").text();
 
@@ -17,9 +29,10 @@ export class MagGardenComic implements Comic {
     if (this.title.includes("連載終了")) {
       this.concluded = true;
     }
-  }
 
-  scrapeThumbnailUrl($ : any): void {
+    //
+    // scraping thumbnail URL
+    //
     // e.g. assets/images/comic/BLADE/ROBOTICS/story.jpg
     const thumbnailUrl: string = $("img.cutImage").attr("src");
 
@@ -27,9 +40,10 @@ export class MagGardenComic implements Comic {
       return;
     }
     this.thumbnailUrl = "http://comic.mag-garden.co.jp/" + thumbnailUrl;
-  }
 
-  scrapeEpisodes($ : any): void {
+    //
+    // scraping episodes
+    //
     const self = this;
 
     $("div.read-box-inner").each((i, readBoxInner: any) => {
