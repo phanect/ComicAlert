@@ -1,6 +1,5 @@
-import { DOMWindow, JSDOM } from "jsdom";
-import fetch from "node-fetch";
 import { MagGardenComic } from "./MagGardenComic";
+import { getDOMWindow } from "./utils";
 
 export class Magazine {
   comicUrls : Array<string> = new Array();
@@ -16,25 +15,9 @@ export class Magazine {
   async analyzeAndSave() {
     const self = this;
 
-    self.analyzeComics(await self.getDOMWindow(), () => {
+    self.analyzeComics(await getDOMWindow(self.url), () => {
       self.save();
     });
-  }
-
-  private async getDOMWindow(): Promise<DOMWindow> {
-    const self = this;
-
-    try {
-      const res = await fetch(self.url);
-
-      if (res.status !== 200) {
-        throw new Error("Return status code " + res.status);
-      }
-
-      return new JSDOM(await res.text()).window;
-    } catch (err) {
-      console.error(err);
-    }
   }
 
   private save() {
