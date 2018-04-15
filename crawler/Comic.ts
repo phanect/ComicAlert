@@ -1,4 +1,4 @@
-import * as cheerio from "cheerio";
+import { JSDOM } from "jsdom";
 import fetch from "node-fetch";
 import * as moment from "moment";
 
@@ -30,16 +30,15 @@ export class Comic {
 
     try {
       const res = await fetch(self.url),
-            html = await res.text(),
-            $ = cheerio.load(html);
+            window = new JSDOM(await res.text()).window;
 
       if (res.status !== 200) {
         throw new Error("Return status code " + res.status);
       }
 
-      self.scrapeTitle($);
-      self.scrapeThumbnailUrl($);
-      self.scrapeEpisodes($);
+      self.scrapeTitle(window);
+      self.scrapeThumbnailUrl(window);
+      self.scrapeEpisodes(window);
 
       cb();
     } catch (err) {

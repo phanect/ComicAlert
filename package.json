@@ -15,12 +15,12 @@
   "dependencies": {
     "URIjs": "^1.16.1",
     "bcrypt-nodejs": "^0.0.3",
-    "cheerio": "^1.0.0-rc.2",
     "cron": "^1.2.1",
     "fixchar": "^0.1.1",
     "geddy": "^13.0.8",
     "geddy-passport": "^0.1.8",
     "genny": "^0.5.6",
+    "jsdom": "^11.7.0",
     "moment": "^2.18.1",
     "mongodb": "^2.2.31",
     "mongodb-wrapper": "^1.0.3",
@@ -33,7 +33,7 @@
   },
   "devDependencies": {
     "@phanect/eslint-config-phanective": "latest",
-    "@types/cheerio": "^0.22.7",
+    "@types/jsdom": "^11.0.4",
     "@types/node": "^9.4.6",
     "@types/node-fetch": "^1.6.7",
     "eslint": "latest",
