@@ -1,6 +1,6 @@
-import { DOMWindow, JSDOM } from "jsdom";
-import fetch from "node-fetch";
 import * as moment from "moment";
+
+import { getDOMWindow } from "./utils";
 
 export class Comic {
   comic : any;
@@ -26,29 +26,13 @@ export class Comic {
   }
 
   async analyze(cb : any) {
-    const window = await this.getDOMWindow();
+    const window = await getDOMWindow(this.url);
 
     this.scrapeTitle(window);
     this.scrapeThumbnailUrl(window);
     this.scrapeEpisodes(window);
 
     cb();
-  }
-
-  private async getDOMWindow(): Promise<DOMWindow> {
-    const self = this;
-
-    try {
-      const res = await fetch(self.url);
-
-      if (res.status !== 200) {
-        throw new Error("Return status code " + res.status);
-      }
-
-      return new JSDOM(await res.text()).window;
-    } catch (err) {
-      console.error(err);
-    }
   }
 
   save() : void {
