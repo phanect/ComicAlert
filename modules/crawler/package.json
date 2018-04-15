@@ -11,14 +11,14 @@
     "build": "jake build"
   },
   "dependencies": {
-    "cheerio": "^1.0.0-rc.2",
     "fixchar": "^0.1.1",
     "genny": "^0.5.6",
+    "jsdom": "^11.7.0",
     "moment": "^2.18.1",
     "node-fetch": "^2.1.1"
   },
   "devDependencies": {
-    "@types/cheerio": "^0.22.7",
+    "@types/jsdom": "^11.0.4",
     "@types/node": "^9.4.6",
     "@types/node-fetch": "^1.6.7"
   },

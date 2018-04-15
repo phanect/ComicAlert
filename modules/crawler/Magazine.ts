@@ -1,4 +1,4 @@
-import * as cheerio from "cheerio";
+import { JSDOM } from "jsdom";
 import fetch from "node-fetch";
 import { MagGardenComic } from "./MagGardenComic";
 
@@ -26,14 +26,13 @@ export class Magazine {
 
     try {
       const res = await fetch(self.url),
-            html = await res.text(),
-            $ = cheerio.load(html);
+            window = new JSDOM(await res.text()).window;
 
       if (res.status !== 200) {
         throw new Error("Return status code " + res.status);
       }
 
-      self.analyzeComics($, cb);
+      self.analyzeComics(window, cb);
     } catch (err) {
       console.error(err);
     }
