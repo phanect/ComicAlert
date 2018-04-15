@@ -1,8 +1,8 @@
 import * as fixchar from "fixchar";
 import * as moment from "moment";
-import { Comic } from "./Comic";
+import { Comic } from "./interfaces/Comic";
 
-export class MagGardenComic extends Comic {
+export class MagGardenComic implements Comic {
   scrapeTitle($ : any): void {
     // e.g. ROBOTICS;NOTES／原作：5pb. 漫画：浅川圭司
     const title: string = $("div#comicTitleArea > h2").text();

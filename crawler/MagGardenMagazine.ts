@@ -1,6 +1,6 @@
-import { Magazine } from "./Magazine";
+import { Magazine } from "./interfaces/Magazine";
 
-export class MagGardenMagazine extends Magazine {
+export class MagGardenMagazine implements Magazine {
   analyzeComics($: any, cb : any) {
     const self = this;
 
