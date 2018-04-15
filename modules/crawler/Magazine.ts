@@ -1,4 +1,4 @@
-import { JSDOM } from "jsdom";
+import { DOMWindow, JSDOM } from "jsdom";
 import fetch from "node-fetch";
 import { MagGardenComic } from "./MagGardenComic";
 
@@ -13,26 +13,25 @@ export class Magazine {
     throw new Error("This method must be overrided. Aren't you using Magazine class directly?");
   }
 
-  analyzeAndSave() : void {
+  async analyzeAndSave() {
     const self = this;
 
-    self.analyze((comicUrls) => {
+    self.analyzeComics(await self.getDOMWindow(), () => {
       self.save();
     });
   }
 
-  private analyze(cb) {
+  private async getDOMWindow(): Promise<DOMWindow> {
     const self = this;
 
     try {
-      const res = await fetch(self.url),
-            window = new JSDOM(await res.text()).window;
+      const res = await fetch(self.url);
 
       if (res.status !== 200) {
         throw new Error("Return status code " + res.status);
       }
 
-      self.analyzeComics(window, cb);
+      return new JSDOM(await res.text()).window;
     } catch (err) {
       console.error(err);
     }
