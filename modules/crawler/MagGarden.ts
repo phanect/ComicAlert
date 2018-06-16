@@ -13,7 +13,13 @@ export class MagGarden {
     return this.magazines;
   }
 
-  constructor(private url: string) {
+  constructor(private urls: string[], private name: string) {
+  }
+
+  async crawl() {
+    for (const url of this.urls) {
+      await this.analyzeMagazinePage({ url: url, name: this.name });
+    }
   }
 
   async analyzeMagazinePage(opt: { url: string, name: string }): Promise<any> {
