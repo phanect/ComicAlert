@@ -1,16 +1,11 @@
-import { MagGardenMagazineIndex } from "./MagGardenMagazineIndex";
+import { join } from "path";
 
-async function analyze() : Promise<void> {
-  let magazines = [];
+import { MagGarden } from "./MagGarden";
 
-  magazines.push(new MagGardenMagazineIndex("http://comic.mag-garden.co.jp/blade/", "ブレイドオンライン"));
-  magazines.push(new MagGardenMagazineIndex("http://comic.mag-garden.co.jp/eden/", "WEB コミック EDEN"));
-  magazines.push(new MagGardenMagazineIndex("http://comic.mag-garden.co.jp/beats/", "WEBコミック Beat's"));
+(async () => {
+  const jsonDir = join(__dirname, "dist"),
+        magGarden = new MagGarden();
 
-  for(const magazine of magazines) {
-    const result = await magazine.analyze();
-  }
-};
+  await magGarden.crawl();
 
-// TODO remove all comic data before analysis so that apply code changes
-analyze();
+})();

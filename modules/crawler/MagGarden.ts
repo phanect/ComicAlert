@@ -1,8 +1,24 @@
 import { fixchar } from "fixchar";
 import * as moment from "moment";
 
-export class MagGarden {
-  constructor(private url: string) {
+import { Magazine } from "./interfaces/Magazine";
+import { Site } from "./Site";
+
+export class MagGarden extends Site {
+  public constructor() {
+    super();
+
+    this.configs = [
+      {
+        id: "maggarden",
+        name: "マッグガーデン",
+        urls: [
+          "https://comic.mag-garden.co.jp/all/",
+          "https://comic.mag-garden.co.jp/yomikiri/",
+          "https://comic.mag-garden.co.jp/past/",
+        ],
+      },
+    ];
   }
 
   async analyzeMagazinePage($: any): Promise<void> {
