@@ -55,9 +55,10 @@ export class MagGarden {
     }
     this.thumbnailUrl = "http://comic.mag-garden.co.jp/" + thumbnailUrl;
 
-    //
-    // scraping episodes
-    //
+    this.scrapeEpisodes(document);
+  }
+
+  private scrapeEpisodes(): {
     const self = this;
 
     $("div.read-box-inner").each((i, readBoxInner: any) => {
