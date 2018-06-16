@@ -1,15 +1,30 @@
 import { fixchar } from "fixchar";
 import * as moment from "moment";
 
-import { Comic } from "./interfaces/Comic";
-
-export class MagGardenComic implements Comic {
-  title: string;
-
+export class MagGarden {
   constructor(private url: string) {
   }
 
-  async analyze() {
+  async analyzeMagazinePage($: any): Promise<void> {
+    const self = this;
+
+    return new Promise((resolve, reject) => {
+      $("div#comicList02 > ul > li").each((i, elem) => {
+        const comicUrl = elem.find("a").attr("href");
+
+        if (comicUrl != self.url && comicUrl.includes(self.url)) {
+          self.comicUrls.push(comicUrl);
+        }
+
+        // the last element
+        if (i + 1 === $("div#comicList02 > ul > li").length) {
+          resolve();
+        }
+      });
+    });
+  }
+
+  async analyzeComicPage() {
     //
     // Scraping title
     //
