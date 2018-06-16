@@ -1,5 +1,9 @@
 import { fixchar } from "fixchar";
+import * as grabity from "grabity";
+import { JSDOM } from "jsdom";
+
 import { Magazine } from "./interfaces/Magazine";
+import { Comic } from "./interfaces/Comic";
 import { Episode } from "./interfaces/Episode";
 import { Site } from "./Site";
 
@@ -39,36 +43,20 @@ export class MagGarden extends Site {
     });
   }
 
-  async analyzeComicPage() {
-    //
-    // Scraping title
-    //
-    // e.g. ROBOTICS;NOTES／原作：5pb. 漫画：浅川圭司
-    const title: string = $("div#comicTitleArea > h2").text();
+  private async analyzeComicPage(url: string): Promise<Comic> {
+    const ogp = await grabity.grabIt(url),
+          document = new JSDOM("", {
+            url: url,
+          }).window.document,
+          topicMsg = document.getElementById("topics2").innerText;
 
-    if (!title) {
-      return;
-    }
-
-    this.title = fixchar(title).split("/")[0].trim();
-    this.title = this.title.replace("【新連載】", "")
-
-    if (this.title.includes("連載終了")) {
-      this.concluded = true;
-    }
-
-    //
-    // scraping thumbnail URL
-    //
-    // e.g. assets/images/comic/BLADE/ROBOTICS/story.jpg
-    const thumbnailUrl: string = $("img.cutImage").attr("src");
-
-    if (!thumbnailUrl) {
-      return;
-    }
-    this.thumbnailUrl = "http://comic.mag-garden.co.jp/" + thumbnailUrl;
-
-    this.scrapeEpisodes(document);
+    return {
+      url,
+      title: fixchar(ogp.title || ogp["og:title"] || ogp["twitter:title"]).trim(),
+      thumbnailURL: ogp.image || ogp["og:image"] || ogp["twitter:image:src"],
+      concluded: (topicMsg.includes("連載は終了しました") || topicMsg.includes("特別読切作品")),
+      episodes: this.scrapeEpisodes(document)
+    };
   }
 
   private scrapeEpisodes(document: Document): Episode[] {
