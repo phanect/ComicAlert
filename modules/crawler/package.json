@@ -11,7 +11,7 @@
     "build": "jake build"
   },
   "dependencies": {
-    "fixchar": "^0.1.1",
+    "fixchar": "^0.3.0",
     "genny": "^0.5.6",
     "jsdom": "^11.7.0",
     "moment": "^2.18.1",
