@@ -1,7 +1,6 @@
 import { fixchar } from "fixchar";
-import * as moment from "moment";
-
 import { Magazine } from "./interfaces/Magazine";
+import { Episode } from "./interfaces/Episode";
 import { Site } from "./Site";
 
 export class MagGarden extends Site {
@@ -72,52 +71,27 @@ export class MagGarden extends Site {
     this.scrapeEpisodes(document);
   }
 
-  private scrapeEpisodes(): {
-    const self = this;
+  private scrapeEpisodes(document: Document): Episode[] {
+    let episodes: Episode[] = [];
 
-    $("div.read-box-inner").each((i, readBoxInner: any) => {
-      const episode : any = {}
-        , text : string
-        , tmp : any;
+    for (const episodeBox of Array.from(document.querySelectorAll("article.article-mangalist"))) {
+      const episodeLink = episodeBox.querySelector(".inner > a"),
+            episodeTitle = fixchar(episodeLink.innerHTML),
+            episodeURL = episodeLink.getAttribute("href");
 
-      // Return value example: 2月28日公開／最新直前3月号掲載25話
-      text = fixchar(readBoxInner.find("div.txt").find("h3").text());
-
-      episode.url = readBoxInner.find("div.txt").find("ul")
-              .find("li.readComic").find("a").attr("href");
-
-      episode.subTitle = "";
-
-      // Extract updateDate
-      tmp = text.match(/\d{1,2}月\d{1,2}日/);
-      if (tmp !== null) {
-        // If today is 2014/03/23 and written "12月14日",
-        // the result will be 2014/12/14 although it is
-        // actually published at 2013/12/14
-        tmp = moment(tmp[0], "MM月DD日");
-
-        if (tmp > moment()) { // if date stored in tmp is the future
-          episode.publishedAt = tmp.subtract({years : 1});
-        } else {
-          episode.publishedAt = tmp;
-        }
-      } else {
-        episode.publishedAt = null; // Now
+      if (!episodeTitle || !episodeURL) {
+        throw new Error("Cannot get Episode");
       }
 
-      // Extract Episode number
-      tmp = text.match(/\d{1,4}話/); // e.g. "3話"
-      if (tmp != null) {
-        tmp = tmp[0].match(/\d/); // e.g. "2"
+      episodes.push({
+        title: episodeTitle,
+        pcURL: episodeURL,
+        mobileURL: episodeURL.replace("/HTML5/pc.html", "/HTML5/sd.html"),
+        publishedAt: new Date(),
+        expiresAt: null,
+      });
+    }
 
-        if (tmp != null) {
-          episode.num = tmp[0];
-          episode.name = "第" + episode.num + "話";
-          self.episodes.push(episode);
-        }
-      }
-      // episode.num is essential value to acquire, so if failed to get, do not register to DB.
-      // TODO but log error and report admin
-    });
+    return episodes;
   }
 }
