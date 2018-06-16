@@ -19,7 +19,7 @@
   },
   "devDependencies": {
     "@types/cheerio": "^0.22.7",
-    "@types/node": "^9.4.6",
+    "@types/node": "^10.9.4",
     "@types/node-fetch": "^1.6.7"
   },
   "engines": {

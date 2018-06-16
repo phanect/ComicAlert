@@ -17,7 +17,7 @@
     "eslint": "latest",
     "eslint-plugin-typescript": "latest",
     "lerna": "^3.10.7",
-    "typescript": "^2.7.2",
+    "typescript": "^3.2.4",
     "typescript-eslint-parser": "latest"
   },
   "engines": {
