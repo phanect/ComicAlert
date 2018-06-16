@@ -1,4 +1,4 @@
-import * as fixchar from "fixchar";
+import { fixchar } from "fixchar";
 import * as moment from "moment";
 
 import { getDOMWindow } from "./utils";

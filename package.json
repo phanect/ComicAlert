@@ -16,7 +16,7 @@
     "URIjs": "^1.16.1",
     "bcrypt-nodejs": "^0.0.3",
     "cron": "^1.2.1",
-    "fixchar": "^0.1.1",
+    "fixchar": "^0.3.0",
     "geddy": "^13.0.8",
     "geddy-passport": "^0.1.8",
     "genny": "^0.5.6",
