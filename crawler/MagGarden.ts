@@ -1,7 +1,9 @@
 import { fixchar } from "fixchar";
+import * as grabity from "grabity";
+import { JSDOM } from "jsdom";
 
+import { Comic } from "./Comic";
 import { Episode } from "./Episode";
-import { getDOMWindow } from "./utils";
 
 export class MagGarden {
   constructor(private url: string) {
@@ -24,38 +26,22 @@ export class MagGarden {
     });
   }
 
-  async analyzeComicPage() {
-    const window = await getDOMWindow(this.url);
+  async analyzeComicPage(url: string): Promise<Comic> {
+    const ogp = await grabity.grabIt(url),
+          document = new JSDOM("", {
+            url: url,
+          }).window.document,
+          comic = new Comic(url);
 
-    //
-    // Scraping title
-    //
-    // e.g. ROBOTICS;NOTES／原作：5pb. 漫画：浅川圭司
-    const title: string = $("div#comicTitleArea > h2").text();
+    comic.Title = fixchar(ogp.title || ogp["og:title"] || ogp["twitter:title"]).trim();
+    comic.ThumbnailURL = ogp.image || ogp["og:image"] || ogp["twitter:image:src"];
 
-    if (!title) {
-      return;
-    }
+    const topicMsg = document.getElementById("topics2").innerText;
+    comic.Concluded = (topicMsg.includes("連載は終了しました") || topicMsg.includes("特別読切作品"));
 
-    this.title = fixchar(title).split("/")[0].trim();
-    this.title = this.title.replace("【新連載】", "")
+    comic.Episodes = this.scrapeEpisodes(document);
 
-    if (this.title.includes("連載終了")) {
-      this.concluded = true;
-    }
-
-    //
-    // scraping thumbnail URL
-    //
-    // e.g. assets/images/comic/BLADE/ROBOTICS/story.jpg
-    const thumbnailUrl: string = $("img.cutImage").attr("src");
-
-    if (!thumbnailUrl) {
-      return;
-    }
-    this.thumbnailUrl = "http://comic.mag-garden.co.jp/" + thumbnailUrl;
-
-    this.scrapeEpisodes(document);
+    return comic;
   }
 
   private scrapeEpisodes(document: Document): Episode[] {
