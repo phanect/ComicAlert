@@ -13,6 +13,7 @@
   "dependencies": {
     "fixchar": "^0.3.0",
     "genny": "^0.5.6",
+    "grabity": "^1.0.4",
     "jsdom": "^11.7.0",
     "moment": "^2.18.1",
     "node-fetch": "^2.1.1"
