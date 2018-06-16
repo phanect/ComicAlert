@@ -12,7 +12,7 @@
   },
   "dependencies": {
     "cheerio": "^1.0.0-rc.2",
-    "fixchar": "^0.1.1",
+    "fixchar": "^0.3.0",
     "genny": "^0.5.6",
     "moment": "^2.18.1",
     "node-fetch": "^2.1.1"
