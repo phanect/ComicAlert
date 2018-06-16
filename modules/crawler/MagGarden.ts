@@ -24,23 +24,22 @@ export class MagGarden extends Site {
     ];
   }
 
-  async analyzeMagazinePage($: any): Promise<void> {
-    const self = this;
+  protected async analyzeMagazinePage(
+    url: string,
+    name: string,
+    id: string,
+  ): Promise<Magazine> {
+    const document = (await JSDOM.fromURL(url)).window.document,
+          comics: Comic[] = [];
 
-    return new Promise((resolve, reject) => {
-      $("div#comicList02 > ul > li").each((i, elem) => {
-        const comicUrl = elem.find("a").attr("href");
+    for (const comicBox of Array.from(document.querySelectorAll("article.cbox"))) {
+      const comicURL = comicBox.querySelector(".inner > a.cbox-main").getAttribute("href");
 
-        if (comicUrl != self.url && comicUrl.includes(self.url)) {
-          self.comicUrls.push(comicUrl);
-        }
+      comics.push(await this.analyzeComicPage(comicURL));
+    }
 
-        // the last element
-        if (i + 1 === $("div#comicList02 > ul > li").length) {
-          resolve();
-        }
-      });
-    });
+    this.comics = comics;
+    return { id, name, comics };
   }
 
   private async analyzeComicPage(url: string): Promise<Comic> {
