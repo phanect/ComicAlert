@@ -16,4 +16,6 @@ interface OpenGraphData {
   "twitter:image:src"?: string,
 }
 
-export function grabIt(url: string): Promise<OpenGraphData>;
+declare module "grabity" {
+  export function grabIt(url: string): Promise<OpenGraphData>;
+}
