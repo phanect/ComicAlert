@@ -7,4 +7,14 @@ export class Episode {
     private expiresAt?: Date
   ) {
   }
+
+  public toJSON() {
+    return {
+      title: this.title,
+      pcURL: this.pcURL,
+      mobileURL: this.mobileURL,
+      publishedAt: this.publishedAt,
+      expiresAt: this.expiresAt,
+    };
+  }
 }
