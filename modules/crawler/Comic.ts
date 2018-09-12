@@ -3,8 +3,6 @@ import * as moment from "moment";
 import { Episode } from "./Episode";
 
 export class Comic {
-  comic : any;
-
   set Title(title: string) {
     this.title = title;
   }
