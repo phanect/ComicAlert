@@ -26,6 +26,18 @@ export class Comic {
     private concluded: boolean = false
   ) {}
 
+  public toJSON() {
+    return {
+      url: this.url,
+      title: this.title,
+      thumbnailURL: this.thumbnailURL,
+      episodes: this.episodes.map(episode => {
+        return episode.toJSON();
+      }),
+      concluded: this.concluded,
+    };
+  }
+
   save() : void {
     const self = this;
 
