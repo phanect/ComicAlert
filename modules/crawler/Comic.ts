@@ -1,15 +1,30 @@
 import * as moment from "moment";
 
+import { Episode } from "./Episode";
+
 export class Comic {
   comic : any;
-  title : string;
-  thumbnailUrl : string;
-  episodes : Array<any> = new Array();
-  concluded : boolean = false;
 
-  constructor(public url : string) {
-
+  set Title(title: string) {
+    this.title = title;
   }
+  set ThumbnailURL(thumbnailURL: string) {
+    this.thumbnailURL = thumbnailURL;
+  }
+  set Episodes(episodes: Episode[]) {
+    this.episodes = episodes;
+  }
+  set Concluded(concluded: boolean) {
+    this.concluded = concluded;
+  }
+
+  constructor(
+    private url: string,
+    private title?: string,
+    private thumbnailURL?: string,
+    private episodes: Episode[] = [],
+    private concluded: boolean = false
+  ) {}
 
   save() : void {
     const self = this;
