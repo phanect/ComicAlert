@@ -36,14 +36,6 @@ yarn-error.log*
 # Other tools
 *.lerna_backup
 
-# Geddy
-_datastore.json
-_session_store.json
-config/secrets.json
-public/js/core/models.js
-public/js/core/helpers.js
-
 # Build files (TypeScript etc.)
 .sass-cache/
 _build/
-public/css/style.css
