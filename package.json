@@ -8,6 +8,7 @@
     "url": "https://github.com/phanect/ComicAlert.git"
   },
   "scripts": {
+    "build": "lerna run build",
     "clean": "git clean -dX --force",
     "postinstall": "lerna bootstrap"
   },

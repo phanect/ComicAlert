@@ -9,7 +9,8 @@
   },
   "main": "--harmony server.js",
   "scripts": {
-    "start": "node --harmony server.js"
+    "start": "node --harmony server.js",
+    "build": "jake build"
   },
   "dependencies": {
     "URIjs": "^1.16.1",

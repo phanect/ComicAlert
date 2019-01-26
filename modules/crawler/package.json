@@ -8,6 +8,7 @@
     "url": "https://github.com/phanect/ComicAlert.git"
   },
   "scripts": {
+    "build": "jake build"
   },
   "dependencies": {
     "cheerio": "^1.0.0-rc.2",
