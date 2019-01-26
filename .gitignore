@@ -33,15 +33,9 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 
-# Geddy
-_datastore.json
-_session_store.json
-config/secrets.json
-public/js/core/models.js
-public/js/core/helpers.js
+# Other tools
+*.lerna_backup
 
 # Build files (TypeScript etc.)
 .sass-cache/
 _build/
-public/css/style.css
-

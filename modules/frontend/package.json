@@ -1,0 +1,35 @@
+{
+  "name": "ComicAlert",
+  "description": "Comic update notifier",
+  "version": "0.0.1",
+  "author": "Jumpei Ogawa @phanect",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/phanect/ComicAlert.git"
+  },
+  "main": "--harmony server.js",
+  "scripts": {
+    "start": "node --harmony server.js",
+    "build": "jake build"
+  },
+  "dependencies": {
+    "URIjs": "^1.16.1",
+    "bcrypt-nodejs": "^0.0.3",
+    "geddy": "^13.0.8",
+    "geddy-passport": "^0.1.8",
+    "moment": "^2.18.1",
+    "mongodb": "^2.2.31",
+    "mongodb-wrapper": "^1.0.3",
+    "nodemailer": "^4.1.0",
+    "passport": "0.1.0",
+    "passport-facebook": "0.1.0",
+    "passport-twitter": "0.1.0"
+  },
+  "devDependencies": {
+    "should": "^12.0.0"
+  },
+  "engines": {
+    "node": "^10.0.0",
+    "npm": "^6.0.0"
+  }
+}

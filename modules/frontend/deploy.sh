@@ -27,7 +27,7 @@ git add .openshift
 
 git remote set-url origin ssh://53c14fcde0b8cd7003000649@comicalert-comicalert.rhcloud.com/~/git/comicalert.git/
 
-jake build
+yarn run build
 git add --force _build
 git add --force public/js/core
 git add --force public/css/style.css
