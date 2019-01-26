@@ -8,12 +8,14 @@
     "url": "https://github.com/phanect/ComicAlert.git"
   },
   "scripts": {
-    "clean": "git clean -dX --force"
+    "clean": "git clean -dX --force",
+    "postinstall": "lerna bootstrap"
   },
   "devDependencies": {
     "@phanect/eslint-config-phanective": "latest",
     "eslint": "latest",
     "eslint-plugin-typescript": "latest",
+    "lerna": "^3.10.7",
     "typescript": "^2.7.2",
     "typescript-eslint-parser": "latest"
   },

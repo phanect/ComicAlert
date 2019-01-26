@@ -33,6 +33,9 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 
+# Other tools
+*.lerna_backup
+
 # Geddy
 _datastore.json
 _session_store.json
@@ -44,4 +47,3 @@ public/js/core/helpers.js
 .sass-cache/
 _build/
 public/css/style.css
-
