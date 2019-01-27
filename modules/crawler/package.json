@@ -9,7 +9,7 @@
     "url": "https://github.com/phanect/ComicAlert.git"
   },
   "scripts": {
-    "build": "jake build"
+    "build": "ts-node ./crawler.ts"
   },
   "dependencies": {
     "cheerio": "^1.0.0-rc.2",
@@ -21,7 +21,8 @@
   "devDependencies": {
     "@types/cheerio": "^0.22.7",
     "@types/node": "^10.9.4",
-    "@types/node-fetch": "^1.6.7"
+    "@types/node-fetch": "^1.6.7",
+    "ts-node": "^7.0.1"
   },
   "engines": {
     "node": "^10.0.0",
