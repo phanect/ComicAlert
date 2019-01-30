@@ -1,5 +1,5 @@
 {
-  "name": "ComicAlert",
+  "name": "@comicalert/frontend",
   "description": "Comic update notifier",
   "version": "0.0.1",
   "author": "Jumpei Ogawa @phanect",
