@@ -1,6 +1,5 @@
 import * as cheerio from "cheerio";
 import fetch from "node-fetch";
-import { MagGardenComicPage } from "./MagGardenComicPage";
 
 export class MagazineIndex {
   comicUrls : Array<string> = new Array();
@@ -11,14 +10,6 @@ export class MagazineIndex {
 
   analyzeComics($ : any, cb : any) : void {
     throw new Error("This method must be overrided. Aren't you using MagazineIndex class directly?");
-  }
-
-  analyzeAndSave() : void {
-    const self = this;
-
-    self.analyze((comicUrls) => {
-      self.save();
-    });
   }
 
   private analyze(cb) {
@@ -37,19 +28,5 @@ export class MagazineIndex {
     } catch (err) {
       console.error(err);
     }
-  }
-
-  private save() {
-    if (!this.comicUrls || this.comicUrls.length <= 0) { throw new Error("comicUrls is empty."); }
-
-    this.comicUrls.forEach((comicUrl) => {
-      geddy.model.Comic.first({url : comicUrl}, (comic) => {
-        if (!comic) {
-          if (comicUrl.includes("comic.mag-garden.co.jp")) {
-            new MagGardenComicPage(comicUrl).analyzeAndSave();
-          }
-        }
-      });
-    });
   }
 }

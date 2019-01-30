@@ -12,7 +12,7 @@ function analyze() : void {
 
   for(const i in magazines) {
     genny.run(function (resume) {
-      var result = yield(magazines[i].analyzeAndSave());
+      var result = yield(magazines[i].analyze());
     });
   }
 };
