@@ -22,7 +22,8 @@
     "@types/cheerio": "^0.22.7",
     "@types/node": "^10.9.4",
     "@types/node-fetch": "^1.6.7",
-    "ts-node": "^7.0.1"
+    "ts-node": "^7.0.1",
+    "typescript": "^3.2.4"
   },
   "engines": {
     "node": "^10.0.0",

@@ -10,7 +10,6 @@
       "esnext"
     ],
     "newLine": "lf",
-    "outDir": "_build/pre",
     "preserveConstEnums": true,
     "removeComments": true,
     "typeRoots": [
