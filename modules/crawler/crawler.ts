@@ -1,7 +1,5 @@
 import * as genny from "genny";
-import { MagGardenComicPage } from "./MagGardenComicPage";
 import { MagGardenMagazineIndex } from "./MagGardenMagazineIndex";
-import { MagazineIndex } from "./MagazineIndex";
 
 function analyze() : void {
   let magazines = [];
