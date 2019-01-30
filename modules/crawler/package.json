@@ -1,5 +1,5 @@
 {
-  "name": "ComicAlert",
+  "name": "@comicalert/crawler",
   "description": "Comic update notifier",
   "version": "0.0.1",
   "author": "Jumpei Ogawa @phanect",
@@ -12,17 +12,24 @@
     "build": "ts-node ./crawler.ts"
   },
   "dependencies": {
+    "firebase-admin": "^6.0.0",
     "fixchar": "^0.3.0",
+    "fs-extra": "^7.0.1",
+    "gh-pages": "^2.0.1",
     "grabity": "^1.0.4",
-    "jsdom": "^11.7.0",
+    "jsdom": "^12.0.0",
     "moment": "^2.18.1",
     "node-fetch": "^2.1.1"
   },
   "devDependencies": {
-    "@types/jsdom": "^11.0.4",
-    "@types/node": "^10.0.0",
-    "@types/node-fetch": "^1.6.7"
+    "@types/fs-extra": "^5.0.4",
+    "@types/gh-pages": "^2.0.0",
+    "@types/jsdom": "^12.2.1",
+    "@types/node": "^10.9.4",
+    "@types/node-fetch": "^1.6.7",
+    "firebase-tools": "^4.2.1",
     "ts-node": "^7.0.1",
+    "typescript": "^3.2.4"
   },
   "engines": {
     "node": "^10.0.0",

@@ -1,6 +1,7 @@
 export interface Comic {
-  constructor(url : string): Comic;
+  url: string;
 
   analyze(): void;
   save(): void;
+  remove(): Promise<void>;
 }

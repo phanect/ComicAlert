@@ -35,7 +35,7 @@ export class MagGarden extends Site {
           magazine = new Magazine(name, id),
           comics: Comic[] = [];
 
-    for (const comicBox of Array.from(document.querySelectorAll("article.cbox"))) {
+    for (const comicBox of document.querySelectorAll("article.cbox")) {
       const comicURL = comicBox.querySelector(".inner > a.cbox-main").getAttribute("href");
 
       comics.push(await this.analyzeComicPage(comicURL));
@@ -66,8 +66,8 @@ export class MagGarden extends Site {
   private scrapeEpisodes(document: Document): Episode[] {
     let episodes: Episode[] = [];
 
-    for (const episodeBox of Array.from(document.querySelectorAll("article.article-mangalist"))) {
-      const episodeLink: HTMLElement = episodeBox.querySelector(".inner > a"),
+    for (const episodeBox of document.querySelectorAll("article.article-mangalist")) {
+      const episodeLink = episodeBox.querySelector(".inner > a"),
             episodeTitle = fixchar(episodeLink.innerText),
             episodeURL = episodeLink.getAttribute("href");
 

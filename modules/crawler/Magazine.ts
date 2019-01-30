@@ -1,36 +1,20 @@
-import { MagGardenComic } from "./MagGardenComic";
-import { getDOMWindow } from "./utils";
+import { MagazineData } from "./interfaces/MagazineData";
+import { Comic } from "./Comic";
 
 export class Magazine {
-  comicUrls : Array<string> = new Array();
+  comics: Comic[] = [];
 
-  constructor(public url: string, private name: string) {
-    console.log("Analyzing Magazine:", this.name, "<", this.url, ">");
+  public get ID() {
+    return this.id;
   }
 
-  analyzeComics($ : any, cb : any) : void {
-    throw new Error("This method must be overrided. Aren't you using Magazine class directly?");
+  constructor(private name: string, private id: string) {
   }
 
-  async analyzeAndSave() {
-    const self = this;
-
-    self.analyzeComics(await getDOMWindow(self.url), () => {
-      self.save();
-    });
-  }
-
-  private save() {
-    if (!this.comicUrls || this.comicUrls.length <= 0) { throw new Error("comicUrls is empty."); }
-
-    this.comicUrls.forEach((comicUrl) => {
-      geddy.model.Comic.first({url : comicUrl}, (comic) => {
-        if (!comic) {
-          if (comicUrl.includes("comic.mag-garden.co.jp")) {
-            new MagGardenComic(comicUrl).analyzeAndSave();
-          }
-        }
-      });
-    });
+  public toJSON(): MagazineData {
+    return {
+      name: this.name,
+      comics: this.comics.map(comic => comic.toJSON()),
+    };
   }
 }

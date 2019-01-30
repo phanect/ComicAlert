@@ -10,7 +10,8 @@
   },
   "scripts": {
     "build": "lerna run build",
-    "clean": "git clean -dX --force",
+    "clean": "git clean -dX --force && rm --force yarn.lock modules/crawler/yarn.lock modules/frontend/yarn.lock",
+    "reinstall": "yarn run clean && yarn install",
     "postinstall": "lerna bootstrap"
   },
   "devDependencies": {
@@ -18,7 +19,7 @@
     "eslint": "latest",
     "eslint-plugin-typescript": "latest",
     "lerna": "^3.10.7",
-    "typescript": "^2.8.3",
+    "typescript": "^3.2.4",
     "typescript-eslint-parser": "latest"
   },
   "engines": {

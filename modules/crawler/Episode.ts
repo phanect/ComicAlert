@@ -1,3 +1,5 @@
+import { EpisodeData } from "./interfaces/EpisodeData"
+
 export class Episode {
   constructor(
     private title: string,
@@ -8,7 +10,7 @@ export class Episode {
   ) {
   }
 
-  public toJSON() {
+  public toJSON(): EpisodeData {
     return {
       title: this.title,
       pcURL: this.pcURL,
