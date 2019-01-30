@@ -8,11 +8,11 @@ export class MagazineIndex {
     console.log("Analyzing Magazine:", this.name, "<", this.url, ">");
   }
 
-  analyzeComics($ : any, cb : any) : void {
+  async analyzeComics($ : any) : Promise<void> {
     throw new Error("This method must be overrided. Aren't you using MagazineIndex class directly?");
   }
 
-  private analyze(cb) {
+  private async analyze(): Promise<void> {
     const self = this;
 
     try {
@@ -24,7 +24,7 @@ export class MagazineIndex {
         throw new Error("Return status code " + res.status);
       }
 
-      self.analyzeComics($, cb);
+      return self.analyzeComics($);
     } catch (err) {
       console.error(err);
     }
