@@ -1,17 +1,14 @@
-import * as genny from "genny";
 import { MagGardenMagazineIndex } from "./MagGardenMagazineIndex";
 
-function analyze() : void {
+async function analyze() : Promise<void> {
   let magazines = [];
 
   magazines.push(new MagGardenMagazineIndex("http://comic.mag-garden.co.jp/blade/", "ブレイドオンライン"));
   magazines.push(new MagGardenMagazineIndex("http://comic.mag-garden.co.jp/eden/", "WEB コミック EDEN"));
   magazines.push(new MagGardenMagazineIndex("http://comic.mag-garden.co.jp/beats/", "WEBコミック Beat's"));
 
-  for(const i in magazines) {
-    genny.run(function (resume) {
-      var result = yield(magazines[i].analyze());
-    });
+  for(const magazine of magazines) {
+    const result = await magazine.analyze();
   }
 };
 
