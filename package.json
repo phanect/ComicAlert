@@ -10,7 +10,8 @@
   },
   "scripts": {
     "build": "lerna run build",
-    "clean": "git clean -dX --force",
+    "clean": "git clean -dX --force && rm --force yarn.lock modules/crawler/yarn.lock modules/frontend/yarn.lock",
+    "reinstall": "yarn run clean && yarn install",
     "postinstall": "lerna bootstrap"
   },
   "devDependencies": {
