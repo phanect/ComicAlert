@@ -1,4 +1,4 @@
-import * as cheerio from "cheerio";
+import { JSDOM } from "jsdom";
 import fetch from "node-fetch";
 
 export class MagazineIndex {
@@ -16,15 +16,9 @@ export class MagazineIndex {
     const self = this;
 
     try {
-      const res = await fetch(self.url),
-            html = await res.text(),
-            $ = cheerio.load(html);
+      const document = (await JSDOM.fromURL(opt.url)).window.document;
 
-      if (res.status !== 200) {
-        throw new Error("Return status code " + res.status);
-      }
-
-      return self.analyzeComics($);
+      return self.analyzeComics(document);
     } catch (err) {
       console.error(err);
     }
