@@ -1,16 +1,30 @@
-import { MagGardenMagazineIndex } from "./MagGardenMagazineIndex";
+import { writeFile, ensureDir } from "fs-extra";
+import { publish } from "gh-pages";
+import { join } from "path";
 
-async function analyze() : Promise<void> {
-  let magazines = [];
+import { MagGarden } from "./MagGarden";
 
-  magazines.push(new MagGardenMagazineIndex("http://comic.mag-garden.co.jp/blade/", "ブレイドオンライン"));
-  magazines.push(new MagGardenMagazineIndex("http://comic.mag-garden.co.jp/eden/", "WEB コミック EDEN"));
-  magazines.push(new MagGardenMagazineIndex("http://comic.mag-garden.co.jp/beats/", "WEBコミック Beat's"));
+(async () => {
+  const jsonDir = join(__dirname, "dist"),
+        magGarden = new MagGarden();
 
-  for(const magazine of magazines) {
-    const result = await magazine.analyze();
-  }
-};
+  await magGarden.crawl();
 
-// TODO remove all comic data before analysis so that apply code changes
-analyze();
+  await ensureDir(jsonDir);
+  await Promise.all([
+    writeFile(join(jsonDir, "CNAME"), "api.comicstand.phanective.org"),
+    writeFile(join(jsonDir, "comics.json"), JSON.stringify(magGarden.Magazines)),
+  ]);
+
+  return new Promise((resolve, reject) => {
+    publish("dist", {
+      repo: "git@github.com:phanect/static-comicstand-data.git",
+    }, (err: Error) => {
+      if (err) {
+        reject(err);
+      } else {
+        resolve();
+      }
+    });
+  });
+})();

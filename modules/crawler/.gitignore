@@ -1,1 +1,5 @@
+dist/
 *.js
+
+# Following *.js files should be tracked by git
+!.eslintrc.js

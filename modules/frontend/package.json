@@ -11,7 +11,8 @@
   "main": "--harmony server.js",
   "scripts": {
     "start": "node --harmony server.js",
-    "build": "jake build"
+    "build": "jake build",
+    "lint": ":"
   },
   "dependencies": {
     "URIjs": "^1.16.1",

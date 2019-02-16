@@ -1,7 +1,7 @@
 "use strict"
 
 module.exports = {
-  extends: "@phanect/phanective",
+  extends: "plugin:@phanect/js",
   root: true,
   env: {
     "node": true
@@ -9,4 +9,5 @@ module.exports = {
   parserOptions: {
     sourceType: "module",
   },
+  plugins: [ "@phanect" ],
 };
