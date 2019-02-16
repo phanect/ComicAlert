@@ -13,22 +13,22 @@
     "lint": "tsc --noEmit"
   },
   "dependencies": {
-    "fixchar": "^0.3.0",
-    "fs-extra": "^7.0.1",
-    "gh-pages": "^2.0.1",
-    "grabity": "^1.0.4",
-    "jsdom": "^12.0.0",
-    "moment": "^2.18.1",
-    "node-fetch": "^2.1.1"
+    "fixchar": "0.3.0",
+    "fs-extra": "7.0.1",
+    "gh-pages": "2.0.1",
+    "grabity": "1.0.5",
+    "jsdom": "12.2.0",
+    "moment": "2.24.0",
+    "node-fetch": "2.3.0"
   },
   "devDependencies": {
-    "@types/fs-extra": "^5.0.4",
-    "@types/gh-pages": "^2.0.0",
-    "@types/jsdom": "^12.2.1",
-    "@types/node": "^10.9.4",
-    "@types/node-fetch": "^1.6.7",
-    "ts-node": "^7.0.1",
-    "typescript": "^3.2.4"
+    "@types/fs-extra": "5.0.5",
+    "@types/gh-pages": "2.0.0",
+    "@types/jsdom": "12.2.2",
+    "@types/node": "10.12.26",
+    "@types/node-fetch": "1.6.9",
+    "ts-node": "7.0.1",
+    "typescript": "3.3.3"
   },
   "engines": {
     "node": "^10.0.0",

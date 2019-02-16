@@ -18,8 +18,8 @@
   "devDependencies": {
     "@phanect/eslint-plugin": "latest",
     "eslint": "latest",
-    "lerna": "^3.10.7",
-    "typescript": "^3.2.4"
+    "lerna": "3.13.0",
+    "typescript": "3.3.3"
   },
   "engines": {
     "node": "^10.0.0",

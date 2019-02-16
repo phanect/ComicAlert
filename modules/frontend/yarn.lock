@@ -2,10 +2,15 @@
 # yarn lockfile v1
 
 
-URIjs@^1.16.1:
+URIjs@1.16.1:
   version "1.16.1"
   resolved "https://registry.yarnpkg.com/URIjs/-/URIjs-1.16.1.tgz#edebc678b8b74b26b05d2b481e12383f5ae04b8b"
   integrity sha1-7evGeLi3SyawXStIHhI4P1rgS4s=
+
+addressparser@~0.3.2:
+  version "0.3.2"
+  resolved "https://registry.yarnpkg.com/addressparser/-/addressparser-0.3.2.tgz#59873f35e8fcf6c7361c10239261d76e15348bb2"
+  integrity sha1-WYc/Nej89sc2HBAjkmHXbhU0i7I=
 
 ansi-styles@~1.0.0:
   version "1.0.0"
@@ -38,6 +43,24 @@ barista@0.2.x:
   integrity sha1-tvwbMUiIEb7B/PHV6ouzvdnV5xY=
   dependencies:
     inflection "*"
+
+bcrypt-nodejs@0.0.3:
+  version "0.0.3"
+  resolved "https://registry.yarnpkg.com/bcrypt-nodejs/-/bcrypt-nodejs-0.0.3.tgz#c60917f26dc235661566c681061c303c2b28842b"
+  integrity sha1-xgkX8m3CNWYVZsaBBhwwPCsohCs=
+
+bcrypt@0.8.x:
+  version "0.8.7"
+  resolved "https://registry.yarnpkg.com/bcrypt/-/bcrypt-0.8.7.tgz#bc3875a9afd0a7b2cd231a6a7f218a5ce156b093"
+  integrity sha1-vDh1qa/Qp7LNIxpqfyGKXOFWsJM=
+  dependencies:
+    bindings "1.2.1"
+    nan "2.3.5"
+
+bindings@1.2.1:
+  version "1.2.1"
+  resolved "https://registry.yarnpkg.com/bindings/-/bindings-1.2.1.tgz#14ad6113812d2d37d72e67b4cacb4bb726505f11"
+  integrity sha1-FK1hE4EtLTfXLme0ystLtyZQXxE=
 
 brace-expansion@^1.1.7:
   version "1.1.11"
@@ -81,6 +104,28 @@ core-util-is@~1.0.0:
   resolved "https://registry.yarnpkg.com/core-util-is/-/core-util-is-1.0.2.tgz#b5fd54220aa2bc5ab57aab7140c940754503c1a7"
   integrity sha1-tf1UIgqivFq1eqtxQMlAdUUDwac=
 
+directmail@~0.1.7:
+  version "0.1.8"
+  resolved "https://registry.yarnpkg.com/directmail/-/directmail-0.1.8.tgz#e4852c8a0c5519bef4904fcd96d760822f42a446"
+  integrity sha1-5IUsigxVGb70kE/Nltdggi9CpEY=
+  dependencies:
+    simplesmtp "~0.3.30"
+
+dkim-signer@~0.1.1:
+  version "0.1.2"
+  resolved "https://registry.yarnpkg.com/dkim-signer/-/dkim-signer-0.1.2.tgz#2ff5d61c87d8fbff5a8b131cffc5ec3ba1c25553"
+  integrity sha1-L/XWHIfY+/9aixMc/8XsO6HCVVM=
+  dependencies:
+    mimelib "~0.2.15"
+    punycode "~1.2.4"
+
+encoding@~0.1.7:
+  version "0.1.12"
+  resolved "https://registry.yarnpkg.com/encoding/-/encoding-0.1.12.tgz#538b66f3ee62cd1ab51ec323829d1f9480c74beb"
+  integrity sha1-U4tm8+5izRq1HsMjgp0flIDHS+s=
+  dependencies:
+    iconv-lite "~0.4.13"
+
 es6-promise@3.2.1:
   version "3.2.1"
   resolved "https://registry.yarnpkg.com/es6-promise/-/es6-promise-3.2.1.tgz#ec56233868032909207170c39448e24449dd1fc4"
@@ -94,7 +139,28 @@ filelist@0.0.x:
     minimatch "^3.0.3"
     utilities "^0.0.37"
 
-geddy@^13.0.8:
+follow-redirects@0.0.3:
+  version "0.0.3"
+  resolved "https://registry.yarnpkg.com/follow-redirects/-/follow-redirects-0.0.3.tgz#6ce67a24db1fe13f226c1171a72a7ef2b17b8f65"
+  integrity sha1-bOZ6JNsf4T8ibBFxpyp+8rF7j2U=
+  dependencies:
+    underscore ""
+
+geddy-passport@0.1.8:
+  version "0.1.8"
+  resolved "https://registry.yarnpkg.com/geddy-passport/-/geddy-passport-0.1.8.tgz#061e6a2a37048f2fa4dc49061ec23c1ba64ab1b1"
+  integrity sha1-Bh5qKjcEjy+k3EkGHsI8G6ZKsbE=
+  dependencies:
+    bcrypt "0.8.x"
+    jake "0.5.x"
+    nodemailer "0.6.x"
+    passport "0.1.x"
+    passport-facebook "0.1.x"
+    passport-oauth "0.1.x"
+    passport-twitter "0.1.x"
+    passport-yammer "0.1.x"
+
+geddy@13.0.8:
   version "13.0.8"
   resolved "https://registry.yarnpkg.com/geddy/-/geddy-13.0.8.tgz#703934fb2d2712087e556876e98ec7933151eb39"
   integrity sha1-cDk0+y0nEgh+VWh26Y7HkzFR6zk=
@@ -112,6 +178,18 @@ has-color@~0.1.0:
   resolved "https://registry.yarnpkg.com/has-color/-/has-color-0.1.7.tgz#67144a5260c34fc3cca677d041daf52fe7b78b2f"
   integrity sha1-ZxRKUmDDT8PMpnfQQdr1L+e3iy8=
 
+he@~0.3.6:
+  version "0.3.6"
+  resolved "https://registry.yarnpkg.com/he/-/he-0.3.6.tgz#9d7bc446e77963933301dd602d5731cb861135e0"
+  integrity sha1-nXvERud5Y5MzAd1gLVcxy4YRNeA=
+
+iconv-lite@~0.4.13:
+  version "0.4.24"
+  resolved "https://registry.yarnpkg.com/iconv-lite/-/iconv-lite-0.4.24.tgz#2022b4b25fbddc21d2f524974a474aafe733908b"
+  integrity sha512-v3MXnZAcvnywkTUEZomIActle7RXXeedOR31wwl7VlyoXO4Qi9arvSenNQWne1TcRwhCL1HwLI21bEqdpj8/rA==
+  dependencies:
+    safer-buffer ">= 2.1.2 < 3"
+
 inflection@*:
   version "1.12.0"
   resolved "https://registry.yarnpkg.com/inflection/-/inflection-1.12.0.tgz#a200935656d6f5f6bc4dc7502e1aecb703228416"
@@ -122,10 +200,23 @@ inherits@~2.0.1:
   resolved "https://registry.yarnpkg.com/inherits/-/inherits-2.0.3.tgz#633c2c83e3da42a502f52466022480f4208261de"
   integrity sha1-Yzwsg+PaQqUC9SRmAiSA9CCCYd4=
 
+isarray@0.0.1:
+  version "0.0.1"
+  resolved "https://registry.yarnpkg.com/isarray/-/isarray-0.0.1.tgz#8a18acfca9a8f4177e09abfc6038939b05d1eedf"
+  integrity sha1-ihis/Kmo9Bd+Cav8YDiTmwXR7t8=
+
 isarray@~1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/isarray/-/isarray-1.0.0.tgz#bb935d48582cba168c06834957a54a3e07124f11"
   integrity sha1-u5NdSFgsuhaMBoNJV6VKPgcSTxE=
+
+jake@0.5.x:
+  version "0.5.18"
+  resolved "https://registry.yarnpkg.com/jake/-/jake-0.5.18.tgz#4b619cd874b9ff1887531964f47734385befe09d"
+  integrity sha1-S2Gc2HS5/xiHUxlk9Hc0OFvv4J0=
+  dependencies:
+    minimatch "0.2.x"
+    utilities "0.0.x"
 
 jake@8.0.x:
   version "8.0.19"
@@ -138,10 +229,42 @@ jake@8.0.x:
     minimatch "3.x"
     utilities "1.0.x"
 
-mime@1.2.x:
+lru-cache@2:
+  version "2.7.3"
+  resolved "https://registry.yarnpkg.com/lru-cache/-/lru-cache-2.7.3.tgz#6d4524e8b955f95d4f5b58851ce21dd72fb4e952"
+  integrity sha1-bUUk6LlV+V1PW1iFHOId1y+06VI=
+
+mailcomposer@~0.2.10:
+  version "0.2.12"
+  resolved "https://registry.yarnpkg.com/mailcomposer/-/mailcomposer-0.2.12.tgz#4d02a604616adcb45fb36d37513f4c1bd0b75681"
+  integrity sha1-TQKmBGFq3LRfs203UT9MG9C3VoE=
+  dependencies:
+    dkim-signer "~0.1.1"
+    follow-redirects "0.0.3"
+    he "~0.3.6"
+    mime "~1.2.11"
+    mimelib "~0.2.15"
+
+mime@1.2.x, mime@~1.2.11:
   version "1.2.11"
   resolved "https://registry.yarnpkg.com/mime/-/mime-1.2.11.tgz#58203eed86e3a5ef17aed2b7d9ebd47f0a60dd10"
   integrity sha1-WCA+7Ybjpe8XrtK32evUfwpg3RA=
+
+mimelib@~0.2.15:
+  version "0.2.19"
+  resolved "https://registry.yarnpkg.com/mimelib/-/mimelib-0.2.19.tgz#37ec90a6ac7d00954851d0b2c31618f0a49da0ee"
+  integrity sha1-N+yQpqx9AJVIUdCywxYY8KSdoO4=
+  dependencies:
+    addressparser "~0.3.2"
+    encoding "~0.1.7"
+
+minimatch@0.2.x:
+  version "0.2.14"
+  resolved "https://registry.yarnpkg.com/minimatch/-/minimatch-0.2.14.tgz#c74e780574f63c6f9a090e90efbe6ef53a6a756a"
+  integrity sha1-x054BXT2PG+aCQ6Q775u9TpqdWo=
+  dependencies:
+    lru-cache "2"
+    sigmund "~1.0.0"
 
 minimatch@3.x, minimatch@^3.0.3:
   version "3.0.4"
@@ -157,7 +280,7 @@ model@6.0.x:
   dependencies:
     utilities "1.0.x"
 
-moment@^2.18.1:
+moment@2.24.0:
   version "2.24.0"
   resolved "https://registry.yarnpkg.com/moment/-/moment-2.24.0.tgz#0d055d53f5052aa653c9f6eb68bb5d12bf5c2b5b"
   integrity sha512-bV7f+6l2QigeBBZSM/6yTNq4P2fNpSWj/0e7jQcy87A8e7o2nAfP/34/2ky5Vw4B9S446EtIhodAzkFCcR4dQg==
@@ -170,7 +293,7 @@ mongodb-core@2.1.20:
     bson "~1.0.4"
     require_optional "~1.0.0"
 
-mongodb-wrapper@^1.0.3:
+mongodb-wrapper@1.0.3:
   version "1.0.3"
   resolved "https://registry.yarnpkg.com/mongodb-wrapper/-/mongodb-wrapper-1.0.3.tgz#8bae5f47d8d721004df228df17d3583560cde04d"
   integrity sha1-i65fR9jXIQBN8ijfF9NYNWDN4E0=
@@ -185,7 +308,7 @@ mongodb@1.2.x:
   dependencies:
     bson "0.1.8"
 
-mongodb@^2.2.31:
+mongodb@2.2.36:
   version "2.2.36"
   resolved "https://registry.yarnpkg.com/mongodb/-/mongodb-2.2.36.tgz#1c573680b2849fb0f47acbba3dc5fa228de975f5"
   integrity sha512-P2SBLQ8Z0PVx71ngoXwo12+FiSfbNfGOClAao03/bant5DgLNkOPAck5IaJcEk4gKlQhDEURzfR3xuBG1/B+IA==
@@ -194,7 +317,25 @@ mongodb@^2.2.31:
     mongodb-core "2.1.20"
     readable-stream "2.2.7"
 
-nodemailer@^4.1.0:
+nan@2.3.5:
+  version "2.3.5"
+  resolved "https://registry.yarnpkg.com/nan/-/nan-2.3.5.tgz#822a0dc266290ce4cd3a12282ca3e7e364668a08"
+  integrity sha1-gioNwmYpDOTNOhIoLKPn42Rmigg=
+
+nodemailer@0.6.x:
+  version "0.6.5"
+  resolved "https://registry.yarnpkg.com/nodemailer/-/nodemailer-0.6.5.tgz#d7ccae72459a944cb97dd6b75ee0376270d5f57c"
+  integrity sha1-18yuckWalEy5fda3XuA3YnDV9Xw=
+  dependencies:
+    directmail "~0.1.7"
+    he "~0.3.6"
+    mailcomposer "~0.2.10"
+    public-address "~0.1.1"
+    simplesmtp "~0.2 || ~0.3.30"
+  optionalDependencies:
+    readable-stream "~1.1.9"
+
+nodemailer@4.7.0:
   version "4.7.0"
   resolved "https://registry.yarnpkg.com/nodemailer/-/nodemailer-4.7.0.tgz#4420e06abfffd77d0618f184ea49047db84f4ad8"
   integrity sha512-IludxDypFpYw4xpzKdMAozBSkzKHmNBvGanUREjJItgJ2NYcK/s8+PggVhj7c2yGFQykKsnnmv1+Aqo0ZfjHmw==
@@ -210,6 +351,14 @@ passport-facebook@0.1.0:
   integrity sha1-bp+zNUUFhJ3aYNtKCTESNZ1nWUE=
   dependencies:
     passport-oauth ">= 0.1.0"
+
+passport-facebook@0.1.x:
+  version "0.1.6"
+  resolved "https://registry.yarnpkg.com/passport-facebook/-/passport-facebook-0.1.6.tgz#1db2141f4cf275a8b5d8504c71708b4c4d98581c"
+  integrity sha1-HbIUH0zydai12FBMcXCLTE2YWBw=
+  dependencies:
+    passport-oauth "~0.1.2"
+    pkginfo "0.2.x"
 
 passport-oauth1@1.x.x:
   version "1.1.0"
@@ -229,6 +378,15 @@ passport-oauth2@1.x.x:
     passport-strategy "1.x.x"
     uid2 "0.0.x"
     utils-merge "1.x.x"
+
+passport-oauth@0.1.x, passport-oauth@~0.1.2:
+  version "0.1.15"
+  resolved "https://registry.yarnpkg.com/passport-oauth/-/passport-oauth-0.1.15.tgz#fb74e0afe84614bfa256c5fc716cc56bbfc8cec0"
+  integrity sha1-+3Tgr+hGFL+iVsX8cWzFa7/IzsA=
+  dependencies:
+    oauth "0.9.x"
+    passport "~0.1.1"
+    pkginfo "0.2.x"
 
 "passport-oauth@>= 0.1.0":
   version "1.0.0"
@@ -250,15 +408,64 @@ passport-twitter@0.1.0:
   dependencies:
     passport-oauth ">= 0.1.0"
 
+passport-twitter@0.1.x:
+  version "0.1.5"
+  resolved "https://registry.yarnpkg.com/passport-twitter/-/passport-twitter-0.1.5.tgz#d09aa2c2297d0214b6d7755bf59b392e3e03fbb2"
+  integrity sha1-0Jqiwil9AhS213Vb9Zs5Lj4D+7I=
+  dependencies:
+    passport-oauth "0.1.x"
+    pkginfo "0.2.x"
+
+passport-yammer@0.1.x:
+  version "0.1.2"
+  resolved "https://registry.yarnpkg.com/passport-yammer/-/passport-yammer-0.1.2.tgz#1a8037f43c1cb2eb67fdf8043e59807495d4eab9"
+  integrity sha1-GoA39Dwcsutn/fgEPlmAdJXU6rk=
+  dependencies:
+    passport-oauth "0.1.x"
+    pkginfo "0.2.x"
+
 passport@0.1.0:
   version "0.1.0"
   resolved "https://registry.yarnpkg.com/passport/-/passport-0.1.0.tgz#df29f14d342c4f42f1f42d9329be97b61a04175d"
   integrity sha1-3ynxTTQsT0Lx9C2TKb6XthoEF10=
 
+passport@0.1.x, passport@~0.1.1:
+  version "0.1.18"
+  resolved "https://registry.yarnpkg.com/passport/-/passport-0.1.18.tgz#c8264479dcb6414cadbb66752d12b37e0b6525a1"
+  integrity sha1-yCZEedy2QUytu2Z1LRKzfgtlJaE=
+  dependencies:
+    pause "0.0.1"
+    pkginfo "0.2.x"
+
+pause@0.0.1:
+  version "0.0.1"
+  resolved "https://registry.yarnpkg.com/pause/-/pause-0.0.1.tgz#1d408b3fdb76923b9543d96fb4c9dfd535d9cb5d"
+  integrity sha1-HUCLP9t2kjuVQ9lvtMnf1TXZy10=
+
+pkginfo@0.2.x:
+  version "0.2.3"
+  resolved "https://registry.yarnpkg.com/pkginfo/-/pkginfo-0.2.3.tgz#7239c42a5ef6c30b8f328439d9b9ff71042490f8"
+  integrity sha1-cjnEKl72wwuPMoQ52bn/cQQkkPg=
+
 process-nextick-args@~1.0.6:
   version "1.0.7"
   resolved "https://registry.yarnpkg.com/process-nextick-args/-/process-nextick-args-1.0.7.tgz#150e20b756590ad3f91093f25a4f2ad8bff30ba3"
   integrity sha1-FQ4gt1ZZCtP5EJPyWk8q2L/zC6M=
+
+public-address@~0.1.1:
+  version "0.1.2"
+  resolved "https://registry.yarnpkg.com/public-address/-/public-address-0.1.2.tgz#f95f3e0cf28b89f965b0f188fd1267ac0856552f"
+  integrity sha1-+V8+DPKLifllsPGI/RJnrAhWVS8=
+
+punycode@~1.2.4:
+  version "1.2.4"
+  resolved "https://registry.yarnpkg.com/punycode/-/punycode-1.2.4.tgz#54008ac972aec74175def9cba6df7fa9d3918740"
+  integrity sha1-VACKyXKux0F13vnLpt9/qdORh0A=
+
+rai@~0.1.11:
+  version "0.1.12"
+  resolved "https://registry.yarnpkg.com/rai/-/rai-0.1.12.tgz#8ccfd014d0f9608630dd73c19b8e4b057754a6a6"
+  integrity sha1-jM/QFND5YIYw3XPBm45LBXdUpqY=
 
 readable-stream@2.2.7:
   version "2.2.7"
@@ -272,6 +479,16 @@ readable-stream@2.2.7:
     process-nextick-args "~1.0.6"
     string_decoder "~1.0.0"
     util-deprecate "~1.0.1"
+
+readable-stream@~1.1.9:
+  version "1.1.14"
+  resolved "https://registry.yarnpkg.com/readable-stream/-/readable-stream-1.1.14.tgz#7cf4c54ef648e3813084c636dd2079e166c081d9"
+  integrity sha1-fPTFTvZI44EwhMY23SB54WbAgdk=
+  dependencies:
+    core-util-is "~1.0.0"
+    inherits "~2.0.1"
+    isarray "0.0.1"
+    string_decoder "~0.10.x"
 
 require_optional@~1.0.0:
   version "1.0.1"
@@ -290,6 +507,11 @@ safe-buffer@~5.1.0:
   version "5.1.2"
   resolved "https://registry.yarnpkg.com/safe-buffer/-/safe-buffer-5.1.2.tgz#991ec69d296e0313747d59bdfd2b745c35f8828d"
   integrity sha512-Gd2UZBJDkXlY7GbJxfsE8/nvKkUEU1G38c1siN6QP6a9PT9MmHB8GnpscSmMJSoF8LOIrt8ud/wPtojys4G6+g==
+
+"safer-buffer@>= 2.1.2 < 3":
+  version "2.1.2"
+  resolved "https://registry.yarnpkg.com/safer-buffer/-/safer-buffer-2.1.2.tgz#44fa161b0187b9549dd84bb91802f9bd8385cd6a"
+  integrity sha512-YZo3K82SD7Riyi0E1EQPojLz7kpepnSQI9IyPbHHg1XXXevb5dJI7tpyN2ADxGcQbHG7vcyRHk0cbwqcQriUtg==
 
 semver@^5.1.0:
   version "5.6.0"
@@ -329,7 +551,7 @@ should-util@^1.0.0:
   resolved "https://registry.yarnpkg.com/should-util/-/should-util-1.0.0.tgz#c98cda374aa6b190df8ba87c9889c2b4db620063"
   integrity sha1-yYzaN0qmsZDfi6h8mInCtNtiAGM=
 
-should@^12.0.0:
+should@12.0.0:
   version "12.0.0"
   resolved "https://registry.yarnpkg.com/should/-/should-12.0.0.tgz#846667cd241691a6509fff0820f44d39143ddcf7"
   integrity sha512-KH4k3fjCizyfLCRBUpLOPXTi8WHJoluehIZsxVeIxlrSRFk4FgoZxjZXBlyXt4h9FdOi1j/y0SYJWmcrF0UYhA==
@@ -339,6 +561,24 @@ should@^12.0.0:
     should-type "^1.4.0"
     should-type-adaptors "^1.0.1"
     should-util "^1.0.0"
+
+sigmund@~1.0.0:
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/sigmund/-/sigmund-1.0.1.tgz#3ff21f198cad2175f9f3b781853fd94d0d19b590"
+  integrity sha1-P/IfGYytIXX587eBhT/ZTQ0ZtZA=
+
+"simplesmtp@~0.2 || ~0.3.30", simplesmtp@~0.3.30:
+  version "0.3.35"
+  resolved "https://registry.yarnpkg.com/simplesmtp/-/simplesmtp-0.3.35.tgz#017b1eb8b26317ac36d2a2a8a932631880736a03"
+  integrity sha1-AXseuLJjF6w20qKoqTJjGIBzagM=
+  dependencies:
+    rai "~0.1.11"
+    xoauth2 "~0.1.8"
+
+string_decoder@~0.10.x:
+  version "0.10.31"
+  resolved "https://registry.yarnpkg.com/string_decoder/-/string_decoder-0.10.31.tgz#62e203bc41766c6c28c9fc84301dab1c5310fa94"
+  integrity sha1-YuIDvEF2bGwoyfyEMB2rHFMQ+pQ=
 
 string_decoder@~1.0.0:
   version "1.0.3"
@@ -359,7 +599,7 @@ tlsopts@0.0.1:
   dependencies:
     async "~0.2.9"
 
-typescript@^3.2.4:
+typescript@3.3.3:
   version "3.3.3"
   resolved "https://registry.yarnpkg.com/typescript/-/typescript-3.3.3.tgz#f1657fc7daa27e1a8930758ace9ae8da31403221"
   integrity sha512-Y21Xqe54TBVp+VDSNbuDYdGw0BpoR/Q6wo/+35M8PAU0vipahnyduJWirxxdxjsAkS7hue53x2zp8gz7F05u0A==
@@ -369,10 +609,20 @@ uid2@0.0.x:
   resolved "https://registry.yarnpkg.com/uid2/-/uid2-0.0.3.tgz#483126e11774df2f71b8b639dcd799c376162b82"
   integrity sha1-SDEm4Rd03y9xuLY53NeZw3YWK4I=
 
+underscore@:
+  version "1.9.1"
+  resolved "https://registry.yarnpkg.com/underscore/-/underscore-1.9.1.tgz#06dce34a0e68a7babc29b365b8e74b8925203961"
+  integrity sha512-5/4etnCkd9c8gwgowi5/om/mYO5ajCaOgdzj/oW+0eQV9WxKBDZw5+ycmKmeaTXjInS/W0BzpGLo2xR2aBwZdg==
+
 util-deprecate@~1.0.1:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/util-deprecate/-/util-deprecate-1.0.2.tgz#450d4dc9fa70de732762fbd2d4a28981419a0ccf"
   integrity sha1-RQ1Nyfpw3nMnYvvS1KKJgUGaDM8=
+
+utilities@0.0.x:
+  version "0.0.40"
+  resolved "https://registry.yarnpkg.com/utilities/-/utilities-0.0.40.tgz#316872b282455d5e286b02a5cf91d31f65027a6c"
+  integrity sha1-MWhysoJFXV4oawKlz5HTH2UCemw=
 
 utilities@1.0.x:
   version "1.0.5"
@@ -388,3 +638,8 @@ utils-merge@1.x.x:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/utils-merge/-/utils-merge-1.0.1.tgz#9f95710f50a267947b2ccc124741c1028427e713"
   integrity sha1-n5VxD1CiZ5R7LMwSR0HBAoQn5xM=
+
+xoauth2@~0.1.8:
+  version "0.1.8"
+  resolved "https://registry.yarnpkg.com/xoauth2/-/xoauth2-0.1.8.tgz#b916ff10ecfb54320f16f24a3e975120653ab0d2"
+  integrity sha1-uRb/EOz7VDIPFvJKPpdRIGU6sNI=
