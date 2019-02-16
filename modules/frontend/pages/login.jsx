@@ -1,10 +1,16 @@
-<%- styleLink("/css/auth-buttons.css", {rel:"stylesheet"}) %>
-<div class="hero-unit">
-  <p style="text-align: center;">
-    <a class="btn-auth btn-twitter large"
-    href="<%= twitterPath %>"> Log in with Twitter </a>
-    &nbsp;
-    <a class="btn-auth btn-facebook large"
-    href="<%= facebookPath %>"> Log in with Facebook </a>
-  </p>
-</div>
+"use strict";
+
+import Link from "next/link";
+
+export default () => (
+  <%- styleLink("/css/auth-buttons.css", {rel:"stylesheet"}) %>
+  <div class="hero-unit">
+    <p style="text-align: center;">
+      <Link className="btn-auth btn-twitter large"
+      href="<%= twitterPath %>"> Log in with Twitter </a>
+      &nbsp;
+      <Link className="btn-auth btn-facebook large"
+      href="<%= facebookPath %>"> Log in with Facebook </a>
+    </p>
+  </div>
+);
