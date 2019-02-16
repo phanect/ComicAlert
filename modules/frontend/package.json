@@ -10,11 +10,18 @@
   },
   "main": "--harmony server.js",
   "scripts": {
-    "start": "node --harmony server.js",
-    "build": "jake build",
+    "start": "next start",
+    "build": "next build",
+    "dev": "next",
     "lint": ":"
   },
   "dependencies": {
+    "@zeit/next-css": "^1.0.1",
+    "@zeit/next-sass": "^1.0.1",
+    "next": "^8.0.1",
+    "node-sass": "^4.11.0",
+    "react": "^16.8.2",
+    "react-dom": "^16.8.2"
   },
   "devDependencies": {
     "should": "^12.0.0",
