@@ -44,9 +44,7 @@ export class MagGarden extends Site {
 
   private async analyzeComicPage(url: string): Promise<Comic> {
     const ogp = await grabity.grabIt(url),
-          document = new JSDOM("", {
-            url: url,
-          }).window.document,
+          document = (await JSDOM.fromURL(url)).window.document,
           topicMsg = document.getElementById("topics2").innerText;
 
     return {
