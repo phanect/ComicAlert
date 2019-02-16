@@ -54,12 +54,12 @@ export class MagGarden extends Site {
       title: fixchar(ogp.title || ogp["og:title"] || ogp["twitter:title"]).trim(),
       thumbnailURL: ogp.image || ogp["og:image"] || ogp["twitter:image:src"],
       concluded: (topicMsg.includes("連載は終了しました") || topicMsg.includes("特別読切作品")),
-      episodes: this.scrapeEpisodes(document)
+      episodes: this.scrapeEpisodes(document),
     };
   }
 
   private scrapeEpisodes(document: Document): Episode[] {
-    let episodes: Episode[] = [];
+    const episodes: Episode[] = [];
 
     for (const episodeBox of Array.from(document.querySelectorAll("article.article-mangalist"))) {
       const episodeLink = episodeBox.querySelector(".inner > a"),

@@ -1,4 +1,4 @@
-import { Episode } from "./Episode"
+import { Episode } from "./Episode";
 
 export interface Comic {
   url: string;
