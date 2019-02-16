@@ -9,7 +9,8 @@
     "url": "https://github.com/phanect/ComicAlert.git"
   },
   "scripts": {
-    "crawl": "ts-node ./crawler.ts"
+    "crawl": "ts-node ./crawler.ts",
+    "lint": "tsc --noEmit"
   },
   "dependencies": {
     "fixchar": "^0.3.0",

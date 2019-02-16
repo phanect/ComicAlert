@@ -11,6 +11,7 @@
   "scripts": {
     "build": "lerna run build",
     "clean": "git clean -dX --force && rm --force yarn.lock modules/crawler/yarn.lock modules/frontend/yarn.lock",
+    "lint": "eslint --ext '.js,.ts' . && lerna run lint",
     "reinstall": "yarn run clean && yarn install",
     "postinstall": "lerna bootstrap"
   },
