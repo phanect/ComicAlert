@@ -3,7 +3,6 @@
 import Link from "next/link";
 
 export default () => (
-  <%- styleLink("/css/auth-buttons.css", {rel:"stylesheet"}) %>
   <div class="hero-unit">
     <p style="text-align: center;">
       <Link className="btn-auth btn-twitter large"
