@@ -8,6 +8,7 @@ import { MagGarden } from "./MagGarden";
   const jsonDir = join(__dirname, "dist"),
         magGarden = new MagGarden();
 
+  console.info("Starting to crawl MagGarden...");
   await magGarden.crawl();
 
   await ensureDir(jsonDir);
