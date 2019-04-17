@@ -16,6 +16,7 @@
     "lint": ":"
   },
   "dependencies": {
+    "@material/react-tab-bar": "^0.11.0",
     "@zeit/next-css": "^1.0.1",
     "@zeit/next-sass": "^1.0.1",
     "next": "^8.0.1",
