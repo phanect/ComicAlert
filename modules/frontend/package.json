@@ -20,7 +20,7 @@
     "geddy": "^13.0.8",
     "geddy-passport": "^0.1.8",
     "moment": "^2.18.1",
-    "mongodb": "^2.2.31",
+    "mongodb": "^3.0.0",
     "mongodb-wrapper": "^1.0.3",
     "nodemailer": "^4.1.0",
     "passport": "0.1.0",
