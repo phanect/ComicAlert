@@ -17,7 +17,7 @@
   "dependencies": {
     "URIjs": "^1.16.1",
     "bcrypt-nodejs": "^0.0.3",
-    "geddy": "^13.0.8",
+    "geddy": "^14.0.0",
     "geddy-passport": "^0.1.8",
     "moment": "^2.18.1",
     "mongodb": "^2.2.31",
