@@ -10,8 +10,6 @@ const Head = props => (
     {/* <meta name="description" content="" /> */}
     <meta name="author" content="phanect" />
     <meta name="viewport" content="width=device-width" />
-
-    <%- styleLink('style.css', {rel:'stylesheet'}) %>
   </NextHead>
 );
 

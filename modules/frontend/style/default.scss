@@ -20,7 +20,7 @@ body {
 
   $border-radius: 25px;
   border-radius: $border-radius;
-  
+
   &-title {
     text-align: center;
     margin: {
@@ -37,12 +37,12 @@ body {
     .comiccard-cell {
       display: table-cell;
       vertical-align: top;
-      
+
       .available-term {
         color: $gray;
         font: {
           size: $font-size-small;
-          
+
         }
       }
     }
