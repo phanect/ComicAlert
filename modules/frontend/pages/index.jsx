@@ -2,6 +2,8 @@
 
 import App from "../layout/app";
 
+import "../style/index.scss";
+
 export default () => (
   <App>
     <main>
