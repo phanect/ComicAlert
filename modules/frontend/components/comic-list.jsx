@@ -11,7 +11,12 @@ const ComicList = props => (
     <div>
       {props.comics.map((comic, i) => (
         <figure className="comic" key={i}>
-          <img src={comic.thumbnailURL} className="thumbnail" decoding="async" />
+          <img
+            src={comic.thumbnailURL}
+            alt="{comic.title}"
+            className="thumbnail"
+            decoding="async"
+          />
           <figcaption>{comic.title}</figcaption>
           <div className="latest-episode">
             {comic.episodes[0].title}<br />
