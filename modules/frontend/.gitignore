@@ -1,7 +1,4 @@
-# Geddy
-_datastore.json
-_session_store.json
-config/secrets.json
-public/css/style.css
-public/js/core/models.js
-public/js/core/helpers.js
+#
+# Next.js
+#
+.next/
