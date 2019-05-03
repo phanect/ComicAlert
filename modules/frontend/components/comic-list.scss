@@ -36,8 +36,12 @@ $thumbnail-size: 120px;
     grid-row: 1/2;
     grid-column: 2/3;
 
-    font-size: 1.25em;
+    font-size: 1.125em;
     font-weight: bold;
+
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
   }
 
   & > .latest-episode {

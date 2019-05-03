@@ -12,9 +12,7 @@ const ComicList = props => (
       {props.comics.map((comic, i) => (
         <figure className="comic" key={i}>
           <img src={comic.thumbnailURL} className="thumbnail" decoding="async" />
-          <figcaption>
-            {25 < comic.title.length ? comic.title.slice(0, 25) + "…" : comic.title}
-          </figcaption>
+          <figcaption>{comic.title}</figcaption>
           <div className="latest-episode">
             {comic.episodes[0].title}<br />
             {new Date(comic.episodes[0].publishedAt).toLocaleDateString("ja-JP")} 更新
