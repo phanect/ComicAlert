@@ -4790,10 +4790,10 @@ should-util@^1.0.0:
   resolved "https://registry.yarnpkg.com/should-util/-/should-util-1.0.0.tgz#c98cda374aa6b190df8ba87c9889c2b4db620063"
   integrity sha1-yYzaN0qmsZDfi6h8mInCtNtiAGM=
 
-should@^12.0.0:
-  version "12.0.0"
-  resolved "https://registry.yarnpkg.com/should/-/should-12.0.0.tgz#846667cd241691a6509fff0820f44d39143ddcf7"
-  integrity sha512-KH4k3fjCizyfLCRBUpLOPXTi8WHJoluehIZsxVeIxlrSRFk4FgoZxjZXBlyXt4h9FdOi1j/y0SYJWmcrF0UYhA==
+should@^13.0.0:
+  version "13.2.3"
+  resolved "https://registry.yarnpkg.com/should/-/should-13.2.3.tgz#96d8e5acf3e97b49d89b51feaa5ae8d07ef58f10"
+  integrity sha512-ggLesLtu2xp+ZxI+ysJTmNjh2U0TsC+rQ/pfED9bUZZ4DKefP27D+7YJVVTvKsmjLpIi9jAa7itwDGkDDmt1GQ==
   dependencies:
     should-equal "^2.0.0"
     should-format "^3.0.3"
