@@ -10,4 +10,7 @@ module.exports = {
   parserOptions: {
     project: "./tsconfig.json",
   },
+  rules: {
+    "editorconfig/editorconfig": "off", // Currently TypeScript is unsupported
+  },
 };
