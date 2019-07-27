@@ -2,7 +2,7 @@
 
 module.exports = {
   extends: [
-    "plugin:@phanect/js",
+    "plugin:@phanect/react+js",
     "plugin:react/recommended"
   ],
   env: {
