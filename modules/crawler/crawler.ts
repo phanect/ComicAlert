@@ -5,8 +5,8 @@ import { join } from "path";
 import { MagGarden } from "./MagGarden";
 
 (async () => {
-  const jsonDir = join(__dirname, "dist"),
-        magGarden = new MagGarden();
+  const jsonDir = join(__dirname, "dist");
+  const magGarden = new MagGarden();
 
   console.info("Starting to crawl MagGarden...");
   await magGarden.crawl();

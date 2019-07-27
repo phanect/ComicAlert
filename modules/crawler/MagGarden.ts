@@ -29,13 +29,13 @@ export class MagGarden extends Site {
     name: string,
     id: string,
   ): Promise<Magazine> {
-    const document = (await JSDOM.fromURL(url)).window.document,
-          comics: Comic[] = [];
+    const document = (await JSDOM.fromURL(url)).window.document;
+    const comics: Comic[] = [];
 
     for (const comicBox of Array.from(document.querySelectorAll("article.cbox"))) {
       const comicURL = comicBox.querySelector(".inner > a.cbox-main").getAttribute("href");
 
-      comics.push(await this.analyzeComicPage(comicURL));
+      comics.push(await MagGarden.analyzeComicPage(comicURL));
     }
 
     this.comics = comics;
@@ -44,30 +44,30 @@ export class MagGarden extends Site {
     return { id, name, comics };
   }
 
-  private async analyzeComicPage(url: string): Promise<Comic> {
-    const ogp = await grabity.grabIt(url),
-          document = (await JSDOM.fromURL(url)).window.document,
-          topicMsg = document.getElementById("topics2").textContent;
+  private static async analyzeComicPage(url: string): Promise<Comic> {
+    const ogp = await grabity.grabIt(url);
+    const document = (await JSDOM.fromURL(url)).window.document;
+    const topicMsg = document.getElementById("topics2").textContent;
 
     const comic = {
       url,
       title: fixchar(ogp.title || ogp["og:title"] || ogp["twitter:title"]).trim(),
       thumbnailURL: ogp.image || ogp["og:image"] || ogp["twitter:image:src"],
       concluded: (topicMsg.includes("連載は終了しました") || topicMsg.includes("特別読切作品")),
-      episodes: this.scrapeEpisodes(document),
+      episodes: MagGarden.scrapeEpisodes(document),
     };
 
     console.info(`MagGarden: Crawled Comic Page - ${comic.title}`);
     return comic;
   }
 
-  private scrapeEpisodes(document: Document): Episode[] {
+  private static scrapeEpisodes(document: Document): Episode[] {
     const episodes: Episode[] = [];
 
     for (const episodeBox of Array.from(document.querySelectorAll("article.article-mangalist"))) {
-      const episodeLink = episodeBox.querySelector(".inner > a"),
-            episodeTitle = fixchar(episodeLink.innerHTML),
-            episodeURL = episodeLink.getAttribute("href");
+      const episodeLink = episodeBox.querySelector(".inner > a");
+      const episodeTitle = fixchar(episodeLink.innerHTML);
+      const episodeURL = episodeLink.getAttribute("href");
 
       if (!episodeTitle || !episodeURL) {
         throw new Error("Cannot get Episode");

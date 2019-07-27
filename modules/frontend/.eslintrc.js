@@ -2,7 +2,7 @@
 
 module.exports = {
   extends: [
-    "plugin:@phanect/js",
+    "plugin:@phanect/react+js",
     "plugin:react/recommended"
   ],
   env: {
@@ -12,7 +12,8 @@ module.exports = {
   parserOptions: {
     ecmaFeatures: {
       jsx: true,
-    }
+    },
+    project: "./tsconfig.json",
   },
   settings: {
     react: {

@@ -5,11 +5,11 @@ export abstract class Site {
   protected magazines: Magazine[] = [];
   protected comics: Comic[] = [];
   protected configs: {
-    /** ID of the magazine */
+    /** ID of the magazine. */
     id: string;
-    /** Name of the managize */
+    /** Name of the managize. */
     name: string;
-    /** Target URLs to scrape */
+    /** Target URLs to scrape. */
     urls: string[];
   }[];
 
