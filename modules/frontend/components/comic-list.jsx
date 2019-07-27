@@ -31,6 +31,6 @@ const ComicList = props => (
 ComicList.propTypes = {
   title: PropTypes.string,
   comics: PropTypes.array,
-}
+};
 
 export default ComicList;

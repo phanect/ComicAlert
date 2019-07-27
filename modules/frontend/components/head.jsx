@@ -4,8 +4,8 @@ import React from "react";
 import NextHead from "next/head";
 import PropTypes from "prop-types";
 
-const origin = "https://comicstand.phanective.org",
-      defaultDescription = "Comic Standは、無料のWebコミックを集めた漫画ポータルサイトです。";
+const origin = "https://comicstand.phanective.org";
+const defaultDescription = "Comic Standは、無料のWebコミックを集めた漫画ポータルサイトです。";
 
 const Head = props => (
   <NextHead>
