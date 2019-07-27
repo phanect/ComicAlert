@@ -7,6 +7,7 @@ module.exports = {
     "node": true
   },
   parserOptions: {
+    project: "./tsconfig.json",
     sourceType: "module",
   },
   plugins: [ "@phanect" ],

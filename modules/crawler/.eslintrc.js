@@ -7,4 +7,7 @@ module.exports = {
     browser: false,
     node: true,
   },
+  parserOptions: {
+    project: "./tsconfig.json",
+  },
 };
