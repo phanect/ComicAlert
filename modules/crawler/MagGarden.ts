@@ -6,6 +6,7 @@ import { Magazine } from "./interfaces/Magazine";
 import { Comic } from "./interfaces/Comic";
 import { Episode } from "./interfaces/Episode";
 import { Site } from "./Site";
+import { sleep } from "./utils";
 
 export class MagGarden extends Site {
   public constructor() {
@@ -58,6 +59,10 @@ export class MagGarden extends Site {
     };
 
     console.info(`MagGarden: Crawled Comic Page - ${comic.title}`);
+
+    // Wait for 2s to avoid too frequent access
+    await sleep(2000);
+
     return comic;
   }
 
