@@ -6,4 +6,5 @@ export interface Comic {
   thumbnailURL: string;
   episodes: Episode[];
   concluded: boolean;
+  magazineID: string;
 }

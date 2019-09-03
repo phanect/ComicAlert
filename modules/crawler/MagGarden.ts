@@ -36,7 +36,7 @@ export class MagGarden extends Site {
     for (const comicBox of Array.from(document.querySelectorAll("article.cbox"))) {
       const comicURL = comicBox.querySelector(".inner > a.cbox-main").getAttribute("href");
 
-      comics.push(await MagGarden.analyzeComicPage(comicURL));
+      comics.push(await MagGarden.analyzeComicPage(comicURL, id));
     }
 
     this.comics = comics;
@@ -45,7 +45,7 @@ export class MagGarden extends Site {
     return { id, name, comics };
   }
 
-  private static async analyzeComicPage(url: string): Promise<Comic> {
+  private static async analyzeComicPage(url: string, magazineID: string): Promise<Comic> {
     const ogp = await grabity.grabIt(url);
     const document = (await JSDOM.fromURL(url)).window.document;
     const topicMsg = document.getElementById("topics2").textContent;
@@ -56,6 +56,7 @@ export class MagGarden extends Site {
       thumbnailURL: ogp.image || ogp["og:image"] || ogp["twitter:image:src"],
       concluded: (topicMsg.includes("連載は終了しました") || topicMsg.includes("特別読切作品")),
       episodes: MagGarden.scrapeEpisodes(document),
+      magazineID,
     };
 
     console.info(`MagGarden: Crawled Comic Page - ${comic.title}`);

@@ -14,7 +14,15 @@ import { MagGarden } from "./MagGarden";
   await ensureDir(jsonDir);
   await Promise.all([
     writeFile(join(jsonDir, "CNAME"), "api.comicstand.phanective.org"),
-    writeFile(join(jsonDir, "comics.json"), JSON.stringify(magGarden.Magazines)),
+    writeFile(join(jsonDir, "magazines-and-comics.json"), JSON.stringify(magGarden.Magazines)),
+    writeFile(join(jsonDir, "comics.json"), JSON.stringify(magGarden.Comics)),
+    writeFile(
+      join(jsonDir, "magazines.json"),
+      JSON.stringify(magGarden.Magazines.map(magazine => {
+        delete magazine.comics;
+        return magazine;
+      }))
+    ),
   ]);
 
   return new Promise((resolve, reject) => {
