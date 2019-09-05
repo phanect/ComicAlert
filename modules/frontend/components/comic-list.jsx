@@ -21,7 +21,7 @@ const ComicList = props => {
               />
               <figcaption>{comic.title}</figcaption>
               <div className="latest-episode">
-                {comic.episodes[0].title}<br />
+                最新話: {comic.episodes[0].title}<br />
                 {new Date(comic.episodes[0].publishedAt).toLocaleDateString("ja-JP")} 更新
               </div>
             </figure>
