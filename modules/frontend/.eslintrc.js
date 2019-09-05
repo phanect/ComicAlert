@@ -30,6 +30,11 @@ module.exports = {
     "linkComponents": [
       "Hyperlink",
       { "name": "Link", "linkAttribute": "href" }
-    ]
+    ],
+    "import/resolver": {
+      node: {
+        extensions: [ ".js", ".jsx", ".ts", ".tsx" ],
+      }
+    },
   }
 };
