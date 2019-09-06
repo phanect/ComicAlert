@@ -6,6 +6,34 @@ import PropTypes from "prop-types";
 
 import "./comic-list.scss";
 
+const ComicCard = props => {
+  if (props.comic.episodes.length <= 0) {
+    return "";
+  }
+
+  return (
+    <Link href={`/comics/${props.comic.magazineID}/${btoa(encodeURIComponent(props.comic.title))}`}>
+      <figure className="comic">
+        <img
+          src={props.comic.thumbnailURL}
+          alt="{comic.title}"
+          className="thumbnail"
+          decoding="async"
+        />
+        <figcaption>{props.comic.title}</figcaption>
+        <div className="latest-episode">
+          最新話: {props.comic.episodes[0].title}<br />
+          {new Date(props.comic.episodes[0].publishedAt).toLocaleDateString("ja-JP")} 更新
+        </div>
+      </figure>
+    </Link>
+  );
+};
+
+ComicCard.propTypes = {
+  comic: PropTypes.object,
+};
+
 const ComicList = props => {
   if (0 < props.comics.length) {
     return (
@@ -13,24 +41,7 @@ const ComicList = props => {
         <h2 className="list-title">{props.title}</h2>
         <div>
           {props.comics.map((comic, i) => (
-            <Link
-              href={`/comics/${props.comic.magazineID}/${btoa(encodeURIComponent(props.comic.title))}`}
-              key={i}
-            >
-              <figure className="comic" key={i}>
-                <img
-                  src={comic.thumbnailURL}
-                  alt="{comic.title}"
-                  className="thumbnail"
-                  decoding="async"
-                />
-                <figcaption>{comic.title}</figcaption>
-                <div className="latest-episode">
-                  最新話: {comic.episodes[0].title}<br />
-                  {new Date(comic.episodes[0].publishedAt).toLocaleDateString("ja-JP")} 更新
-                </div>
-              </figure>
-            </Link>
+            <ComicCard comic={comic} key={i} />
           ))}
         </div>
       </div>
