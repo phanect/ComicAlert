@@ -17,9 +17,9 @@ export class MagGarden extends Site {
         id: "maggarden",
         name: "マッグガーデン",
         urls: [
-          "https://comic.mag-garden.co.jp/all/",
+//          "https://comic.mag-garden.co.jp/all/",
           "https://comic.mag-garden.co.jp/yomikiri/",
-          "https://comic.mag-garden.co.jp/past/",
+//          "https://comic.mag-garden.co.jp/past/",
         ],
       },
     ];
