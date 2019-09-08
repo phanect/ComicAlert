@@ -13,6 +13,7 @@
     "lint": "tsc --noEmit"
   },
   "dependencies": {
+    "btoa": "^1.2.1",
     "fixchar": "^0.3.0",
     "fs-extra": "^7.0.1",
     "gh-pages": "^2.0.1",
@@ -22,6 +23,7 @@
     "node-fetch": "^2.1.1"
   },
   "devDependencies": {
+    "@types/btoa": "^1.2.3",
     "@types/fs-extra": "^5.0.4",
     "@types/gh-pages": "^2.0.0",
     "@types/jsdom": "^12.2.1",

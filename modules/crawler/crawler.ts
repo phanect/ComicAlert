@@ -1,4 +1,5 @@
-import { writeFile, ensureDir } from "fs-extra";
+import btoa = require("btoa");
+import { writeFile, ensureDir, ensureFile } from "fs-extra";
 import { publish } from "gh-pages";
 import { join } from "path";
 
@@ -24,6 +25,11 @@ import { MagGarden } from "./MagGarden";
       }))
     ),
   ]);
+  for (const comic of magGarden.Comics) {
+    const file = join(jsonDir, comic.magazineID, `${btoa(encodeURIComponent(comic.title))}.json`);
+    await ensureFile(file);
+    await writeFile(file, JSON.stringify(comic));
+  }
 
   return new Promise((resolve, reject) => {
     publish("dist", {
