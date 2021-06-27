@@ -2,22 +2,25 @@
   "compilerOptions": {
     "alwaysStrict": true,
     "declaration": false,
+    "esModuleInterop": true,
     "target": "ES2018",
-    "module": "commonjs",
+    "module": "ESNext",
     "moduleResolution": "node",
     "lib": [
       "DOM",
-      "esnext"
+      "esnext",
+      "esnext.AsyncIterable",
     ],
     "newLine": "lf",
+    "noEmit": true,
     "preserveConstEnums": true,
     "removeComments": true,
+    "sourceMap": true,
     "typeRoots": [
       "./node_modules/@types",
       "types"
     ],
-    "strict": true,
-    "strictNullChecks": false
+    "strict": true
   },
   "exclude": [ "node_modules" ]
 }

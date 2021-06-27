@@ -1,4 +1,2 @@
-#
-# Next.js
-#
-.next/
+.nuxt/
+dist/

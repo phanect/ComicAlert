@@ -2,34 +2,20 @@
 
 module.exports = {
   extends: [
-    "plugin:@phanect/react+js",
-    "plugin:react/recommended"
+    "plugin:nuxt/recommended",
+    "plugin:@phanect/vue",
   ],
   env: {
     browser: true,
     node: false,
   },
   parserOptions: {
-    ecmaFeatures: {
-      jsx: true,
-    },
+    extraFileExtensions: [ ".ts", ".vue" ],
     project: "./tsconfig.json",
+    sourceType: "module",
   },
-  settings: {
-    react: {
-      createClass: "createReactClass",
-      pragma: "React",
-      version: "16.x",
-    },
-    "propWrapperFunctions": [
-        // The names of any function used to wrap propTypes, e.g. `forbidExtraProps`. If this isn't set, any propTypes wrapped in a function will be skipped.
-        "forbidExtraProps",
-        {"property": "freeze", "object": "Object"},
-        {"property": "myFavoriteWrapper"}
-    ],
-    "linkComponents": [
-      "Hyperlink",
-      { "name": "Link", "linkAttribute": "href" }
-    ]
-  }
+  plugins: [
+    "@phanect",
+    "nuxt",
+  ],
 };
