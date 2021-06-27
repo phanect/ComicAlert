@@ -57,7 +57,6 @@ export default class Index extends React.Component {
   render() {
     return (
       <App>
-        <Head path="/" />
         <main>
           <ComicList title="お気に入り" comics={this.state.favs} />
           <ComicList title="新連載・読切" comics={this.state.favs} />
