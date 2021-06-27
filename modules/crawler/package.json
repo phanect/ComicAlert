@@ -13,7 +13,6 @@
     "lint": "tsc --noEmit"
   },
   "dependencies": {
-    "fixchar": "^0.3.0",
     "fs-extra": "^7.0.1",
     "gh-pages": "^2.0.1",
     "grabity": "^1.0.4",

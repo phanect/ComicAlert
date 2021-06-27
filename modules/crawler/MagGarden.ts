@@ -1,4 +1,3 @@
-import { fixchar } from "fixchar";
 import * as grabity from "grabity";
 import { JSDOM } from "jsdom";
 
@@ -51,7 +50,7 @@ export class MagGarden extends Site {
 
     const comic = {
       url,
-      title: fixchar(ogp.title || ogp["og:title"] || ogp["twitter:title"]).trim(),
+      title: (ogp.title || ogp["og:title"] || ogp["twitter:title"]).normalize("NFKC").trim(),
       thumbnailURL: ogp.image || ogp["og:image"] || ogp["twitter:image:src"],
       concluded: (topicMsg.includes("連載は終了しました") || topicMsg.includes("特別読切作品")),
       episodes: MagGarden.scrapeEpisodes(document),
@@ -66,7 +65,7 @@ export class MagGarden extends Site {
 
     for (const episodeBox of Array.from(document.querySelectorAll("article.article-mangalist"))) {
       const episodeLink = episodeBox.querySelector(".inner > a");
-      const episodeTitle = fixchar(episodeLink.innerHTML);
+      const episodeTitle = episodeLink.innerHTML.normalize("NFKC");
       const episodeURL = episodeLink.getAttribute("href");
 
       if (!episodeTitle || !episodeURL) {
