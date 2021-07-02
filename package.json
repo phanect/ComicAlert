@@ -8,12 +8,12 @@
     "type": "git",
     "url": "https://github.com/phanect/ComicAlert.git"
   },
+  "workspaces": ["modules/*"],
   "scripts": {
-    "build": "lerna run build",
-    "clean": "git clean -dX --force && rm --force package-lock.json modules/crawler/package-lock.json modules/frontend/package-lock.json",
-    "lint": "eslint --ext=.js,.jsx,.ts,.tsx . && lerna run lint",
-    "reinstall": "npm run clean && npm install",
-    "postinstall": "lerna bootstrap"
+    "build": "npm run build --workspaces",
+    "clean": "git clean -dX --force && rm --force package-lock.json",
+    "lint": "eslint --ext=.js,.jsx,.ts,.tsx . && npm run lint --workspaces",
+    "reinstall": "npm run clean && npm install"
   },
   "devDependencies": {
     "@phanect/eslint-plugin": "latest",
