@@ -1,10 +1,8 @@
-"use strict"
-
 module.exports = {
   extends: "plugin:@phanect/plain",
   root: true,
   env: {
-    "node": true
+    node: true,
   },
   parserOptions: {
     project: "./tsconfig.json",

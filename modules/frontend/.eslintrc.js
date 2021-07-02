@@ -1,5 +1,3 @@
-"use strict";
-
 module.exports = {
   extends: [
     "plugin:nuxt/recommended",
@@ -7,7 +5,7 @@ module.exports = {
   ],
   env: {
     browser: true,
-    node: false,
+    node: true,
   },
   parserOptions: {
     extraFileExtensions: [ ".vue" ],
