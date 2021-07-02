@@ -10,8 +10,7 @@ module.exports = {
     node: false,
   },
   parserOptions: {
-    extraFileExtensions: [ ".ts", ".vue" ],
-    project: "./tsconfig.json",
+    extraFileExtensions: [ ".vue" ],
     sourceType: "module",
   },
   plugins: [

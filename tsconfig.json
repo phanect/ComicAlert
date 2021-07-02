@@ -4,23 +4,21 @@
     "declaration": false,
     "esModuleInterop": true,
     "target": "ES2018",
-    "module": "ESNext",
+    "module": "commonjs",
     "moduleResolution": "node",
     "lib": [
       "DOM",
-      "esnext",
-      "esnext.AsyncIterable",
+      "esnext"
     ],
     "newLine": "lf",
-    "noEmit": true,
     "preserveConstEnums": true,
     "removeComments": true,
-    "sourceMap": true,
     "typeRoots": [
       "./node_modules/@types",
       "types"
     ],
-    "strict": true
+    "strict": true,
+    "strictNullChecks": false
   },
   "exclude": [ "node_modules" ]
 }

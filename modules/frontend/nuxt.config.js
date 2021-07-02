@@ -1,5 +1,7 @@
 export default {
   components: true,
+  target: "server",
+  modern: "client",
 
   head: {
     title: "Comic Stand",
@@ -10,10 +12,6 @@ export default {
     ],
   },
 
-  buildModules: [
-    "@nuxt/typescript-build",
-  ],
-
   modules: [
     "@nuxtjs/pwa",
   ],
@@ -21,6 +19,6 @@ export default {
   pwa: {
     manifest: {
       lang: "ja",
-    }
+    },
   },
-}
+};

@@ -15,13 +15,12 @@
     "lint": ":"
   },
   "dependencies": {
+    "@nuxtjs/pwa": "^3.3.5",
     "core-js": "^3.9.1",
     "node-sass": "^4.11.0",
     "nuxt": "^2.15.3"
   },
   "devDependencies": {
-    "@nuxt/types": "^2.15.3",
-    "@nuxt/typescript-build": "^2.1.0"
   },
   "engines": {
     "node": "^16.0.0",
