@@ -1,17 +1,7 @@
-"use strict";
-
-import React from "react";
-import App from "../layout/app";
-import ComicList from "../components/comic-list";
-import Head from "../components/head";
-
-import "../style/index.scss";
-
-export default class Index extends React.Component {
-  constructor() {
-    super();
-
-    this.state = {
+<script>
+export default {
+  async asyncData() {
+    return {
       favs: [
         {
           url: "https://comic.mag-garden.co.jp/psychoss2/",
@@ -52,17 +42,14 @@ export default class Index extends React.Component {
         },
       ],
     };
-  }
-
-  render() {
-    return (
-      <App>
-        <main>
-          <ComicList title="お気に入り" comics={this.state.favs} />
-          <ComicList title="新連載・読切" comics={this.state.favs} />
-          <ComicList title="更新" comics={this.state.favs} />
-        </main>
-      </App>
-    );
-  }
+  },
 }
+</script>
+
+<template>
+  <main>
+    <comic-list title="お気に入り" :comics="favs" />
+    <comic-list title="新連載・読切" :comics="favs" />
+    <comic-list title="更新" :comics="favs" />
+  </main>
+</template>
