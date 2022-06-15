@@ -12,6 +12,10 @@ export default {
     ],
   },
 
+  css: [
+    "~/assets/styles/default.scss",
+  ],
+
   modules: [
     "@nuxtjs/pwa",
   ],

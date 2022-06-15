@@ -12,7 +12,7 @@
   "scripts": {
     "build": "npm run build --workspaces",
     "clean": "git clean -dX --force && rm --force package-lock.json",
-    "lint": "eslint --ext=.js,.jsx,.ts,.tsx . && npm run lint --workspaces",
+    "lint": "eslint --ext=.js,.jsx,.ts,.tsx,.vue . && npm run lint --workspaces",
     "reinstall": "npm run clean && npm install"
   },
   "devDependencies": {

@@ -15,4 +15,11 @@ module.exports = {
     "@phanect",
     "nuxt",
   ],
+  overrides: [{
+    files: [ "*.test.js", "**/*.test.js" ],
+    extends: "plugin:@phanect/jest",
+    rules: {
+      "jest/no-conditional-expect": "off",
+    },
+  }],
 };

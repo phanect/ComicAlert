@@ -24,8 +24,14 @@
 <script>
 export default {
   props: {
-    title: String,
-    comics: Array,
+    title: {
+      type: String,
+      required: true,
+    },
+    comics: {
+      type: Array,
+      required: true,
+    },
   },
 };
 </script>
