@@ -17,12 +17,10 @@
     "lint": ":"
   },
   "dependencies": {
-    "@zeit/next-css": "^1.0.1",
-    "@zeit/next-sass": "^1.0.1",
     "next": "^8.0.1",
-    "node-sass": "^4.11.0",
     "react": "^16.8.2",
-    "react-dom": "^16.8.2"
+    "react-dom": "^16.8.2",
+    "sass": "^1.64.2"
   },
   "devDependencies": {
     "should": "^13.0.0",
