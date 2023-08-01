@@ -16,7 +16,6 @@
       "types"
     ],
     "strict": true,
-    "strictNullChecks": false
   },
   "exclude": [ "node_modules" ]
 }
