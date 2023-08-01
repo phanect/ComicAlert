@@ -1,7 +1,7 @@
 "use strict"
 
 module.exports = {
-  extends: "plugin:@phanect/js",
+  extends: "phanective/node",
   root: true,
   env: {
     "node": true
@@ -10,5 +10,4 @@ module.exports = {
     project: "./tsconfig.json",
     sourceType: "module",
   },
-  plugins: [ "@phanect" ],
 };

@@ -16,9 +16,8 @@
     "postinstall": "lerna bootstrap"
   },
   "devDependencies": {
-    "@phanect/eslint-plugin": "latest",
     "eslint": "latest",
-    "eslint-plugin-react": "^7.12.4",
+    "eslint-config-phanective": "latest",
     "lerna": "^3.10.7",
     "typescript": "^3.2.4"
   },
