@@ -13,7 +13,7 @@
   ],
   "scripts": {
     "build": "lerna run build",
-    "clean": "git clean -dX --force && rm --force yarn.lock modules/crawler/yarn.lock modules/frontend/yarn.lock",
+    "clean": "git clean -dX --force && rm --force package-lock.json modules/crawler/package-lock.json modules/frontend/package-lock.json",
     "lint": "eslint --ext=.js,.jsx,.ts,.tsx . && lerna run lint",
     "reinstall": "yarn run clean && yarn install"
   },
