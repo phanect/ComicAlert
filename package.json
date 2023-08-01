@@ -8,17 +8,20 @@
     "type": "git",
     "url": "https://github.com/phanect/ComicAlert.git"
   },
+  "workspaces": [
+    "modules/*"
+  ],
   "scripts": {
     "build": "lerna run build",
     "clean": "git clean -dX --force && rm --force yarn.lock modules/crawler/yarn.lock modules/frontend/yarn.lock",
     "lint": "eslint --ext=.js,.jsx,.ts,.tsx . && lerna run lint",
-    "reinstall": "yarn run clean && yarn install",
-    "postinstall": "lerna bootstrap"
+    "reinstall": "yarn run clean && yarn install"
   },
   "devDependencies": {
+    "@lerna-lite/cli": "^2.5.0",
+    "@lerna-lite/run": "^2.5.0",
     "eslint": "latest",
     "eslint-config-phanective": "latest",
-    "lerna": "^3.10.7",
     "typescript": "^3.2.4"
   },
   "engines": {
